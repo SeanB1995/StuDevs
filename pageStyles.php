@@ -7,8 +7,8 @@
     
 	
 	<meta name="description" content="Studevs allows students to develop startup companies' websites for an affordable price." />
-	<link rel="shortcut icon" href="images/bg-thumb2.jpg" type="image/x-icon">
-	<link rel="icon" href="images/bg-thumb2.jpg" type="image/x-icon">
+	<link rel="shortcut icon" href="images/logoclosetransp.png" type="image/x-icon">
+	<link rel="icon" href="images/logoclosetransp.png" type="image/x-icon">
 	
     <!-- Bootstrap -->
     <link rel="stylesheet" href="bootstrap/bootstrap.min.css">    
@@ -19,7 +19,7 @@
 	<link rel="stylesheet" type="text/css" href="css/plugins.css">
     <link rel="stylesheet" type="text/css" href="css/site-layout.css">
 	
-    <link id="skin" rel="stylesheet" type="text/css" href="css/site-colors-blue.css">
+    <link id="skin" rel="stylesheet" type="text/css" href="css/site-colors-turquoise.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>

@@ -50,18 +50,18 @@ $_SESSION['email'] = $row['email'];
 $_SESSION['accountRef'] = $row['account_ref'];
 $_SESSION['accountID'] = $row['account_id'];
 
-$lastLogin = date('Y-m-d H:i:s');
-$_SESSION['lastLogin'] = $lastLogin;
+//$lastLogin = date('Y-m-d H:i:s');
+//$_SESSION['lastLogin'] = $lastLogin;
 
-$statement = $conn->prepare("INSERT INTO accounts_main (last_login)
-VALUES (?)");
+//$statement = $conn->prepare("INSERT INTO accounts_main (last_login)
+//VALUES (?)");
 
-$statement->bind_param("s", $lastLoginPrepared);
+//$statement->bind_param("s", $lastLoginPrepared);
 
-$lastLoginPrepared = $lastLogin;
+//$lastLoginPrepared = $lastLogin;
 
-$statement->execute();
+//$statement->execute();
 
-$result = $conn->query($statement);
+//$result = $conn->query($statement);
 
 header("Location: index.php?log_in_successful");
