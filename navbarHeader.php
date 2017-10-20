@@ -55,7 +55,7 @@ include_once 'headpage.php'
 						<span class="icon-bar icon-bar3"></span>
 					</button>
 					<a href="http://www.studevs.com" title="" class="navbar-brand">
-						<img src="images/logoclosetransp.png" alt="Studevs.com" id="navLogo"/>
+						<img src="images/logorect.png" alt="Studevs.com" id="navLogo"/>
 					</a>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">

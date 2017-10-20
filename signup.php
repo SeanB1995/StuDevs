@@ -193,11 +193,11 @@ if(empty($accountRef)||empty($dateJoined)){
 }
 
 /*
-EXTREMELY IMPORTANT TO HASH PASSWORD HERE
+Implement hashing algorithm
 */
 $password = password_hash($password, PASSWORD_DEFAULT);
 /*
-EXTREMELY IMPORTANT TO HASH PASSWORD HERE
+Implement hashing algorithm
 */
 
 

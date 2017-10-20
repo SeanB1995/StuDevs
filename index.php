@@ -127,16 +127,16 @@ include_once 'header.php';
 								<div class="slide-desc center-block">
 									<div class="slide-desc-text">
 										
-										<div class="estate-type">sfsadf</div>
-										<div class="transaction-type">sdf</div>
-										<h4>Tfffdsf</h4>
+										<div class="estate-type">Student</div>
+										<div class="transaction-type">Security & Login expert</div>
+										<h4>Thomas Reilly</h4>
 										<div class="clearfix"></div>
 										
-										<p>sdfsdafe</p>
+										<p>Experienced with HTML CSS JS, PHP and hashing sensitive data.</p>
 									</div>
 									<div class="slide-desc-params">	
 										<div class="slide-desc-area">
-											<img src="images/area-icon.png" alt="" />?m<sup>2</sup>
+											<img src="images/area-icon.png" alt="" />4
 										</div>
 										<div class="slide-desc-rooms">
 											<img src="images/rooms-icon.png" alt="" />2
@@ -149,7 +149,7 @@ include_once 'header.php';
 										</div>	
 									</div>
 									<div class="slide-desc-price">
-										€ 1 885 p/mo
+										€ 638 average
 									</div>		
 									<div class="clearfix"></div>									
 								</div>

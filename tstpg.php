@@ -1,6 +1,9 @@
 <?php
 include_once 'headpage.php';
 
+
+$abc = "john";
+
 /*
 $qu = "SELECT uname FROM accdet WHERE accid='7'";
 $show = $conn->query($qu);
