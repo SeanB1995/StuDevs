@@ -160,17 +160,7 @@ if(strlen($password)<6){
 }
 
 
-if(strlen($password)>10000){
-	unset($_SESSION['password']);
-	unset($_SESSION['repeatPassword']);
-	header("Location: index.php?sign_up_error=password_too_long");
-	exit();
-}
 
-
-
-
-//then hashing and dehashing.
 
 
 
@@ -193,11 +183,13 @@ if(empty($accountRef)||empty($dateJoined)){
 }
 
 /*
-Implement hashing algorithm
+Hashing password using Password class
 */
-$password = password_hash($password, PASSWORD_DEFAULT);
+include 'Password.php';
+$passObj = new Password();
+$password = $passObj->hashPassword($password);
 /*
-Implement hashing algorithm
+Hashing password using Password class
 */
 
 

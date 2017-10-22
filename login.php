@@ -8,9 +8,18 @@ include_once 'header.php';
 $email = strtolower($_POST['loginEmail']);
 $password = $_POST['loginPassword'];
 
-//use val mail function to stop injection
-//also do real escape
-//but no real escape for password coz some might have ' in them.
+
+/*
+Hashing password using Password class
+*/
+include 'Password.php';
+$passObj = new Password();
+$password = $passObj->hashPassword($password);
+/*
+Hashing password using Password class
+*/
+
+
 $_SESSION['loginEmail'] = $email;
 
 
@@ -24,7 +33,7 @@ $statement->execute();
 
 $result = $statement->get_result();
 $row = $result->fetch_assoc();
-$hashedPassword = $row['password'];
+//$hashedPassword = $row['password'];
 
 $emailCheck = $result->num_rows;
 
@@ -35,7 +44,7 @@ if($emailCheck<1){
 	exit();
 }
 
-if(password_verify($password, $hashedPassword)==0){
+if($password!==$row['password']){
 	$_SESSION['errorCount']++;
 	header("Location: index.php?log_in_error=invalid_password");
 	exit();
