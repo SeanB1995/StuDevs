@@ -19,6 +19,7 @@ include_once 'header.php';
 	<header>
 		<?php include 'navbarHeader.php' ?>
     </header>
+
 	
   	
     <section class="short-image no-padding blog-short-title">
@@ -34,7 +35,7 @@ include_once 'header.php';
     </section>
 	
 	<section class="section-light section-top-shadow">
-		<form action="saveadvert.php" method="post" enctype="multipart/form-data">
+		<form name="offer-from" action="#" enctype="multipart/form-data">
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-12 col-md-6">
@@ -44,7 +45,7 @@ include_once 'header.php';
 							<div class="row">
 								
 								<div class="col-xs-12 col-sm-6">
-									<select name="prop type" class="bootstrap-select" title="student development type:">
+									<select name="transaction2" class="bootstrap-select" title="Property type:">
 										<option>Apartment</option>
 										<option>House</option>
 										<option>Commercial</option>
@@ -52,7 +53,7 @@ include_once 'header.php';
 									</select>
 								</div>
 								<div class="col-xs-12 col-sm-6 margin-top-xs-15">
-									<select name="sale rent" class="bootstrap-select" title="For Sale/Rent">
+									<select name="transaction2" class="bootstrap-select" title="Transaction:">
 										<option>For sale</option>
 										<option>For rent</option>
 									</select>
@@ -61,7 +62,7 @@ include_once 'header.php';
 									<input name="price" type="text" class="input-full main-input" placeholder="Price" />
 								</div>
 								<div class="col-xs-12 col-sm-6 margin-top-15 margin-top-xs-0">
-									<input name="council" type="text" class="input-full main-input" placeholder="Local Council" />
+									<input name="area" type="text" class="input-full main-input" placeholder="Area" />
 								</div>
 								<div class="col-xs-12 col-sm-6">
 									<input name="bedrooms" type="text" class="input-full main-input" placeholder="Bedrooms" />
@@ -70,20 +71,63 @@ include_once 'header.php';
 									<input name="bathrooms" type="text" class="input-full main-input" placeholder="Bathrooms" />
 								</div>
 							</div>
-							<textarea name="description" class="input-full main-input student development-textarea" placeholder="Description"></textarea>
-							
+							<textarea name="message" class="input-full main-input property-textarea" placeholder="Description"></textarea>
+							<div class="row">
+								<div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 margin-top-15">
+									<input type="checkbox" id="c1" name="cc" class="main-checkbox" />
+									<label for="c1"><span></span>Air Conditioning</label><br/>
+									<input type="checkbox" id="c2" name="cc" class="main-checkbox" />
+									<label for="c2"><span></span>Internet</label><br/>
+									<input type="checkbox" id="c3" name="cc" class="main-checkbox" />
+									<label for="c3"><span></span>Cable TV</label><br/>
+									<input type="checkbox" id="c4" name="cc" class="main-checkbox" />
+									<label for="c4"><span></span>Balcony</label><br/>
+									<input type="checkbox" id="c5" name="cc" class="main-checkbox" />
+									<label for="c5"><span></span>Roof Terrace</label><br/>
+									<input type="checkbox" id="c6" name="cc" class="main-checkbox" />
+									<label for="c6"><span></span>Terrace</label>
+								</div>
+								<div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 margin-top-15">
+									<input type="checkbox" id="c7" name="cc" class="main-checkbox" />
+									<label for="c7"><span></span>Lift</label><br/>
+									<input type="checkbox" id="c8" name="cc" class="main-checkbox" />
+									<label for="c8"><span></span>Garage</label><br/>
+									<input type="checkbox" id="c9" name="cc" class="main-checkbox" />
+									<label for="c9"><span></span>Security</label><br/>
+									<input type="checkbox" id="c10" name="cc" class="main-checkbox" />
+									<label for="c10"><span></span>High Standard</label><br/>
+									<input type="checkbox" id="c11" name="cc" class="main-checkbox" />
+									<label for="c11"><span></span>City Centre</label><br/>
+									<input type="checkbox" id="c12" name="cc" class="main-checkbox" />
+									<label for="c12"><span></span>Furniture</label>
+								</div>
+								<div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 margin-top-15">
+									<input type="checkbox" id="c13" name="cc" class="main-checkbox" />
+									<label for="c13"><span></span>Another Option</label><br/>
+									<input type="checkbox" id="c14" name="cc" class="main-checkbox" />
+									<label for="c14"><span></span>Another Option</label><br/>
+									<input type="checkbox" id="c15" name="cc" class="main-checkbox" />
+									<label for="c15"><span></span>Another Option</label><br/>
+									<input type="checkbox" id="c16" name="cc" class="main-checkbox" />
+									<label for="c16"><span></span>Another Option</label><br/>
+									<input type="checkbox" id="c17" name="cc" class="main-checkbox" />
+									<label for="c17"><span></span>Another Option</label><br/>
+									<input type="checkbox" id="c18" name="cc" class="main-checkbox" />
+									<label for="c18"><span></span>Another Option</label>
+								</div>
+							</div>
 						</div>				
 					</div>
 					<div class="col-xs-12 col-md-6 margin-top-xs-60 margin-top-sm-60">
-						<h3 class="title-negative-margin">Area<span class="special-color">.</span></h3>
+						<h3 class="title-negative-margin">Localization<span class="special-color">.</span></h3>
 						<div class="title-separator-primary"></div>
 						<div class="dark-col margin-top-60">
-							<input id="geocomplete" name="area" type="text" class="input-full main-input" placeholder="Area" />
-							<p class="negative-margin bold-indent">Or drag the marker to student development position<p>
-							<div id="submit-student development-map" class="submit-student development-map"></div>
+							<input id="geocomplete" name="geocomplete" type="text" class="input-full main-input" placeholder="Localization" />
+							<p class="negative-margin bold-indent">Or drag the marker to property position<p>
+							<div id="submit-property-map" class="submit-property-map"></div>
 							<div class="row">
 								<div class="col-xs-12 col-sm-6 margin-top-15">
-									<input name="long" type="text" class="input-full main-input input-last" placeholder="Longitude" readonly="readonly" />
+									<input name="lng" type="text" class="input-full main-input input-last" placeholder="Longitude" readonly="readonly" />
 								</div>
 								<div class="col-xs-12 col-sm-6 margin-top-15">
 									<input name="lat" type="text" class="input-full main-input input-last" placeholder="Latitude" readonly="readonly" />
@@ -101,7 +145,7 @@ include_once 'header.php';
 					<div class="col-xs-12">
 						<div class="center-button-cont margin-top-60">
 							<a href="#" class="button-primary button-shadow">
-								<span>submit student development</span>
+								<span>submit property</span>
 								<div class="button-triangle"></div>
 								<div class="button-triangle2"></div>
 								<div class="button-icon"><i class="fa fa-lg fa-home"></i></div>
@@ -112,12 +156,11 @@ include_once 'header.php';
 			</div>
 		</form>
 	</section>
-	
-
 
 	
 	
-<footer class="small-cont">
+		
+    <footer class="small-cont">
 		<?php
 		include 'footer.php';
 		?>

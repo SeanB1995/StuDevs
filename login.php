@@ -73,4 +73,4 @@ $_SESSION['accountID'] = $row['account_id'];
 
 //$result = $conn->query($statement);
 
-header("Location: index.php?log_in_successful");
+header("Location: prof.php?log_in_successful");

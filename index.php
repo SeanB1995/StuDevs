@@ -27,7 +27,7 @@ include_once 'header.php';
 			<div class="swiper-wrapper">
 				<!-- Slides -->
 				<div class="swiper-slide">
-					<div class="slide-bg swiper-lazy" data-background="images/sunriseireland.jpg"></div>
+					<div class="slide-bg swiper-lazy" data-background="images/coding1.jpg"></div>
 					<!-- Preloader image -->
 					<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
 					<div class="container">
@@ -36,17 +36,17 @@ include_once 'header.php';
 								<div class="slide-desc pull-right">
 									<div class="slide-desc-text">
 										
-										<div class="estate-type">developer</div>
-										<div class="transaction-type">developer</div>
-										<h4>abc ...... abc</h4>
+										<div class="estate-type">PHP</div>
+										<div class="transaction-type">Python</div>
+										<h4>Robert O'Brien</h4>
 										<div class="clearfix"></div>
 										
-										<p>sdfsdf
+										<p>DCU - Computer Systems Engineering:  Course delivered valuable experience to put to use in projects.  Good knowledge in PHP, JavaScript, Ruby on Rails, Android applications and Objective C/Swift for Apple apps.
 										</p>
 									</div>
 									<div class="slide-desc-params">	
 										<div class="slide-desc-area">
-											<img src="images/area-icon.png" alt="" />?m<sup>2</sup>
+											<img src="images/area-icon.png" alt="" />4
 										</div>
 										<div class="slide-desc-rooms">
 											<img src="images/rooms-icon.png" alt="" />2
@@ -59,7 +59,7 @@ include_once 'header.php';
 										</div>	
 									</div>
 									<div class="slide-desc-price">
-										€ 1 080
+										€ 588 average
 									</div>
 									<div class="clearfix"></div>
 								</div>
@@ -73,7 +73,7 @@ include_once 'header.php';
 
 
 				<div class="swiper-slide">
-					<div class="slide-bg swiper-lazy" data-background="images/bg-pattern11.jpg"></div>
+					<div class="slide-bg swiper-lazy" data-background="images/coding2.jpg"></div>
 					<!-- Preloader image -->
 					<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
 					<div class="container">
@@ -84,14 +84,14 @@ include_once 'header.php';
 										
 										<div class="estate-type">Java</div>
 										<div class="transaction-type">SQL</div>
-										<h4>Mary Smith</h4>
+										<h4>Sarah Kavanagh</h4>
 										<div class="clearfix"></div>
 										
-										<p>University : NCI</p>
+										<p>NCI - Computing: Experience with IT projects and software development.  2 previous projects completed via studevs.com</p>
 									</div>
 									<div class="slide-desc-params">	
 										<div class="slide-desc-area">
-											<img src="images/area-icon.png" alt="" />?m<sup>2</sup>
+											<img src="images/area-icon.png" alt="" />3
 										</div>
 										<div class="slide-desc-rooms">
 											<img src="images/rooms-icon.png" alt="" />4
@@ -104,7 +104,7 @@ include_once 'header.php';
 										</div>	
 									</div>
 									<div class="slide-desc-price">
-										Location : Dublin
+										€740 avg
 									</div>		
 									<div class="clearfix"></div>										
 								</div>
@@ -118,7 +118,7 @@ include_once 'header.php';
 
 
 				<div class="swiper-slide">
-					<div class="slide-bg swiper-lazy" data-background="images/bg-pattern12.jpg"></div>
+					<div class="slide-bg swiper-lazy" data-background="images/coding3.jpg"></div>
 					<!-- Preloader image -->
 					<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
 					<div class="container">
@@ -127,12 +127,12 @@ include_once 'header.php';
 								<div class="slide-desc center-block">
 									<div class="slide-desc-text">
 										
-										<div class="estate-type">Student</div>
-										<div class="transaction-type">Security & Login expert</div>
-										<h4>Thomas Reilly</h4>
+										<div class="estate-type">PHP</div>
+										<div class="transaction-type">Security &amp; Login expert</div>
+										<h4>Maria Reilly</h4>
 										<div class="clearfix"></div>
 										
-										<p>Experienced with HTML CSS JS, PHP and hashing sensitive data.</p>
+										<p>Maynooth University - Technology Management</p>
 									</div>
 									<div class="slide-desc-params">	
 										<div class="slide-desc-area">
@@ -149,7 +149,7 @@ include_once 'header.php';
 										</div>	
 									</div>
 									<div class="slide-desc-price">
-										€ 638 average
+										€ 638 avg
 									</div>		
 									<div class="clearfix"></div>									
 								</div>
@@ -189,20 +189,20 @@ include_once 'header.php';
 						<div class="col-xs-12 col-sm-6 col-lg-3">
 							<select name="transaction1" class="bootstrap-select" title="Choose Developer:" multiple>
 								<option>Student</option>
-								<option>Business</option>
+								<option>Project</option>
 							</select>
 						</div>
 						<div class="col-xs-12 col-sm-6 col-lg-3">
-							<select name="country1" class="bootstrap-select" title="Choosdfgs:" multiple data-actions-box="true">
-								<option>Dublin</option>
-								<option>Galway</option>
-								<option>dev</option>
-								<option>dev</option>
-								<option>dev</option>
+							<select name="country1" class="bootstrap-select" title="University:" multiple data-actions-box="true">
+								<option>DIT</option>
+								<option>Tallaght IT</option>
+								<option>Trinity</option>
+								<option>NCI</option>
+								<option>NUIG</option>
 							</select>
 						</div>
 						<div class="col-xs-12 col-sm-6 col-lg-3">
-							<select name="city1" class="bootstrap-select" title="Choosdfg:" multiple data-actions-box="true">
+							<select name="city1" class="bootstrap-select" title="Requirements:" multiple data-actions-box="true">
 								<option>studev</option>
 								<option>studev</option>
 								<option>studev</option>
@@ -210,10 +210,10 @@ include_once 'header.php';
 						</div>
 						<div class="col-xs-12 col-sm-6 col-lg-3">
 							<select name="location1" class="bootstrap-select" title="Location:" multiple data-actions-box="true">
-								<option>Some location 1</option>
-								<option>Some location 2</option>
-								<option>Some location 3</option>
-								<option>Some location 4</option>
+								<option>Dublin</option>
+								<option>Galway</option>
+								<option>Limerick</option>
+								<option>Cork</option>
 							</select>
 						</div>
 					</div>
@@ -224,22 +224,22 @@ include_once 'header.php';
 								<span>€</span>
 								<input type="text" id="slider-range-price1-value" readonly class="adv-search-amount">
 								<div class="clearfix"></div>
-								<div id="slider-range-price1" data-min="0" data-max="5000000" class="slider-range"></div>
+								<div id="slider-range-price1" data-min="0" data-max="5000" class="slider-range"></div>
 							</div>
 							
 						</div>
 						<div class="col-xs-12 col-sm-6 col-lg-3">
 							<div class="adv-search-range-cont">	
-								<label for="slider-range-area1-value" class="adv-search-label">op2;</label>
-								<span>m<sup>2</sup></span>
+								<label for="slider-range-area1-value" class="adv-search-label">Experience</label>
+								<span></span>
 								<input type="text" id="slider-range-area1-value" readonly class="adv-search-amount">
 								<div class="clearfix"></div>
-								<div id="slider-range-area1" data-min="0" data-max="180" class="slider-range"></div>
+								<div id="slider-range-area1" data-min="0" data-max="100" class="slider-range"></div>
 							</div>
 						</div>
 						<div class="col-xs-12 col-sm-6 col-lg-3">
 							<div class="adv-search-range-cont">	
-								<label for="slider-range-bedrooms1-value" class="adv-search-label">op3;</label>
+								<label for="slider-range-bedrooms1-value" class="adv-search-label">Project length</label>
 								<input type="text" id="slider-range-bedrooms1-value" readonly class="adv-search-amount">
 								<div class="clearfix"></div>
 								<div id="slider-range-bedrooms1" data-min="1" data-max="10" class="slider-range"></div>
@@ -247,10 +247,10 @@ include_once 'header.php';
 						</div>
 						<div class="col-xs-12 col-sm-6 col-lg-3">
 							<div class="adv-search-range-cont">	
-								<label for="slider-range-bathrooms1-value" class="adv-search-label">op4;:</label>
+								<label for="slider-range-bathrooms1-value" class="adv-search-label">Difficulty</label>
 								<input type="text" id="slider-range-bathrooms1-value" readonly class="adv-search-amount">
 								<div class="clearfix"></div>
-								<div id="slider-range-bathrooms1" data-min="1" data-max="4" class="slider-range"></div>
+								<div id="slider-range-bathrooms1" data-min="1" data-max="10" class="slider-range"></div>
 							</div>
 						</div>
 					</div>
@@ -266,9 +266,9 @@ include_once 'header.php';
 						<div class="col-xs-12 col-sm-6 col-lg-3">
 							<select name="country2" class="bootstrap-select" title="Country:" multiple data-actions-box="true">
 								
-								<option>Uasdfsads</option>
-								<option>Csadffda</option>
-								<option>Msafdsasdo</option>
+								<option>sdfs</option>
+								<option>Csfddf</option>
+								<option>Msdfdsasdo</option>
 							</select>
 						</div>
 						<div class="col-xs-12 col-sm-6 col-lg-3">
@@ -278,7 +278,7 @@ include_once 'header.php';
 								<option>Csdf</option>
 								<option>Hosdfn</option>
 								<option>Phsfdsfdia</option>
-								<option>Phstfsudevx</option>
+								<option>Phssffsudevx</option>
 								<option>Wstudsdevn</option>
 								<option>Sstudevty</option>
 								<option>Destudevt</option>

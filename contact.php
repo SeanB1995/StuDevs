@@ -1,12 +1,13 @@
 <?php
-include_once 'headpage.php';
+
+include_once 'header.php';
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>studevs | Student development ireland</title>
+	<title>StuDevs</title>
 	<?php include 'pageStyles.php' ?>
 	
 </head>
@@ -20,13 +21,13 @@ include_once 'headpage.php';
     </header>
 	
   		
-    <section class="short-image no-padding contact-short-titl">
+    <section class="short-image no-padding contact-short-title">
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 col-lg-12 short-image-title">
 					<h5 class="subtitle-margin second-color">Get in touch</h5>
 					<h1 class="second-color">Contact Us</h1>
-					<div class="short-title-separator"></div>
+					<div class="short-title-separator">.</div>
 				</div>
 			</div>
 		</div>
@@ -38,9 +39,9 @@ include_once 'headpage.php';
 			<div class="row">
 				<div class="col-xs-12 col-md-6 margin-top-45">
 					<p class="negative-margin">studevs.com | sdfsdf</p>
-					<img id="contactImage" src="images/sunriseirelandSmall.jpg" alt="" class="pull-left margin-top-45" />
+					<img id="contactImage" src="images/sunriseirelandsmall.jpg" alt="" class="pull-left margin-top-45" />
 					<address class="contact-info pull-left">
-						<span><i class="fa fa-map-marker"></dub, ireland</span>
+						<span><i class="fa fa-map-marker">Ireland</span>
 						<span><i class="fa fa-envelope"></i><a href="mailto:info@studevs.com">info@studevs.com</a></span>
 						<span><i class="fa fa-phone"></i>5553453777</span>
 						<span><i class="fa fa-clock-o"></i>Mon-Fri: 9:00 - 18:00</span>
@@ -94,14 +95,34 @@ include_once 'headpage.php';
 include 'errors.php';
 
 ?>
-	
+
 <!-- google maps initialization 
 	<script type="text/javascript">
             google.maps.event.addDomListener(window, 'load', init);
-			function init() {						
-				mapInit(35.897014, 14.508105,"contact-map2","images/pin-contact.png", true);
+			function init() {
+				
+				mapInitAddress("national college of ireland","featured-map1","images/pin-house.png", false);
+				
+				//mapInit(40.6128,-73.7903,"featured-map1","images/pin-house.png", false);
+				mapInit(40.7222,-73.7903,"featured-map2","images/pin-apartment.png", false);
+				mapInit(41.0306,-73.7669,"featured-map3","images/pin-land.png", false);
+				mapInit(41.3006,-72.9440,"featured-map4","images/pin-commercial.png", false);
+				mapInit(42.2418,-74.3626,"featured-map5","images/pin-house.png", false);
+				mapInit(38.8974,-77.0365,"featured-map6","images/pin-apartment.png", false);
+				mapInit(38.7860,-77.0129,"featured-map7","images/pin-house.png", false);
+				
+				mapInit(41.2693,-70.0874,"grid-map1","images/pin-house.png", false);
+				mapInit(33.7544,-84.3857,"grid-map2","images/pin-apartment.png", false);
+				mapInit(33.7337,-84.4443,"grid-map3","images/pin-land.png", false);
+				mapInit(33.8588,-84.4858,"grid-map4","images/pin-commercial.png", false);
+				mapInit(34.0254,-84.3560,"grid-map5","images/pin-apartment.png", false);
+				mapInit(40.6128,-73.9976,"grid-map6","images/pin-house.png", false);
 			}
+	
 	</script>
-	-->
+
+-->
+
+
 	</body>
 </html>

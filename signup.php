@@ -214,4 +214,4 @@ session_destroy();
 
 session_start();
 $_SESSION['loggedIn'] = true;
-header("Location: index.php?sign_up_successful");
+header("Location: prof.php?sign_up_successful");

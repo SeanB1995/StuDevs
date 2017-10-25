@@ -18,7 +18,7 @@ include_once 'headpage.php'
 							<span class="top-icon-circle">
 								<i class="fa fa-phone"></i>
 							</span>
-							<span class="top-bar-text">55555555</span>
+							<span class="top-bar-text">1800 829 29192</span>
 						</div>
 						<div class="top-localization pull-left hidden-sm hidden-md hidden-xs">
 							<span class="top-icon-circle pull-left">
@@ -35,7 +35,7 @@ include_once 'headpage.php'
 						</div>
 						
 						<div class="top-social pull-right">
-							<a class="top-icon-circle" target="_blank" href="#">
+							<a class="top-icon-circle" target="_blank" href="https://www.facebook.com">
 								<i class="fa fa-facebook"></i>
 							</a>
 						</div>
@@ -55,22 +55,24 @@ include_once 'headpage.php'
 						<span class="icon-bar icon-bar3"></span>
 					</button>
 					<a href="http://www.studevs.com" title="" class="navbar-brand">
-						<img src="images/logorect.png" alt="Studevs.com" id="navLogo"/>
+						<img src="images/logorect.PNG" alt="Studevs.com" id="navLogo"/>
 					</a>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
 						
 						<li class="dropdown">
-							<a href="#" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
+							<a href="http://www.studevs.com" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
 						</li>
+						
 						<li class="dropdown">
-							<a href="#" role="button" aria-haspopup="true" aria-expanded="false">How It Works</a>
+							<a href="lis.php" role="button" aria-haspopup="true" aria-expanded="false">Projects</a>
 						</li>
+						
 						<li class="dropdown">
-							<a href="#" role="button" aria-haspopup="true" aria-expanded="false">Students</a>
+							<a href="lis.php" role="button" aria-haspopup="true" aria-expanded="false">Students</a>
 						</li>
-
+						
 
 						
 						
@@ -82,14 +84,14 @@ include_once 'headpage.php'
 						else include 'navbarAccount.php';
 						?>
 						<li class="dropdown">
-							<a href="#" role="button" aria-haspopup="true" aria-expanded="false">Contact Us</a>
+							<a href="conta.php" role="button" aria-haspopup="true" aria-expanded="false">Contact Us</a>
 						</li>
 						<?php if($_SESSION['loggedIn']!==true){
 							echo "
-							<li><a href=\"#\" class=\"special-color\" onclick=\"showregmod()\">Advertise Your student development</a></li>";
+							<li><a href=\"#\" class=\"special-color\" onclick=\"showregmod()\">Advertise Project</a></li>";
 						}//end if 
 						else{
-							echo "<li><a href=\"#\" class=\"special-color\">Advertise Your student development</a></li>";
+							echo "<li><a href=\"adv.php\" class=\"special-color\">Advertise Project</a></li>";
 						}
 						?>
 						
