@@ -230,8 +230,10 @@ $dateJoinedPrepared = $dateJoined;
 $statement->execute();
 
 $result = $conn->query($statement);
+/*
 session_destroy();
 
 session_start();
+*/
 $_SESSION['loggedIn'] = true;
 header("Location: prof.php?sign_up_successful");

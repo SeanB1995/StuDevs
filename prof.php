@@ -40,7 +40,7 @@ include_once 'header.php';
 					<div class="row">
 						<div class="col-xs-12">
 							<h5 class="subtitle-margin">edit</h5>
-							<h1>Profile<span class="special-color">.</span></h1>
+							<h1><?php echo $_SESSION['firstName'] . " " . $_SESSION['lastName']?><span class="special-color">.</span></h1>
 							<div class="title-separator-primary"></div>
 						</div>
 					</div>	
@@ -58,15 +58,15 @@ include_once 'header.php';
 						</div>
 						<div class="col-xs-12 col-sm-9 col-md-8">
 							<div class="labelled-input">
-								<label for="first-name">First name</label><input id="first-name" name="first-name" type="text" class="input-full main-input" placeholder="" value="Timothy"/>
+								<label for="first-name">First name</label><input id="first-name" name="first-name" type="text" class="input-full main-input" placeholder="" value="<?php echo $_SESSION['firstName']; ?>"/>
 								<div class="clearfix"></div>
 							</div>
 							<div class="labelled-input">
-								<label for="last-name">Last name</label><input id="last-name" name="last-name" type="text" class="input-full main-input" placeholder="" value="Johnson"/>
+								<label for="last-name">Last name</label><input id="last-name" name="last-name" type="text" class="input-full main-input" placeholder="" value="<?php echo $_SESSION['lastName']; ?>"/>
 								<div class="clearfix"></div>
 							</div>
 							<div class="labelled-input">
-								<label for="email">Email</label><input id="email" name="email" type="email" class="input-full main-input" placeholder="" value="agent@somedomain.tld"/>
+								<label for="email">Email</label><input id="email" name="email" type="email" class="input-full main-input" placeholder="" value="<?php echo $_SESSION['email']; ?>"/>
 								<div class="clearfix"></div>
 							</div>
 							<div class="labelled-input">
@@ -179,7 +179,7 @@ include_once 'header.php';
 						<div class="title-separator-primary"></div>
 						
 						<div class="profile-info margin-top-60">
-							<div class="profile-info-title negative-margin">Timothy Johnson</div>
+							<div class="profile-info-title negative-margin"><?php echo $_SESSION['firstName'] . " " . $_SESSION['lastName']; ?></div>
 							<img src="images/comment-photo2.jpg" alt="" class="pull-left" />
 							<div class="profile-info-text pull-left">
 								<p class="subtitle-margin">Agent</p>
