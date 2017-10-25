@@ -40,6 +40,8 @@ $password = $_POST['password'];
 
 $repeatPassword = $_POST['repeatPassword'];
 
+$profileType = $_POST['profileType'];
+
 
 $_SESSION['firstName'] = $firstName;
 $_SESSION['lastName'] = $lastName;
@@ -120,6 +122,24 @@ if(strlen($email)>100){
 function validEmail($email){
 	$regexp='/^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/';
 	return preg_match($regexp, trim($email));
+}
+
+function isCollegeEmail($email){
+	if(strpos($email, '@student.ncirl.ie')!==false||
+		strpos($email, '@tcd.ie')!==false||
+		strpos($email, '@mail.dcu.ie')!==false||
+		strpos($email, '@mail.wit.ie')!==false||
+		strpos($email, '@ucdconnect.ie')!==false
+	) return true;
+	else return false;
+}
+
+if($profileType==='student'){
+	if(!isCollegeEmail($email)){ //if email is not a student email address
+		unset($_SESSION['email']);
+		header("Location: index.php?sign_up_error=student_email_required");
+		exit();
+	}
 }
 
 

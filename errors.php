@@ -93,6 +93,15 @@ if(strpos($url, 'sign_up_error=email_already_in_use')!==false){
 }
 
 
+if(strpos($url, 'sign_up_error=student_email_required')!==false){
+	?>
+	<script>
+	focusSignupEmail();
+	</script>
+	<?php
+}
+
+
 if(strpos($url, 'sign_up_error=password')!==false){
 	?>
 	<script>

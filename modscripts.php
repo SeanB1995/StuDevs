@@ -122,6 +122,13 @@
 							echo "Invalid Email";
 							$errorDetails = 'The email address you entered is already in use. Please enter another email address.';
 						}
+						
+						
+						else if(strpos($url, 'sign_up_error=student_email_required')!==false){
+							echo "Invalid Email";
+							$errorDetails = 'Students must sign up with an email address from an Irish college/university.';
+						}
+						
 
 						else if(strpos($url, 'sign_up_error=password_too_short')!==false){
 							echo "Password too short";
@@ -167,6 +174,10 @@
 					value="<?php echo $_SESSION['password']; ?>"/>
 					<input id="signrepeatpword" name="repeatPassword" type="password" required="" class="input-full main-input" placeholder="Re-Enter Password" 
 					value="<?php echo $_SESSION['repeatPassword']; ?>"/>
+					<select id="profileType" name="profileType" class="input-full main-input" placeholder="Account Type">
+						<option value="student">Student</option>
+						<option value="business">Business</option>
+					</select>
 
 
 					<!--
