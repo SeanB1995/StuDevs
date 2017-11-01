@@ -1,5 +1,5 @@
 <?php
-include_once 'headpage.php'
+include_once 'header.php'
 ?>
 
 
@@ -66,11 +66,11 @@ include_once 'headpage.php'
 						</li>
 						
 						<li class="dropdown">
-							<a href="lis.php" role="button" aria-haspopup="true" aria-expanded="false">Projects</a>
+							<a href="../lis.php" role="button" aria-haspopup="true" aria-expanded="false">Projects</a>
 						</li>
 						
 						<li class="dropdown">
-							<a href="lis.php" role="button" aria-haspopup="true" aria-expanded="false">Students</a>
+							<a href="../lis.php" role="button" aria-haspopup="true" aria-expanded="false">Students</a>
 						</li>
 						
 
@@ -81,7 +81,19 @@ include_once 'headpage.php'
 							<li class=\"dropdown\"><a href=\"#login-modal\" data-toggle=\"modal\">Log In</a></li>
 							<li class=\"dropdown\"><a href=\"#register-modal\" data-toggle=\"modal\">Sign Up</a></li>";
 						}
-						else include 'navbarAccount.php';
+						//else include 'navbarAccount.php';
+						else{ ?>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account</a>
+								<ul class="dropdown-menu">
+									<li><a href="profile.php">My Profile</a></li>
+									<li><a href="offers.php">My Offers</a></li>
+									<li><a href="lib/logout.php">Logout</a></li>
+								</ul>
+							</li>
+						<?php } ?>
+
+
 						?>
 						<li class="dropdown">
 							<a href="conta.php" role="button" aria-haspopup="true" aria-expanded="false">Contact Us</a>
@@ -91,7 +103,7 @@ include_once 'headpage.php'
 							<li><a href=\"#\" class=\"special-color\" onclick=\"showregmod()\">Advertise Project</a></li>";
 						}//end if 
 						else{
-							echo "<li><a href=\"adv.php\" class=\"special-color\">Advertise Project</a></li>";
+							echo "<li><a href=\"../adv.php\" class=\"special-color\">Advertise Project</a></li>";
 						}
 						?>
 						

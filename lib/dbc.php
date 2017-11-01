@@ -10,3 +10,4 @@ if(!$conn){
 }
 
 $conn->query("SET NAMES 'utf8'");
+

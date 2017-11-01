@@ -1,5 +1,5 @@
 <?php
-include_once 'headpage.php';
+include_once 'lib/header.php';
 
 ?>
 

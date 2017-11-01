@@ -1,6 +1,6 @@
 <?php
 
-include_once 'header.php';
+include_once 'lib/header.php';
 
 ?>
 
@@ -8,7 +8,7 @@ include_once 'header.php';
 <html lang="en">
 <head>
 	<title>StuDevs</title>
-	<?php include 'pageStyles.php' ?>
+	<?php include 'lib/metalinks.php' ?>
 	
 </head>
 <body>
@@ -17,7 +17,7 @@ include_once 'header.php';
 
 <!-- Page header -->	
 	<header>
-		<?php include 'navbarHeader.php' ?>
+		<?php include 'lib/navbar.php' ?>
     </header>
 
     <section class="no-padding adv-search-section">
@@ -543,58 +543,7 @@ include_once 'header.php';
     </section>
 
     
-
-
-    
-	<footer class="small-cont">
-		<?php
-		include 'footer.php';
-		?>
-	</footer>
-</div>	
-
-
-<?php
-// MODALS AND SCRIPTS AND MOVE TOP FEATURES HERE
- include 'modscripts.php'; 
- ?>
-
-
-<?php
-    
-// ERROR HANDLING
-
-include 'errors.php';
-
-?>
-
-<!-- google maps initialization 
-	<script type="text/javascript">
-            google.maps.event.addDomListener(window, 'load', init);
-			function init() {
-				
-				mapInitAddress("national college of ireland","featured-map1","images/pin-house.png", false);
-				
-				//mapInit(40.6128,-73.7903,"featured-map1","images/pin-house.png", false);
-				mapInit(40.7222,-73.7903,"featured-map2","images/pin-apartment.png", false);
-				mapInit(41.0306,-73.7669,"featured-map3","images/pin-land.png", false);
-				mapInit(41.3006,-72.9440,"featured-map4","images/pin-commercial.png", false);
-				mapInit(42.2418,-74.3626,"featured-map5","images/pin-house.png", false);
-				mapInit(38.8974,-77.0365,"featured-map6","images/pin-apartment.png", false);
-				mapInit(38.7860,-77.0129,"featured-map7","images/pin-house.png", false);
-				
-				mapInit(41.2693,-70.0874,"grid-map1","images/pin-house.png", false);
-				mapInit(33.7544,-84.3857,"grid-map2","images/pin-apartment.png", false);
-				mapInit(33.7337,-84.4443,"grid-map3","images/pin-land.png", false);
-				mapInit(33.8588,-84.4858,"grid-map4","images/pin-commercial.png", false);
-				mapInit(34.0254,-84.3560,"grid-map5","images/pin-apartment.png", false);
-				mapInit(40.6128,-73.9976,"grid-map6","images/pin-house.png", false);
-			}
-	
-	</script>
-
--->
-
+    <? include_once 'lib/footer.php'; ?>
 
 	</body>
 </html>

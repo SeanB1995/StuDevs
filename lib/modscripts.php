@@ -1,7 +1,7 @@
 <?php
 //modscripts stands for modals and scripts
 
-
+include_once 'header.php';
 ?>
 
 
@@ -23,7 +23,7 @@
 						<div class="short-title-separator"></div>
 					</div>
 
-					<form method="post" action ="login.php">
+					<form method="post" action ="lib/login.php">
 					<input id="logemail" name="loginEmail" type="email" required="" class="input-full main-input" placeholder="Email" 
 					value="<?php echo $_SESSION['loginEmail']; ?>"/>
 					<input id="logpword" name="loginPassword" type="password" required="" class="input-full main-input" placeholder="Password"/>
@@ -132,23 +132,20 @@
 
 						else if(strpos($url, 'sign_up_error=password_too_short')!==false){
 							echo "Password too short";
-							$errorDetails = 'Your password must be at least 6 characters long. Please enter another.';
+							$errorDetails = 'Your password must be at least 6 characters long. Please try another.';
 						}
 
 						else if(strpos($url, 'sign_up_error=password_too_long')!==false){
 							echo "Password too long";
-							$errorDetails = 'Your password must be at less than 10,000 characters long. Please enter another password.';
+							$errorDetails = 'Your password must be less than 9,000 characters long. Please try another.';
 						}
 
 						else if(strpos($url, 'sign_up_error=email_too_long')!==false){
 							echo "Email too long";
-							$errorDetails = 'Please use an email address less than 100 characters long.';
+							$errorDetails = 'Please use an email address less than 250 characters long.';
 						}
 
 
-				
-
-						
 
 						
 						else{
@@ -163,7 +160,7 @@
 						<p class = "error-to-screen"><?php echo $errorDetails; ?></p>
 						<!--detailed error goes here : EG: password must contain number-->
 					</div>
-					<form method="post" action ="signup.php">
+					<form method="post" action ="lib/signup.php">
 					<input id="signfirst" name="firstName" type="text" required="" class="input-full main-input" placeholder="First Name" 
 					value="<?php echo $_SESSION['firstName']; ?>"/>
 					<input id="signlast" name="lastName" type="text" required="" class="input-full main-input" placeholder="Last name" 
@@ -174,7 +171,7 @@
 					value="<?php echo $_SESSION['password']; ?>"/>
 					<input id="signrepeatpword" name="repeatPassword" type="password" required="" class="input-full main-input" placeholder="Re-Enter Password" 
 					value="<?php echo $_SESSION['repeatPassword']; ?>"/>
-					<select id="profileType" name="profileType" class="input-full main-input" placeholder="Account Type">
+					<select id="accountType" name="accountType" class="input-full main-input" placeholder="Account Type">
 						<option value="student">Student</option>
 						<option value="business">Business</option>
 					</select>
@@ -247,11 +244,11 @@
 	</div><!-- /.modal -->
 
 <!-- jQuery  -->
-    <script type="text/javascript" src="js/jQuery/jquery.min.js"></script>
-	<script type="text/javascript" src="js/jQuery/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../js/jQuery/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/jQuery/jquery-ui.min.js"></script>
 	
 <!-- Bootstrap-->
-    <script type="text/javascript" src="bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../bootstrap/bootstrap.min.js"></script>
 
 <!-- Google Maps -->
 	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDfDCV5hXiPamCIT8_vwGXuzimLQ9MF76g&amp;sensor=false&amp;libraries=places"></script>
@@ -259,9 +256,9 @@
 
 
 <!-- plugins script -->
-	<script type="text/javascript" src="js/plugins.js"></script>
+	<script type="text/javascript" src="../js/plugins.js"></script>
 
 <!-- template scripts -->
-	<script type="text/javascript" src="mail/validate.js"></script>
-    <script type="text/javascript" src="js/apartment.js"></script>
-    <script type="text/javascript" src="js/mainFunctions.js"></script>
+	<script type="text/javascript" src="../mail/validate.js"></script>
+    <script type="text/javascript" src="../js/apartment.js"></script>
+    <script type="text/javascript" src="../js/mainfunctions.js"></script>

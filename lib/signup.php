@@ -40,7 +40,7 @@ $password = $_POST['password'];
 
 $repeatPassword = $_POST['repeatPassword'];
 
-$profileType = $_POST['profileType'];
+$accountType = $_POST['accountType'];
 
 
 $_SESSION['firstName'] = $firstName;
@@ -50,20 +50,31 @@ $_SESSION['password'] = $password;
 $_SESSION['repeatPassword'] = $repeatPassword;
 
 
+$accountRef = "";
+
+$refIsValid = false;
 
 
+while(!$refIsValid){
 
-$query = "SELECT account_ref FROM accounts_main WHERE account_ref='$accountRef'";
-$result = $conn->query($query);
-$accountRefCheck = mysqli_num_rows($result);
+	$refIsValid = true;
 
-while($accountRefCheck>0){
 	$accountRef = referenceLetters() . referenceNumbers();
-	$query = "SELECT account_ref FROM accounts_main WHERE account_ref='$accountRef'";
+
+	$query = "SELECT acc_ref FROM student WHERE acc_ref='$accountRef'";
 	$result = $conn->query($query);
 	$accountRefCheck = mysqli_num_rows($result);
-}
 
+	if($accountRefCheck>0) $refIsValid = false;
+	
+
+	$query = "SELECT acc_ref FROM business WHERE acc_ref='$accountRef'";
+	$result = $conn->query($query);
+	$accountRefCheck = mysqli_num_rows($result);
+
+	if($accountRefCheck>0) $refIsValid = false;
+	
+}
 
 
 if (empty($password)||empty($firstName)||empty($lastName)||empty($email)||empty($repeatPassword)){
@@ -111,7 +122,7 @@ if (!preg_match("/^(?:[\s,.'-]*[a-zA-Z\pL][\s,.'-]*)+$/u", $lastName)){
 }
 
 
-if(strlen($email)>100){
+if(strlen($email)>249){
 	unset($_SESSION['email']);
 	header("Location: index.php?sign_up_error=email_too_long");
 	exit();
@@ -134,7 +145,7 @@ function isCollegeEmail($email){
 	else return false;
 }
 
-if($profileType==='student'){
+if($accountType==='student'){
 	if(!isCollegeEmail($email)){ //if email is not a student email address
 		unset($_SESSION['email']);
 		header("Location: index.php?sign_up_error=student_email_required");
@@ -149,11 +160,13 @@ if(!validEmail($email)){ //if email is invalid
 	exit();
 }
 
+
+
+
 //check is email already in the database
 
-
 //prepared statement
-$statement = $conn->prepare("SELECT email FROM accounts_main WHERE email=?");
+$statement = $conn->prepare("SELECT email FROM student WHERE email=?");
 $statement->bind_param("s", $emailPrepared);//this must be "s" !
 $emailPrepared = $email;
 //end of prepared statement
@@ -172,10 +185,40 @@ if($emailCheck > 0){
 }
 
 
-if(strlen($password)<6){
+
+//prepared statement
+$statement = $conn->prepare("SELECT email FROM business WHERE email=?");
+$statement->bind_param("s", $emailPrepared);//this must be "s" !
+$emailPrepared = $email;
+//end of prepared statement
+
+$statement->execute();
+
+$result = $statement->get_result();
+
+$emailCheck = $result->num_rows;
+
+if($emailCheck > 0){
+	unset($_SESSION['email']);
+	header("Location: index.php?sign_up_error=email_already_in_use");
+	exit();
+}
+
+
+
+
+
+if(strlen($password) < 6){
 	unset($_SESSION['password']);
 	unset($_SESSION['repeatPassword']);
 	header("Location: index.php?sign_up_error=password_too_short");
+	exit();
+}
+
+if(strlen($password) > 8999){
+	unset($_SESSION['password']);
+	unset($_SESSION['repeatPassword']);
+	header("Location: index.php?sign_up_error=password_too_long");
 	exit();
 }
 
@@ -197,26 +240,27 @@ if (empty($password)||empty($firstName)||empty($lastName)||empty($email)){
 	header("Location: index.php?sign_up_error=empty_fields");
 	exit();
 }
-if(empty($accountRef)||empty($dateJoined)){
+if(empty($accountRef)||empty($dateJoined)||empty($accountType)){
 	header("Location: index.php?error=internal_sign_up_error");
 	exit();
 }
 
 /*
-Hashing password using Password class
-*/
 include 'Password.php';
 $passObj = new Password();
 $password = $passObj->hashPassword($password);
-/*
-Hashing password using Password class
 */
 
+$password = password_hash($password, PASSWORD_DEFAULT);
 
 
+$statement;
 
-$statement = $conn->prepare("INSERT INTO accounts_main (password, first_name, last_name, email, account_ref, date_joined)
-VALUES (?, ?, ?, ?, ?, ?)");
+//if($accountType==='student') 
+	$statement = $conn->prepare("INSERT INTO '{accountType}' (password, first, last, email, acc_ref, date_joined) VALUES (?, ?, ?, ?, ?, ?)");
+
+//else if($accountType==='business') 
+	//$statement = $conn->prepare("INSERT INTO business (password, first_name, last_name, email, account_ref, date_joined) VALUES (?, ?, ?, ?, ?, ?)");
 
 $statement->bind_param("ssssss", $passwordPrepared, $firstNamePrepared, $lastNamePrepared, $emailPrepared, $accountRefPrepared, $dateJoinedPrepared);
 

@@ -5,7 +5,7 @@
 
 //strpos($url, 'sign_up_today')  :  This means : Does the URL contain 'sign_up_today'.
 
-
+include_once 'header.php';
 
 if(strpos($url, 'sign_up_error=')!==false){
 	?>
@@ -27,7 +27,7 @@ if(strpos($url, 'log_in_error=')!==false){
 
 
 
-
+/*
 
 
 
@@ -120,3 +120,6 @@ if(strpos($url, 'log_in_error=invalid_email')!==false){
 	</script>
 	<?php
 }
+
+*/
+

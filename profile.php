@@ -1,5 +1,5 @@
 <?php
-include_once 'headpage.php';
+include_once 'lib/header.php';
 
 ?>
 
@@ -16,7 +16,7 @@ include_once 'headpage.php';
 
 <!-- Page header -->	
 	<header>
-		<?php include 'navbarHeader.php' ?>
+		<?php include 'lib/navbarHeader.php' ?>
     </header>
 	
   		
