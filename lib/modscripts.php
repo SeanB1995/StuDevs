@@ -171,7 +171,8 @@ include_once 'header.php';
 					value="<?php echo $_SESSION['password']; ?>"/>
 					<input id="signrepeatpword" name="repeatPassword" type="password" required="" class="input-full main-input" placeholder="Re-Enter Password" 
 					value="<?php echo $_SESSION['repeatPassword']; ?>"/>
-					<select id="accountType" name="accountType" class="input-full main-input" placeholder="Account Type">
+					<select id="accountType" name="accountType" class="input-full main-input" placeholder="Account Type" 
+					value="<?php echo $_SESSION['accountType']; ?>">
 						<option value="student">Student</option>
 						<option value="business">Business</option>
 					</select>

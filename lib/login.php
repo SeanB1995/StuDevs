@@ -38,14 +38,8 @@ $result = $statement->get_result();
 $row = $result->fetch_assoc();
 //$hashedPassword = $row['password'];
 
-$emailCheck = $result->num_rows;
+$studentEmailCheck = $result->num_rows;
 
-if($emailCheck<1){
-	unset($_SESSION['loginEmail']);
-	unset($_SESSION['loginPassword']);
-	header("Location: ../index.php?log_in_error=invalid_email");
-	exit();
-}
 
 
 //prepared statement
@@ -60,9 +54,9 @@ $result = $statement->get_result();
 $row = $result->fetch_assoc();
 //$hashedPassword = $row['password'];
 
-$emailCheck = $result->num_rows;
+$businessEmailCheck = $result->num_rows;
 
-if($emailCheck<1){
+if($studentEmailCheck<1 && $businessEmailCheck<1){
 	unset($_SESSION['loginEmail']);
 	unset($_SESSION['loginPassword']);
 	header("Location: ../index.php?log_in_error=invalid_email");
@@ -74,45 +68,37 @@ if($emailCheck<1){
 
 
 
+//determing whether student or business and checking password matches database password
+function validType($password){
+	$statement = $conn->prepare("SELECT * FROM student WHERE email=?");
+	$statement->bind_param("s", $emailPrepared);//this must be "s" !
+	$emailPrepared = $email;
+	//end of prepared statement
+	$statement->execute();
+	$result = $statement->get_result();
+	$row = $result->fetch_assoc();
 
+	//if details are fully found in student database return "student"
+	if(password_verify($password, $row['password'])) return "student";
 
+	$statement = $conn->prepare("SELECT * FROM business WHERE email=?");
+	$statement->bind_param("s", $emailPrepared);//this must be "s" !
+	$emailPrepared = $email;
+	//end of prepared statement
+	$statement->execute();
+	$result = $statement->get_result();
+	$row = $result->fetch_assoc();
 
-//prepared statement
-$statement = $conn->prepare("SELECT * FROM student WHERE email=?");
-$statement->bind_param("s", $emailPrepared);//this must be "s" !
-$emailPrepared = $email;
-//end of prepared statement
+	//if details are fully found in business database return "business"
+	if(password_verify($password, $row['password'])) return "business";
 
-$statement->execute();
-
-$result = $statement->get_result();
-$row = $result->fetch_assoc();
-//$hashedPassword = $row['password'];
-
-
-
-if(!password_verify($password, $row['password'])){
-	unset($_SESSION['loginPassword']);
-	header("Location: ../index.php?log_in_error=invalid_password");
-	exit();
+	//otherwise return "none"
+	return "none";
 }
 
 
-//prepared statement
-$statement = $conn->prepare("SELECT * FROM business WHERE email=?");
-$statement->bind_param("s", $emailPrepared);//this must be "s" !
-$emailPrepared = $email;
-//end of prepared statement
 
-$statement->execute();
-
-$result = $statement->get_result();
-$row = $result->fetch_assoc();
-//$hashedPassword = $row['password'];
-
-
-
-if(!password_verify($password, $row['password'])){
+if($validType($password)==='none'){
 	unset($_SESSION['loginPassword']);
 	header("Location: ../index.php?log_in_error=invalid_password");
 	exit();
@@ -120,35 +106,44 @@ if(!password_verify($password, $row['password'])){
 
 
 
+if($validType==='student'){
+	$statement = $conn->prepare("SELECT * FROM student WHERE email=?");
+	$statement->bind_param("s", $emailPrepared);//this must be "s" !
+	$emailPrepared = $email;
+	//end of prepared statement
+	$statement->execute();
+	$result = $statement->get_result();
+	$row = $result->fetch_assoc();
+
+	$_SESSION['firstName'] = $row['first'];
+	$_SESSION['lastName'] = $row['last'];
+	$_SESSION['fullName'] = $row['first'] . " " . $row['last'];
+	$_SESSION['email'] = $row['email'];
+	$_SESSION['accountRef'] = $row['acc_ref'];
+}
 
 
 
+if($validType==='business'){
+	$statement = $conn->prepare("SELECT * FROM business WHERE email=?");
+	$statement->bind_param("s", $emailPrepared);//this must be "s" !
+	$emailPrepared = $email;
+	//end of prepared statement
+	$statement->execute();
+	$result = $statement->get_result();
+	$row = $result->fetch_assoc();
+
+	$_SESSION['firstName'] = $row['first'];
+	$_SESSION['lastName'] = $row['last'];
+	$_SESSION['fullName'] = $row['first'] . " " . $row['last'];
+	$_SESSION['email'] = $row['email'];
+	$_SESSION['accountRef'] = $row['acc_ref'];
+}
 
 
+//use an SQL update statement for last login datetime
 
 
 $_SESSION['loggedIn'] = true;
-/*
-$_SESSION['firstName'] = $row['first'];
-$_SESSION['lastName'] = $row['last'];
-$_SESSION['fullName'] = $row['first'] . " " . $row['last'];
-$_SESSION['email'] = $row['email'];
-$_SESSION['accountRef'] = $row['acc_ref'];
-$_SESSION['accountID'] = $row['account_id'];
-*/
 
-//$lastLogin = date('Y-m-d H:i:s');
-//$_SESSION['lastLogin'] = $lastLogin;
-
-//$statement = $conn->prepare("INSERT INTO accounts_main (last_login)
-//VALUES (?)");
-
-//$statement->bind_param("s", $lastLoginPrepared);
-
-//$lastLoginPrepared = $lastLogin;
-
-//$statement->execute();
-
-//$result = $conn->query($statement);
-
-header("Location: prof.php?log_in_successful");
+header("Location: ../profile.php?log_in_successful");

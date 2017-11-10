@@ -76,6 +76,8 @@ while(!$refIsValid){
 	
 }
 
+$_SESSION['accountRef'] = $accountRef;
+
 
 if (empty($password)||empty($firstName)||empty($lastName)||empty($email)||empty($repeatPassword)){
 	header("Location: ../index.php?sign_up_error=empty_fields");
@@ -277,10 +279,11 @@ $dateJoinedPrepared = $dateJoined;
 $statement->execute();
 
 $result = $conn->query($statement);
-/*
-session_destroy();
 
-session_start();
-*/
 $_SESSION['loggedIn'] = true;
+
+//use an SQL update statement for last login datetime
+
+
+
 header("Location: ../profile.php?sign_up_successful");

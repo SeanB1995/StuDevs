@@ -27,8 +27,8 @@ if($_SESSION['loggedIn']!==true){
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 col-lg-12 short-image-title">
-					<h5 class="subtitle-margin second-color">dashboard</h5>
-					<h1 class="second-color">my account</h1>
+					<h5 class="subtitle-margin second-color">Dashboard</h5>
+					<h1 class="second-color"><?php echo $_SESSION['firstName']; ?>'s Account</h1>
 					<div class="short-title-separator"></div>
 				</div>
 			</div>
@@ -41,7 +41,7 @@ if($_SESSION['loggedIn']!==true){
 				<div class="col-xs-12 col-md-9 col-md-push-3">
 					<div class="row">
 						<div class="col-xs-12">
-							<h5 class="subtitle-margin">edit</h5>
+							<h5 class="subtitle-margin">Edit</h5>
 							<h1>Profile<span class="special-color">.</span></h1>
 							<div class="title-separator-primary"></div>
 						</div>
@@ -68,15 +68,11 @@ if($_SESSION['loggedIn']!==true){
 								<div class="clearfix"></div>
 							</div>
 							<div class="labelled-input">
-								<label for="email">Email</label><input id="email" name="email" type="email" class="input-full main-input" placeholder="" value="agent@somedomain.tld"/>
-								<div class="clearfix"></div>
-							</div>
-							<div class="labelled-input">
-								<label for="phone">Phone</label><input id="phone" name="phone" type="tel" class="input-full main-input" placeholder="" value="123-456-789"/>
+								<label for="email">Email</label><input id="email" name="email" type="email" class="input-full main-input" placeholder="" value="<?php echo $_SESSION['email']; ?>"/>
 								<div class="clearfix"></div>
 							</div>
 							<div class="labelled-input last">
-								<label for="address">Address</label><input id="address" name="address" type="text" class="input-full main-input" placeholder="" value="Some address here"/>
+								<label for="accountRef">Account Reference Number</label><input id="accountRef" name="accountRef" type="text" class="input-full main-input" placeholder="" value="<?php echo $_SESSION['accountRef']; ?>"/>
 								<div class="clearfix"></div>
 							</div>
 						</div>
