@@ -1,5 +1,5 @@
 <?php
-include_once 'header.php'
+include_once 'header.php';
 ?>
 
 
@@ -34,11 +34,25 @@ include_once 'header.php'
 							</a>
 						</div>
 						
+
+
+
+
+
+
+
+						<!-- GET RID  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+
+
+
+
 						<div class="top-social pull-right">
 							<a class="top-icon-circle" target="_blank" href="https://www.facebook.com">
 								<i class="fa fa-facebook"></i>
 							</a>
 						</div>
+
+							<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 						
 						
 					</div>
@@ -55,7 +69,7 @@ include_once 'header.php'
 						<span class="icon-bar icon-bar3"></span>
 					</button>
 					<a href="http://www.studevs.com" title="" class="navbar-brand">
-						<img src="images/logorect.PNG" alt="Studevs.com" id="navLogo"/>
+						<img src="../images/logorect.PNG" alt="Studevs.com" id="navLogo"/>
 					</a>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
@@ -66,11 +80,11 @@ include_once 'header.php'
 						</li>
 						
 						<li class="dropdown">
-							<a href="../lis.php" role="button" aria-haspopup="true" aria-expanded="false">Projects</a>
+							<a href="../lisings.php" role="button" aria-haspopup="true" aria-expanded="false">Projects</a>
 						</li>
 						
 						<li class="dropdown">
-							<a href="../lis.php" role="button" aria-haspopup="true" aria-expanded="false">Students</a>
+							<a href="../listings.php" role="button" aria-haspopup="true" aria-expanded="false">Students</a>
 						</li>
 						
 
@@ -86,17 +100,18 @@ include_once 'header.php'
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account</a>
 								<ul class="dropdown-menu">
-									<li><a href="profile.php">My Profile</a></li>
-									<li><a href="offers.php">My Offers</a></li>
-									<li><a href="lib/logout.php">Logout</a></li>
+									<li><a href="../profile.php">My Profile</a></li>
+									<li><a href="../offers.php">My Offers</a></li>
+									<li><a href="logout.php">Logout</a></li>
 								</ul>
 							</li>
-						<?php } ?>
-
-
+						<?php 
+						} 
 						?>
+
+
 						<li class="dropdown">
-							<a href="conta.php" role="button" aria-haspopup="true" aria-expanded="false">Contact Us</a>
+							<a href="../contact.php" role="button" aria-haspopup="true" aria-expanded="false">Contact Us</a>
 						</li>
 						<?php if($_SESSION['loggedIn']!==true){
 							echo "
@@ -112,4 +127,3 @@ include_once 'header.php'
 			</div>
 		</nav>
 
-	

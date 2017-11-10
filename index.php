@@ -7,8 +7,8 @@ include_once 'lib/header.php';
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>StuDevs</title>
-	<?php include 'lib/metalinks.php' ?>
+	<title>StuDevs | Home</title>
+	<?php include_once 'lib/metalinks.php' ?>
 	
 </head>
 <body>
@@ -17,7 +17,7 @@ include_once 'lib/header.php';
 
 <!-- Page header -->	
 	<header>
-		<?php include 'lib/navbar.php' ?>
+		<?php include_once 'lib/navbar.php' ?>
     </header>
 
     <section class="no-padding adv-search-section">
@@ -543,7 +543,9 @@ include_once 'lib/header.php';
     </section>
 
     
-    <? include_once 'lib/footer.php'; ?>
+    <?php 
+    include_once 'lib/footer.php'; 
+    ?>
 
 	</body>
 </html>

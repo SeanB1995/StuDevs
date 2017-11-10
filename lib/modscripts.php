@@ -23,7 +23,7 @@ include_once 'header.php';
 						<div class="short-title-separator"></div>
 					</div>
 
-					<form method="post" action ="lib/login.php">
+					<form method="post" action ="login.php">
 					<input id="logemail" name="loginEmail" type="email" required="" class="input-full main-input" placeholder="Email" 
 					value="<?php echo $_SESSION['loginEmail']; ?>"/>
 					<input id="logpword" name="loginPassword" type="password" required="" class="input-full main-input" placeholder="Password"/>
@@ -160,7 +160,7 @@ include_once 'header.php';
 						<p class = "error-to-screen"><?php echo $errorDetails; ?></p>
 						<!--detailed error goes here : EG: password must contain number-->
 					</div>
-					<form method="post" action ="lib/signup.php">
+					<form method="post" action ="signup.php">
 					<input id="signfirst" name="firstName" type="text" required="" class="input-full main-input" placeholder="First Name" 
 					value="<?php echo $_SESSION['firstName']; ?>"/>
 					<input id="signlast" name="lastName" type="text" required="" class="input-full main-input" placeholder="Last name" 
@@ -251,7 +251,7 @@ include_once 'header.php';
     <script type="text/javascript" src="../bootstrap/bootstrap.min.js"></script>
 
 <!-- Google Maps -->
-	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDfDCV5hXiPamCIT8_vwGXuzimLQ9MF76g&amp;sensor=false&amp;libraries=places"></script>
+	<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCOjwfj8tBWla6ko5tuKXhKifvQVxLnaZc&amp;sensor=false&amp;libraries=places"></script>
 	
 
 

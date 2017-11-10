@@ -35,7 +35,7 @@ include_once 'lib/header.php';
 								</div>
 								<div class="col-xs-12 col-md-6 margin-top-45">
 									<p class="negative-margin">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-									<img src="images/contact-image.jpg" alt="" class="pull-left margin-top-45 hidden-md" />
+									<img src="images/logoclose.png" alt="" class="pull-left margin-top-45 hidden-md" />
 									<address class="contact-info pull-left">
 										<span><i class="fa fa-map-marker"></i>00456 Some Address line</span>
 										<span><i class="fa fa-envelope fa-sm"></i><a href="#">email@domain.tld</a></span>
