@@ -43,7 +43,7 @@ $emailCheck = $result->num_rows;
 if($emailCheck<1){
 	unset($_SESSION['loginEmail']);
 	unset($_SESSION['loginPassword']);
-	header("Location: index.php?log_in_error=invalid_email");
+	header("Location: ../index.php?log_in_error=invalid_email");
 	exit();
 }
 
@@ -65,7 +65,7 @@ $emailCheck = $result->num_rows;
 if($emailCheck<1){
 	unset($_SESSION['loginEmail']);
 	unset($_SESSION['loginPassword']);
-	header("Location: index.php?log_in_error=invalid_email");
+	header("Location: ../index.php?log_in_error=invalid_email");
 	exit();
 }
 
@@ -93,7 +93,7 @@ $row = $result->fetch_assoc();
 
 if(!password_verify($password, $row['password'])){
 	unset($_SESSION['loginPassword']);
-	header("Location: index.php?log_in_error=invalid_password");
+	header("Location: ../index.php?log_in_error=invalid_password");
 	exit();
 }
 
@@ -114,7 +114,7 @@ $row = $result->fetch_assoc();
 
 if(!password_verify($password, $row['password'])){
 	unset($_SESSION['loginPassword']);
-	header("Location: index.php?log_in_error=invalid_password");
+	header("Location: ../index.php?log_in_error=invalid_password");
 	exit();
 }
 

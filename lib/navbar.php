@@ -41,7 +41,7 @@ include_once 'header.php';
 
 
 
-						<!-- GET RID  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+						<!-- GET RID  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
 
 
 
@@ -52,7 +52,7 @@ include_once 'header.php';
 							</a>
 						</div>
 
-							<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+							!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 						
 						
 					</div>
@@ -80,7 +80,7 @@ include_once 'header.php';
 						</li>
 						
 						<li class="dropdown">
-							<a href="../lisings.php" role="button" aria-haspopup="true" aria-expanded="false">Projects</a>
+							<a href="../listings.php" role="button" aria-haspopup="true" aria-expanded="false">Projects</a>
 						</li>
 						
 						<li class="dropdown">
@@ -102,7 +102,7 @@ include_once 'header.php';
 								<ul class="dropdown-menu">
 									<li><a href="../profile.php">My Profile</a></li>
 									<li><a href="../offers.php">My Offers</a></li>
-									<li><a href="logout.php">Logout</a></li>
+									<li><a href="lib/logout.php">Logout</a></li>
 								</ul>
 							</li>
 						<?php 

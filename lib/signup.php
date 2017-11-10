@@ -78,7 +78,7 @@ while(!$refIsValid){
 
 
 if (empty($password)||empty($firstName)||empty($lastName)||empty($email)||empty($repeatPassword)){
-	header("Location: index.php?sign_up_error=empty_fields");
+	header("Location: ../index.php?sign_up_error=empty_fields");
 	exit();
 }
 
@@ -88,7 +88,7 @@ if (empty($password)||empty($firstName)||empty($lastName)||empty($email)||empty(
 if($password !== $repeatPassword){
 	unset($_SESSION['password']);
 	unset($_SESSION['repeatPassword']);
-	header("Location: index.php?sign_up_error=unmatching_passwords");
+	header("Location: ../index.php?sign_up_error=unmatching_passwords");
 	exit();
 }
 
@@ -97,34 +97,34 @@ if($password !== $repeatPassword){
 
 if((strlen($firstName)<2)||(strlen($firstName)>50)){
 	unset($_SESSION['firstName']);
-	header("Location: index.php?sign_up_error=invalid_first_name_length");
+	header("Location: ../index.php?sign_up_error=invalid_first_name_length");
 	exit();
 }
 
 
 if (!preg_match("/^(?:[\s,.'-]*[a-zA-Z\pL][\s,.'-]*)+$/u", $firstName)){
 	unset($_SESSION['firstName']);
-	header("Location: index.php?sign_up_error=invalid_first_name_characters");
+	header("Location: ../index.php?sign_up_error=invalid_first_name_characters");
 	exit();
 }
 
 
 if((strlen($lastName)<2)||(strlen($lastName)>50)){
 	unset($_SESSION['lastName']);
-	header("Location: index.php?sign_up_error=invalid_last_name_length");
+	header("Location: ../index.php?sign_up_error=invalid_last_name_length");
 	exit();
 }
 
 if (!preg_match("/^(?:[\s,.'-]*[a-zA-Z\pL][\s,.'-]*)+$/u", $lastName)){
 	unset($_SESSION['lastName']);
-	header("Location: index.php?sign_up_error=invalid_last_name_characters");
+	header("Location: ../index.php?sign_up_error=invalid_last_name_characters");
 	exit();
 }
 
 
 if(strlen($email)>249){
 	unset($_SESSION['email']);
-	header("Location: index.php?sign_up_error=email_too_long");
+	header("Location: ../index.php?sign_up_error=email_too_long");
 	exit();
 }
 
@@ -148,7 +148,7 @@ function isCollegeEmail($email){
 if($accountType==='student'){
 	if(!isCollegeEmail($email)){ //if email is not a student email address
 		unset($_SESSION['email']);
-		header("Location: index.php?sign_up_error=student_email_required");
+		header("Location: ../index.php?sign_up_error=student_email_required");
 		exit();
 	}
 }
@@ -156,7 +156,7 @@ if($accountType==='student'){
 
 if(!validEmail($email)){ //if email is invalid
 	unset($_SESSION['email']);
-	header("Location: index.php?sign_up_error=invalid_email");
+	header("Location: ../index.php?sign_up_error=invalid_email");
 	exit();
 }
 
@@ -180,7 +180,7 @@ $emailCheck = $result->num_rows;
 
 if($emailCheck > 0){
 	unset($_SESSION['email']);
-	header("Location: index.php?sign_up_error=email_already_in_use");
+	header("Location: ../index.php?sign_up_error=email_already_in_use");
 	exit();
 }
 
@@ -200,7 +200,7 @@ $emailCheck = $result->num_rows;
 
 if($emailCheck > 0){
 	unset($_SESSION['email']);
-	header("Location: index.php?sign_up_error=email_already_in_use");
+	header("Location: ../index.php?sign_up_error=email_already_in_use");
 	exit();
 }
 
@@ -211,14 +211,14 @@ if($emailCheck > 0){
 if(strlen($password) < 6){
 	unset($_SESSION['password']);
 	unset($_SESSION['repeatPassword']);
-	header("Location: index.php?sign_up_error=password_too_short");
+	header("Location: ../index.php?sign_up_error=password_too_short");
 	exit();
 }
 
 if(strlen($password) > 8999){
 	unset($_SESSION['password']);
 	unset($_SESSION['repeatPassword']);
-	header("Location: index.php?sign_up_error=password_too_long");
+	header("Location: ../index.php?sign_up_error=password_too_long");
 	exit();
 }
 
@@ -237,11 +237,11 @@ trim($email);
 
 //one last check for empty fields because major problems will occur if empty fields are inserted.
 if (empty($password)||empty($firstName)||empty($lastName)||empty($email)){
-	header("Location: index.php?sign_up_error=empty_fields");
+	header("Location: ../index.php?sign_up_error=empty_fields");
 	exit();
 }
 if(empty($accountRef)||empty($dateJoined)||empty($accountType)){
-	header("Location: index.php?error=internal_sign_up_error");
+	header("Location: ../index.php?error=internal_sign_up_error");
 	exit();
 }
 
@@ -256,11 +256,14 @@ $password = password_hash($password, PASSWORD_DEFAULT);
 
 $statement;
 
-//if($accountType==='student') 
-	$statement = $conn->prepare("INSERT INTO '{accountType}' (password, first, last, email, acc_ref, date_joined) VALUES (?, ?, ?, ?, ?, ?)");
 
-//else if($accountType==='business') 
-	//$statement = $conn->prepare("INSERT INTO business (password, first_name, last_name, email, account_ref, date_joined) VALUES (?, ?, ?, ?, ?, ?)");
+if($accountType=='student')
+	$statement = $conn->prepare("INSERT INTO student (password, first, last, email, acc_ref, date_joined) VALUES (?, ?, ?, ?, ?, ?)");
+
+elseif($accountType=='business')
+	$statement = $conn->prepare("INSERT INTO business (password, first, last, email, acc_ref, date_joined) VALUES (?, ?, ?, ?, ?, ?)");
+
+
 
 $statement->bind_param("ssssss", $passwordPrepared, $firstNamePrepared, $lastNamePrepared, $emailPrepared, $accountRefPrepared, $dateJoinedPrepared);
 
@@ -280,4 +283,4 @@ session_destroy();
 session_start();
 */
 $_SESSION['loggedIn'] = true;
-header("Location: prof.php?sign_up_successful");
+header("Location: ../profile.php?sign_up_successful");

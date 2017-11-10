@@ -1,13 +1,17 @@
 <?php
-include_once 'lib/header.php';
 
+include_once 'lib/header.php';
+if($_SESSION['loggedIn']!==true){
+	header("Location: index.php?login_to_view_profile");
+	exit();
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>studevs | student development ireland</title>
-	<?php include 'pageStyles.php' ?>
+	<title>StuDevs | Listings</title>
+	<?php include_once 'lib/metalinks.php' ?>
 	
 </head>
 <body>
@@ -16,9 +20,8 @@ include_once 'lib/header.php';
 
 <!-- Page header -->	
 	<header>
-		<?php include 'lib/navbarHeader.php' ?>
+		<?php include_once 'lib/navbar.php' ?>
     </header>
-	
   		
     <section class="short-image no-padding blog-short-title">
 		<div class="container">
@@ -57,11 +60,11 @@ include_once 'lib/header.php';
 						</div>
 						<div class="col-xs-12 col-sm-9 col-md-8">
 							<div class="labelled-input">
-								<label for="first-name">First name</label><input id="first-name" name="first-name" type="text" class="input-full main-input" placeholder="" value="Timothy"/>
+								<label for="first-name">First name</label><input id="first-name" name="first-name" type="text" class="input-full main-input" placeholder="" value="<?php echo $_SESSION['firstName']; ?>"/>
 								<div class="clearfix"></div>
 							</div>
 							<div class="labelled-input">
-								<label for="last-name">Last name</label><input id="last-name" name="last-name" type="text" class="input-full main-input" placeholder="" value="Johnson"/>
+								<label for="last-name">Last name</label><input id="last-name" name="last-name" type="text" class="input-full main-input" placeholder="" value="<?php echo $_SESSION['lastName']; ?>"/>
 								<div class="clearfix"></div>
 							</div>
 							<div class="labelled-input">
@@ -178,13 +181,13 @@ include_once 'lib/header.php';
 						<div class="title-separator-primary"></div>
 						
 						<div class="profile-info margin-top-60">
-							<div class="profile-info-title negative-margin">Timothy Johnson</div>
+							<div class="profile-info-title negative-margin"><?php echo $_SESSION['firstName']; ?></div>
 							<img src="images/comment-photo2.jpg" alt="" class="pull-left" />
 							<div class="profile-info-text pull-left">
 								<p class="subtitle-margin">Agent</p>
 								<p class="">42 Estates</p>
 								
-								<a href="#" class="logout-link margin-top-30"><i class="fa fa-lg fa-sign-out"></i>Logout</a>
+								<a href="lib/logout.php" class="logout-link margin-top-30"><i class="fa fa-lg fa-sign-out"></i>Logout</a>
 							</div>
 							<div class="clearfix"></div>
 						</div>
@@ -286,28 +289,9 @@ include_once 'lib/header.php';
 		</div>
 	</section>
 
-    <footer class="small-cont">
-		<?php
-		include 'footer.php';
-		?>
-	</footer>
-</div>	
-
-
-		<?php
-		// MODALS AND SCRIPTS AND MOVE TOP FEATURES HERE
-		 include 'modscripts.php'; 
-		 ?>
-
-
-		<?php
-		    
-		// ERROR HANDLING
-
-		include 'errors.php';
-
-		?>
-	
+    <?php 
+    include_once 'lib/footer.php'; 
+    ?>
 
 	</body>
 </html>
