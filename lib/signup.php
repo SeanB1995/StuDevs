@@ -48,6 +48,7 @@ $_SESSION['lastName'] = $lastName;
 $_SESSION['email'] = $email;
 $_SESSION['password'] = $password;
 $_SESSION['repeatPassword'] = $repeatPassword;
+$_SESSION['accountType'] = $accountType;
 
 
 $accountRef = "";
@@ -68,7 +69,7 @@ while(!$refIsValid){
 	if($accountRefCheck>0) $refIsValid = false;
 	
 
-	$query = "SELECT acc_ref FROM business WHERE acc_ref='$accountRef'";
+	$query = "SELECT acc_ref FROM company WHERE acc_ref='$accountRef'";
 	$result = $conn->query($query);
 	$accountRefCheck = mysqli_num_rows($result);
 
@@ -147,7 +148,7 @@ function isCollegeEmail($email){
 	else return false;
 }
 
-if($accountType==='student'){
+if($accountType=='Student'){
 	if(!isCollegeEmail($email)){ //if email is not a student email address
 		unset($_SESSION['email']);
 		header("Location: ../index.php?sign_up_error=student_email_required");
@@ -189,7 +190,7 @@ if($emailCheck > 0){
 
 
 //prepared statement
-$statement = $conn->prepare("SELECT email FROM business WHERE email=?");
+$statement = $conn->prepare("SELECT email FROM company WHERE email=?");
 $statement->bind_param("s", $emailPrepared);//this must be "s" !
 $emailPrepared = $email;
 //end of prepared statement
@@ -256,14 +257,11 @@ $password = $passObj->hashPassword($password);
 $password = password_hash($password, PASSWORD_DEFAULT);
 
 
-$statement;
-
-
-if($accountType=='student')
+if($accountType=='Student')
 	$statement = $conn->prepare("INSERT INTO student (password, first, last, email, acc_ref, date_joined) VALUES (?, ?, ?, ?, ?, ?)");
 
-elseif($accountType=='business')
-	$statement = $conn->prepare("INSERT INTO business (password, first, last, email, acc_ref, date_joined) VALUES (?, ?, ?, ?, ?, ?)");
+elseif($accountType=='Company')
+	$statement = $conn->prepare("INSERT INTO company (password, first, last, email, acc_ref, date_joined) VALUES (?, ?, ?, ?, ?, ?)");
 
 
 

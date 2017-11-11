@@ -2,7 +2,7 @@
 
 include_once 'lib/header.php';
 if($_SESSION['loggedIn']!==true){
-	header("Location: index.php?login_to_view_profile");
+	header("Location: index.php?log_in_or_sign_up_to_view_profile");
 	exit();
 }
 ?>
@@ -41,7 +41,7 @@ if($_SESSION['loggedIn']!==true){
 				<div class="col-xs-12 col-md-9 col-md-push-3">
 					<div class="row">
 						<div class="col-xs-12">
-							<h5 class="subtitle-margin">Edit</h5>
+							<h5 class="subtitle-margin"><?php echo $_SESSION['firstName']; ?>'s</h5>
 							<h1>Profile<span class="special-color">.</span></h1>
 							<div class="title-separator-primary"></div>
 						</div>
@@ -60,77 +60,28 @@ if($_SESSION['loggedIn']!==true){
 						</div>
 						<div class="col-xs-12 col-sm-9 col-md-8">
 							<div class="labelled-input">
-								<label for="first-name">First name</label><input id="first-name" name="first-name" type="text" class="input-full main-input" placeholder="" value="<?php echo $_SESSION['firstName']; ?>"/>
+								<label for="first-name">First name</label><input id="first-name" name="first-name" readonly type="text" class="input-full main-input" placeholder="" value="<?php echo $_SESSION['firstName']; ?>"/>
 								<div class="clearfix"></div>
 							</div>
 							<div class="labelled-input">
-								<label for="last-name">Last name</label><input id="last-name" name="last-name" type="text" class="input-full main-input" placeholder="" value="<?php echo $_SESSION['lastName']; ?>"/>
+								<label for="last-name">Last name</label><input id="last-name" name="last-name" readonly type="text" class="input-full main-input" placeholder="" value="<?php echo $_SESSION['lastName']; ?>"/>
 								<div class="clearfix"></div>
 							</div>
 							<div class="labelled-input">
-								<label for="email">Email</label><input id="email" name="email" type="email" class="input-full main-input" placeholder="" value="<?php echo $_SESSION['email']; ?>"/>
+								<label for="email">Email</label><input id="email" name="email" type="email" readonly class="input-full main-input" placeholder="" value="<?php echo $_SESSION['email']; ?>"/>
+								<div class="clearfix"></div>
+							</div>
+							<div class="labelled-input">
+								<label for="accountType">Account Type</label><input id="accountType" readonly name="accountType" type="text" class="input-full main-input" placeholder="" value="<?php echo $_SESSION['accountType']; ?>"/>
 								<div class="clearfix"></div>
 							</div>
 							<div class="labelled-input last">
-								<label for="accountRef">Account Reference Number</label><input id="accountRef" name="accountRef" type="text" class="input-full main-input" placeholder="" value="<?php echo $_SESSION['accountRef']; ?>"/>
+								<label for="accountRef">Account Ref.</label><input id="accountRef" readonly name="accountRef" type="text" class="input-full main-input" placeholder="" value="<?php echo $_SESSION['accountRef']; ?>"/>
 								<div class="clearfix"></div>
 							</div>
 						</div>
 					</div>
-					<div class="row margin-top-15">
-						<div class="col-xs-12">
-							<div class="labelled-textarea">
-								<label for="description">Description</label>
-								<textarea id="description" name="description" class="input-full main-input">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</textarea>
-							</div>
-						</div>
-					</div>
-					<div class="row margin-top-30">
-						<div class="col-xs-12 col-lg-6">
-							<div class="labelled-input-short">
-								<label for="facebook">
-									<span class="label-icon-circle pull-left">
-										<i class="fa fa-facebook"></i>
-									</span>
-									Facebook
-								</label>
-								<input id="facebook" name="facebook" type="text" class="input-full main-input" placeholder="" value="http://facebook.url"/>
-								<div class="clearfix"></div>
-							</div>
-							<div class="labelled-input-short">
-								<label for="gplus">
-									<span class="label-icon-circle pull-left">
-										<i class="fa fa-google-plus"></i>
-									</span>
-									Google +
-								</label>
-								<input id="gplus" name="gplus" type="text" class="input-full main-input" placeholder="" value="http://gplus.url"/>
-								<div class="clearfix"></div>
-							</div>
-						</div>
-						<div class="col-xs-12 col-lg-6">
-							<div class="labelled-input-short">
-								<label for="twitter">
-									<span class="label-icon-circle pull-left">
-										<i class="fa fa-twitter"></i>
-									</span>
-									Twitter
-								</label>
-								<input id="twitter" name="twitter" type="text" class="input-full main-input" placeholder="" value="http://twitter.url"/>
-								<div class="clearfix"></div>
-							</div>
-							<div class="labelled-input-short">
-								<label for="skype">
-									<span class="label-icon-circle pull-left">
-										<i class="fa fa-skype"></i>
-									</span>
-									Skype
-								</label>
-								<input id="skype" name="skype" type="text" class="input-full main-input" placeholder="" value="Skype_name"/>
-								<div class="clearfix"></div>
-							</div>
-						</div>
-					</div>
+					
 					<div class="row margin-top-30">
 						<div class="col-xs-12">
 							<div class="info-box">
@@ -160,7 +111,7 @@ if($_SESSION['loggedIn']!==true){
 						<div class="col-xs-12">
 							<div class="center-button-cont center-button-cont-border">
 								<a href="#" class="button-primary button-shadow">
-									<span>save</span>
+									<span>Save New Password</span>
 									<div class="button-triangle"></div>
 									<div class="button-triangle2"></div>
 									<div class="button-icon"><i class="fa fa-lg fa-floppy-o"></i></div>
@@ -180,9 +131,9 @@ if($_SESSION['loggedIn']!==true){
 							<div class="profile-info-title negative-margin"><?php echo $_SESSION['firstName']; ?></div>
 							<img src="images/comment-photo2.jpg" alt="" class="pull-left" />
 							<div class="profile-info-text pull-left">
-								<p class="subtitle-margin">Agent</p>
-								<p class="">42 Estates</p>
-								
+								<br >
+								<p class="subtitle-margin"><?php echo $_SESSION['accountType']; ?></p>
+								<p class=""><?php echo $_SESSION['accountRef']; ?></p>
 								<a href="lib/logout.php" class="logout-link margin-top-30"><i class="fa fa-lg fa-sign-out"></i>Logout</a>
 							</div>
 							<div class="clearfix"></div>
@@ -203,14 +154,16 @@ if($_SESSION['loggedIn']!==true){
 								<div class="button-icon"><i class="fa fa-user"></i></div>
 							</a>
 						</div>
+						<?php if($_SESSION['accountType']=='Company'){ ?>
 						<div class="center-button-cont margin-top-15">
-							<a href="submit-student development.html" class="button-alternative button-shadow button-full">
-								<span>add student development</span>
+							<a href="avertise.php" class="button-alternative button-shadow button-full">
+								<span>Advertise Project</span>
 								<div class="button-triangle"></div>
 								<div class="button-triangle2"></div>
 								<div class="button-icon"><i class="jfont fa-lg">&#xe804;</i></div>
 							</a>
 						</div>
+						<?php } ?>
 					
 					
 						<h3 class="sidebar-title margin-top-60">Your offers<span class="special-color">.</span></h3>

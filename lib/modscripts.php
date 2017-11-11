@@ -173,8 +173,8 @@ include_once 'header.php';
 					value="<?php echo $_SESSION['repeatPassword']; ?>"/>
 					<select id="accountType" name="accountType" class="input-full main-input" placeholder="Account Type" 
 					value="<?php echo $_SESSION['accountType']; ?>">
-						<option value="student">Student</option>
-						<option value="business">Business</option>
+						<option value="Student">Student</option>
+						<option value="Company">Company</option>
 					</select>
 
 
