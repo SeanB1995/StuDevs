@@ -128,7 +128,7 @@ if($_SESSION['loggedIn']!==true){
 						<div class="title-separator-primary"></div>
 						
 						<div class="profile-info margin-top-60">
-							<div class="profile-info-title negative-margin"><?php echo $_SESSION['firstName']; ?></div>
+							<div class="profile-info-title negative-margin"><?php echo $_SESSION['fullName']; ?></div>
 							<img src="images/comment-photo2.jpg" alt="" class="pull-left" />
 							<div class="profile-info-text pull-left">
 								<br >
@@ -156,7 +156,7 @@ if($_SESSION['loggedIn']!==true){
 						</div>
 						<?php if($_SESSION['accountType']=='Company'){ ?>
 						<div class="center-button-cont margin-top-15">
-							<a href="avertise.php" class="button-alternative button-shadow button-full">
+							<a href="advertise.php" class="button-alternative button-shadow button-full">
 								<span>Advertise Project</span>
 								<div class="button-triangle"></div>
 								<div class="button-triangle2"></div>

@@ -118,7 +118,7 @@ include_once 'header.php';
 							<li><a href=\"#\" class=\"special-color\" onclick=\"showregmod()\">Advertise Project</a></li>";
 						}//end if 
 						else{
-							echo "<li><a href=\"../adv.php\" class=\"special-color\">Advertise Project</a></li>";
+							echo "<li><a href=\"../advertise.php\" class=\"special-color\">Advertise Project</a></li>";
 						}
 						?>
 						
