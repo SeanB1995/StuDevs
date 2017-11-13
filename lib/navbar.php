@@ -22,35 +22,15 @@ include_once 'header.php';
 							<span class="top-bar-text">Dublin 1, Ireland</span>
 						</div>
 					</div>
+					<?php if($_SESSION['loggedIn']!==true){ ?>
 					<div class="col-xs-7 col-sm-4">
 						<div class="top-social-last top-dark pull-right" data-toggle="tooltip" data-placement="bottom" title="Login/Register">
 							<a class="top-icon-circle" href="#login-modal" data-toggle="modal">
 								<i class="fa fa-lock"></i>
 							</a>
 						</div>
-						
-
-
-
-
-
-
-
-						<!-- GET RID  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
-
-
-
-
-						<div class="top-social pull-right">
-							<a class="top-icon-circle" target="_blank" href="https://www.facebook.com">
-								<i class="fa fa-facebook"></i>
-							</a>
-						</div>
-
-							!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-						
-						
 					</div>
+					<?php } ?>
 				</div>
 			</div><!-- /.top-bar -->	
 		</div><!-- /.Page top-bar-wrapper -->	
@@ -124,7 +104,7 @@ include_once 'header.php';
 							echo "<li><a href=\"#\" class=\"special-color\" onclick=\"showlogmod()\">Advertise Project</a></li>";
 						}
 						else{
-							if(isset($company_id)){
+							if(isset($_SESSION['compId'])){
 							echo "<li><a href=\"advertise.php\" class=\"special-color\">Advertise Project</a></li>";
 							}
 						}

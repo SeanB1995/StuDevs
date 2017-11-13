@@ -815,7 +815,8 @@ section.featured-offers {
 }
 
 section.blog-short-title {
-	background: #475057 url(../images/short-bg4.jpg) no-repeat center;
+	background: #475057 url(../images/banner202.jpg) no-repeat center;
+	color: black;
 }
 
 footer.large-cont {
@@ -827,7 +828,7 @@ footer.large-cont {
 }
 
 section.contact-short-title {
-	background: #152560 url(../images/short-bg2.jpg) no-repeat center;
+	background: #152560 url(../images/.jpg) no-repeat center;
 }
 
 .quote-box,
@@ -840,16 +841,19 @@ section.contact-short-title {
 }
 
 section.agencies {
-	background: #152560 url(../images/short-bg1.jpg) no-repeat center;
+	background: #152560 url(../images/banner202.jpg) no-repeat center;
+	color: black;
 }
 
 section.agency {
-	background: #152560 url(../images/short-bg2.jpg) no-repeat center;
+	background: #152560 url(../images/banner202.jpg) no-repeat center;
+	color: black;
 }
 
 
 section.agent {
-	background: #152560 url(../images/short-bg3.jpg) no-repeat center;
+	background: #152560 url(../images/banner202.jpg) no-repeat center;
+	color: black;
 }
 
 

@@ -2,6 +2,11 @@
 
 include_once 'lib/header.php';
 
+if($_SESSION['loggedIn']!==true){
+	header("Location: index.php?login_or_signup_to_advertise_projects");
+	exit();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -25,8 +30,8 @@ include_once 'lib/header.php';
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 col-lg-12 short-image-title">
-					<h5 class="subtitle-margin second-color">add listing</h5>
-					<h1 class="second-color">my account</h1>
+					<h5 class="black-text-pro subtitle-margin second-color">Advertise Project</h5>
+					<h1 class="black-text-pro second-color">Advertise Project</h1>
 					<div class="short-title-separator"></div>
 				</div>
 			</div>
@@ -37,8 +42,8 @@ include_once 'lib/header.php';
 		<form name="offer-from" action="#" enctype="multipart/form-data">
 			<div class="container">
 				<div class="row">
-					<div class="col-xs-12 col-md-6">
-						<h3 class="title-negative-margin">Listing details<span class="special-color">.</span></h3>
+					<div class="col-xs-12">
+						<h3 class="title-negative-margin">Project details<span class="special-color">.</span></h3>
 						<div class="title-separator-primary"></div>
 						<div class="dark-col margin-top-60">
 							<div class="row">
@@ -117,12 +122,13 @@ include_once 'lib/header.php';
 							</div>
 						</div>				
 					</div>
+					<!--
 					<div class="col-xs-12 col-md-6 margin-top-xs-60 margin-top-sm-60">
-						<h3 class="title-negative-margin">Localization<span class="special-color">.</span></h3>
+						<h3 class="title-negative-margin">Project Location<span class="special-color">.</span></h3>
 						<div class="title-separator-primary"></div>
 						<div class="dark-col margin-top-60">
-							<input id="geocomplete" name="geocomplete" type="text" class="input-full main-input" placeholder="Localization" />
-							<p class="negative-margin bold-indent">Or drag the marker to property position<p>
+							<input id="geocomplete" name="projLocation" required="" type="text" class="input-full main-input" placeholder="Enter the town/city of your company/branch." />
+							<p class="negative-margin bold-indent">Or drag the marker to the location<p>
 							<div id="submit-property-map" class="submit-property-map"></div>
 							<div class="row">
 								<div class="col-xs-12 col-sm-6 margin-top-15">
@@ -133,7 +139,7 @@ include_once 'lib/header.php';
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 					<div class="col-xs-12 margin-top-60">
 						<h3 class="title-negative-margin">gallery<span class="special-color">.</span></h3>
 						<div class="title-separator-primary"></div>
@@ -161,6 +167,8 @@ include_once 'lib/header.php';
 <?php 
     include_once 'lib/footer.php'; 
     ?>
+
+
 
 	</body>
 </html>

@@ -41,15 +41,15 @@ $_SESSION['sessionId'] = $row['session_id'];
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 col-lg-12 short-image-title">
-					<h5 class="subtitle-margin second-color">Dashboard</h5>
-					<h1 class="second-color">
+					<h5 class="black-text-pro subtitle-margin second-color">Dashboard</h5>
+					<h1 class="black-text-pro second-color">
 							<?php
 
 							if(isset($_SESSION['compName'])) echo $_SESSION['compName']; 
 
 							else echo $_SESSION['firstName']; 
 
-							 ?>'s Account</h1>
+							 ?>'s Profile</h1>
 					<div class="short-title-separator"></div>
 				</div>
 			</div>
@@ -162,7 +162,7 @@ $_SESSION['sessionId'] = $row['session_id'];
 				</div>			
 				<div class="col-xs-12 col-md-3 col-md-pull-9">
 					<div class="sidebar-left">
-						<h3 class="sidebar-title">Welcome back<span class="special-color">.</span></h3>
+						<h3 class="sidebar-title"><?php echo $_SESSION['fullName']; ?><span class="special-color">.</span></h3>
 						<div class="title-separator-primary"></div>
 						
 						<div class="profile-info margin-top-60">

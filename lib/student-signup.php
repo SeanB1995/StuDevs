@@ -91,13 +91,14 @@ if(strlen($email)>249){
 include_once 'email-validation.php';
 
 
-
+/*Currently only open to NCI students. We don't want trouble 
+with other colleges if there's a Catch-All function on incorrect emails @collegename.ie*/
 function isCollegeEmail($email){
-	if(strpos($email, '@student.ncirl.ie')!==false||
-		strpos($email, '@tcd.ie')!==false||
-		strpos($email, '@mail.dcu.ie')!==false||
-		strpos($email, '@mail.wit.ie')!==false||
-		strpos($email, '@ucdconnect.ie')!==false
+	if(strpos($email, '@student.ncirl.ie')!==false
+		//||strpos($email, '@tcd.ie')!==false||
+		//strpos($email, '@mail.dcu.ie')!==false||
+		//strpos($email, '@mail.wit.ie')!==false||
+		//strpos($email, '@ucdconnect.ie')!==false
 	) return true;
 	else return false;
 }
