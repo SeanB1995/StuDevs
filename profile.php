@@ -5,6 +5,20 @@ if($_SESSION['loggedIn']!==true){
 	header("Location: index.php?log_in_or_sign_up_to_view_profile");
 	exit();
 }
+
+
+$statement = $conn->prepare("SELECT * FROM session WHERE login_date=? AND acc_ref=?");
+$statement->bind_param("ss", $loginDatePrep, $accountRefPrep);//this must be "s" !
+$loginDatePrep = $_SESSION['loginDate'];
+$accountRefPrep = $_SESSION['accountRef'];
+//end of prepared statement
+$statement->execute();
+$result = $statement->get_result();
+$row = $result->fetch_assoc();
+
+$_SESSION['sessionId'] = $row['session_id'];
+
+
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +42,14 @@ if($_SESSION['loggedIn']!==true){
 			<div class="row">
 				<div class="col-xs-12 col-lg-12 short-image-title">
 					<h5 class="subtitle-margin second-color">Dashboard</h5>
-					<h1 class="second-color"><?php echo $_SESSION['firstName']; ?>'s Account</h1>
+					<h1 class="second-color">
+							<?php
+
+							if(isset($_SESSION['compName'])) echo $_SESSION['compName']; 
+
+							else echo $_SESSION['firstName']; 
+
+							 ?>'s Account</h1>
 					<div class="short-title-separator"></div>
 				</div>
 			</div>
@@ -41,7 +62,15 @@ if($_SESSION['loggedIn']!==true){
 				<div class="col-xs-12 col-md-9 col-md-push-3">
 					<div class="row">
 						<div class="col-xs-12">
-							<h5 class="subtitle-margin"><?php echo $_SESSION['firstName']; ?>'s</h5>
+							<h5 class="subtitle-margin">
+							<?php
+
+							if(isset($_SESSION['compName'])) echo $_SESSION['compName']; 
+
+							else echo $_SESSION['firstName']; 
+
+							 ?>'s</h5>
+
 							<h1>Profile<span class="special-color">.</span></h1>
 							<div class="title-separator-primary"></div>
 						</div>
@@ -60,11 +89,13 @@ if($_SESSION['loggedIn']!==true){
 						</div>
 						<div class="col-xs-12 col-sm-9 col-md-8">
 							<div class="labelled-input">
-								<label for="first-name">First name</label><input id="first-name" name="first-name" readonly type="text" class="input-full main-input" placeholder="" value="<?php echo $_SESSION['firstName']; ?>"/>
-								<div class="clearfix"></div>
-							</div>
-							<div class="labelled-input">
-								<label for="last-name">Last name</label><input id="last-name" name="last-name" readonly type="text" class="input-full main-input" placeholder="" value="<?php echo $_SESSION['lastName']; ?>"/>
+								<label for="full-name"><?php
+
+							if(isset($_SESSION['compName'])) echo "Company Name";
+
+							else echo "Full Name";
+
+							 ?></label><input id="full-name" name="full-name" readonly type="text" class="input-full main-input" placeholder="" value="<?php echo $_SESSION['fullName']; ?>"/>
 								<div class="clearfix"></div>
 							</div>
 							<div class="labelled-input">
@@ -75,6 +106,13 @@ if($_SESSION['loggedIn']!==true){
 								<label for="accountType">Account Type</label><input id="accountType" readonly name="accountType" type="text" class="input-full main-input" placeholder="" value="<?php echo $_SESSION['accountType']; ?>"/>
 								<div class="clearfix"></div>
 							</div>
+							<?php if(isset($_SESSION['compName'])){ ?>
+							<div class="labelled-input">
+								<label for="compReg">Company Reg.</label><input id="compReg" readonly name="compReg" type="text" class="input-full main-input" placeholder="" value="<?php echo $_SESSION['compReg']; ?>"/>
+								<div class="clearfix"></div>
+							</div>
+							<?php } ?>
+
 							<div class="labelled-input last">
 								<label for="accountRef">Account Ref.</label><input id="accountRef" readonly name="accountRef" type="text" class="input-full main-input" placeholder="" value="<?php echo $_SESSION['accountRef']; ?>"/>
 								<div class="clearfix"></div>
@@ -131,8 +169,9 @@ if($_SESSION['loggedIn']!==true){
 							<div class="profile-info-title negative-margin"><?php echo $_SESSION['fullName']; ?></div>
 							<img src="images/comment-photo2.jpg" alt="" class="pull-left" />
 							<div class="profile-info-text pull-left">
-								<br >
-								<p class="subtitle-margin"><?php echo $_SESSION['accountType']; ?></p>
+								
+								<p class="subtitle-margin">Account</p>
+								<p class="">Reference No.</p>
 								<p class=""><?php echo $_SESSION['accountRef']; ?></p>
 								<a href="lib/logout.php" class="logout-link margin-top-30"><i class="fa fa-lg fa-sign-out"></i>Logout</a>
 							</div>

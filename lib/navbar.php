@@ -14,12 +14,7 @@ include_once 'header.php';
 							</span>
 							<span class="top-bar-text">info@studevs.com</span>
 						</div>
-						<div class="top-phone pull-left hidden-xxs">
-							<span class="top-icon-circle">
-								<i class="fa fa-phone"></i>
-							</span>
-							<span class="top-bar-text">1800 829 29192</span>
-						</div>
+						
 						<div class="top-localization pull-left hidden-sm hidden-md hidden-xs">
 							<span class="top-icon-circle pull-left">
 								<i class="fa fa-map-marker"></i>
@@ -79,29 +74,40 @@ include_once 'header.php';
 							<a href="http://www.studevs.com" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
 						</li>
 						
+
+						<?php if($_SESSION['accountType']=='Company'){ ?>
 						<li class="dropdown">
-							<a href="../listings.php" role="button" aria-haspopup="true" aria-expanded="false">Projects</a>
+							<a href="listings.php" role="button" aria-haspopup="true" aria-expanded="false">Students</a>
 						</li>
-						
+
+
+						<?php } else{ ?>
 						<li class="dropdown">
-							<a href="../listings.php" role="button" aria-haspopup="true" aria-expanded="false">Students</a>
+							<a href="listings.php" role="button" aria-haspopup="true" aria-expanded="false">Projects</a>
 						</li>
+						<?php } 
 						
 
 						
 						
-						<?php if($_SESSION['loggedIn']!==true){
-							echo "
-							<li class=\"dropdown\"><a href=\"#login-modal\" data-toggle=\"modal\">Log In</a></li>
-							<li class=\"dropdown\"><a href=\"#register-modal\" data-toggle=\"modal\">Sign Up</a></li>";
-						}
-						//else include 'navbarAccount.php';
-						else{ ?>
+						 if($_SESSION['loggedIn']!==true){ ?>
+							
+							<li class="dropdown"><a href="#login-modal" data-toggle="modal">Log In</a></li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sign Up</a>
+								<ul class="dropdown-menu">
+									<li><a href="#" onclick="showcompmod()">Company</a></li>
+									<li><a href="#" onclick="showstumod()">Student</a></li>
+								</ul>
+							</li>
+
+						<?php } else{ ?>
+
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account</a>
 								<ul class="dropdown-menu">
-									<li><a href="../profile.php">My Profile</a></li>
-									<li><a href="../offers.php">My Offers</a></li>
+									<li><a href="profile.php">My Profile</a></li>
+									<li><a href="offers.php">My Offers</a></li>
 									<li><a href="lib/logout.php">Logout</a></li>
 								</ul>
 							</li>
@@ -111,14 +117,16 @@ include_once 'header.php';
 
 
 						<li class="dropdown">
-							<a href="../contact.php" role="button" aria-haspopup="true" aria-expanded="false">Contact Us</a>
+							<a href="contact.php" role="button" aria-haspopup="true" aria-expanded="false">Contact Us</a>
 						</li>
 						<?php if($_SESSION['loggedIn']!==true){
-							echo "
-							<li><a href=\"#\" class=\"special-color\" onclick=\"showregmod()\">Advertise Project</a></li>";
-						}//end if 
+							
+							echo "<li><a href=\"#\" class=\"special-color\" onclick=\"showlogmod()\">Advertise Project</a></li>";
+						}
 						else{
-							echo "<li><a href=\"../advertise.php\" class=\"special-color\">Advertise Project</a></li>";
+							if(isset($company_id)){
+							echo "<li><a href=\"advertise.php\" class=\"special-color\">Advertise Project</a></li>";
+							}
 						}
 						?>
 						

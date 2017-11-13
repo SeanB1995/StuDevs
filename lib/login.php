@@ -15,7 +15,7 @@ $_SESSION['loginEmail'] = $email;
 
 
 
-
+$loginDate = date('Y-m-d H:i:s');
 
 
 
@@ -105,11 +105,13 @@ if($validType=='student'){
 	$result = $statement->get_result();
 	$row = $result->fetch_assoc();
 
+	$_SESSION['studentId'] = $row['student_id'];
 	$_SESSION['firstName'] = $row['first'];
 	$_SESSION['lastName'] = $row['last'];
 	$_SESSION['fullName'] = $row['first'] . " " . $row['last'];
 	$_SESSION['email'] = $row['email'];
 	$_SESSION['accountRef'] = $row['acc_ref'];
+	$_SESSION['dateJoined'] = $row['date_joined'];
 	$_SESSION['accountType'] = 'Student';
 }
 
@@ -124,11 +126,13 @@ if($validType=='company'){
 	$result = $statement->get_result();
 	$row = $result->fetch_assoc();
 
-	$_SESSION['firstName'] = $row['first'];
-	$_SESSION['lastName'] = $row['last'];
-	$_SESSION['fullName'] = $row['first'] . " " . $row['last'];
+	$_SESSION['compId'] = $row['company_id'];
+	$_SESSION['compName'] = $row['company_name'];
+	$_SESSION['fullName'] = $row['company_name'];
 	$_SESSION['email'] = $row['email'];
 	$_SESSION['accountRef'] = $row['acc_ref'];
+	$_SESSION['compReg'] = $row['company_reg'];
+	$_SESSION['dateJoined'] = $row['date_joined'];
 	$_SESSION['accountType'] = 'Company';
 }
 
@@ -137,5 +141,23 @@ if($validType=='company'){
 
 
 $_SESSION['loggedIn'] = true;
+
+
+$statement = $conn->prepare("INSERT INTO session (acc_ref, login_date) VALUES (?, ?)");
+
+
+
+$statement->bind_param("ss", $accountRefP, $loginDateP);
+
+$accountRefP = $_SESSION['accountRef'];
+$loginDateP= $loginDate;
+
+$statement->execute();
+
+$result = $conn->query($statement);
+
+
+
+$_SESSION['loginDate'] = $loginDate;
 
 header("Location: ../profile.php?log_in_successful");

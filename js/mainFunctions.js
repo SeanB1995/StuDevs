@@ -1,27 +1,39 @@
 //main js functions for all pages
 
 
+function showcompmod(){
+	$('#company-register-modal').modal('show');
+	$('#student-register-modal').modal('hide');
+	$('#login-modal').modal('hide');
+	$('#forgot-modal').modal('hide');
+}
 
-function showregmod(){
-	$('#register-modal').modal('show');
+function showstumod(){
+	$('#student-register-modal').modal('show');
+	$('#company-register-modal').modal('hide');
+	$('#login-modal').modal('hide');
+	$('#forgot-modal').modal('hide');
 }
-function hideregmod(){
-	$('#register-modal').modal('hide');
-}
+
+
+
 
 function showlogmod(){
 	$('#login-modal').modal('show');
+	$('#student-register-modal').modal('hide');
+	$('#company-register-modal').modal('hide');
+	$('#forgot-modal').modal('hide');
 }
-function hidelogmod(){
-	$('#login-modal').modal('hide');
-}
+
 
 function showfgmod(){
 	$('#forgot-modal').modal('show');
+	$('#student-register-modal').modal('hide');
+	$('#login-modal').modal('hide');
+	$('#company-register-modal').modal('hide');
 }
-function hidefgmod(){
-	$('#forgot-modal').modal('hide');
-}
+
+
 
 
 function focusSignupFirstName(){

@@ -6,7 +6,7 @@ $conn = mysqli_connect("mysql4.mylogin.ie", "studevs", "DevByStuds88", "RG344090
 
 
 if(!$conn){
-	die("Database connection failed. Please email studevs1@gmail.com");
+	die("Database connection failed. Please email info@studevs.com");
 }
 
 $conn->query("SET NAMES 'utf8'");

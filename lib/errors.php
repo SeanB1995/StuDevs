@@ -7,10 +7,18 @@
 
 include_once 'header.php';
 
-if(strpos($url, 'sign_up_error=')!==false){
+if(strpos($url, 'student_sign_up_error=')!==false){
 	?>
 	<script>
-	showregmod();
+	showstumod();
+	</script>
+	<?php
+}
+
+if(strpos($url, 'company_sign_up_error=')!==false){
+	?>
+	<script>
+	showstumod();
 	</script>
 	<?php
 }
