@@ -1,6 +1,7 @@
 <?php
 
 include_once 'dbc.php';
+include_once 'main-functions.php';
 
 session_start();
 

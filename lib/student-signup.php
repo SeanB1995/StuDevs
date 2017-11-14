@@ -91,19 +91,9 @@ if(strlen($email)>249){
 include_once 'email-validation.php';
 
 
-/*Currently only open to NCI students. We don't want trouble 
-with other colleges if there's a Catch-All function on incorrect emails @collegename.ie*/
-function isCollegeEmail($email){
-	if(strpos($email, '@student.ncirl.ie')!==false
-		//||strpos($email, '@tcd.ie')!==false||
-		//strpos($email, '@mail.dcu.ie')!==false||
-		//strpos($email, '@mail.wit.ie')!==false||
-		//strpos($email, '@ucdconnect.ie')!==false
-	) return true;
-	else return false;
-}
+$_SESSION['college'] = setCollege($email);
 
-if(!isCollegeEmail($email)){ //if email is not a student email address
+if($_SESSION['college']=='None'){ //if email is not a student email address
 	unset($_SESSION['email']);
 	header("Location: ../index.php?student_sign_up_error=student_email_required");
 	exit();
@@ -147,21 +137,17 @@ if(empty($accountRef)||empty($dateJoined)||empty($accountType)){
 	exit();
 }
 
-/*
-include 'Password.php';
-$passObj = new Password();
-$password = $passObj->hashPassword($password);
-*/
+
 
 $password = password_hash($password, PASSWORD_DEFAULT);
 
 
 
-$statement = $conn->prepare("INSERT INTO student (password, first, last, email, acc_ref, date_joined) VALUES (?, ?, ?, ?, ?, ?)");
+$statement = $conn->prepare("INSERT INTO student (password, first, last, email, acc_ref, date_joined, college) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
 
 
-$statement->bind_param("ssssss", $passwordPrepared, $firstNamePrepared, $lastNamePrepared, $emailPrepared, $accountRefPrepared, $dateJoinedPrepared);
+$statement->bind_param("sssssss", $passwordPrepared, $firstNamePrepared, $lastNamePrepared, $emailPrepared, $accountRefPrepared, $dateJoinedPrepared, $collegePrepared);
 
 $passwordPrepared = $password;
 $firstNamePrepared = $firstName;
@@ -169,6 +155,7 @@ $lastNamePrepared = $lastName;
 $emailPrepared = $email;
 $accountRefPrepared = $accountRef;
 $dateJoinedPrepared = $dateJoined;
+$collegePrepared = $_SESSION['college'];
 
 $statement->execute();
 

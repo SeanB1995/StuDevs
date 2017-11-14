@@ -112,6 +112,7 @@ if($validType=='student'){
 	$_SESSION['email'] = $row['email'];
 	$_SESSION['accountRef'] = $row['acc_ref'];
 	$_SESSION['dateJoined'] = $row['date_joined'];
+	$_SESSION['college'] = $row['college'];
 	$_SESSION['accountType'] = 'Student';
 }
 
