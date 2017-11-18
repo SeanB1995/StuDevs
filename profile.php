@@ -19,6 +19,7 @@ $row = $result->fetch_assoc();
 $_SESSION['sessionId'] = $row['session_id'];
 
 
+
 ?>
 
 <!DOCTYPE html>
@@ -79,11 +80,22 @@ $_SESSION['sessionId'] = $row['session_id'];
 					<div class="row margin-top-60">
 						<div class="col-xs-6 col-xs-offset-3 col-sm-offset-0 col-sm-3 col-md-4">	
 							<div class="agent-photos">
-								<img src="images/agent3.jpg" id="agent-profile-photo" class="img-responsive" alt="" />
+								<img src="images/profileDefaultImg.jpg" id="stu-profile-photo" class="img-responsive" alt="" />
 								<div class="change-photo">
-									<i class="fa fa-pencil fa-lg"></i>
-									<input type="file" name="agent-photo" id="agent-photo" />
+								<form action="upload.php" method="post" enctype="multipart/form-data">
+								
+									  <i class="fa fa-pencil fa-lg"></i>
+									<input type="file" name="stu-photo" id="stu-photo" onchange="document.getElementById('stu-profile-photo').src = window.URL.createObjectURL(this.files[0])"/>
+
+									</form>
 								</div>
+
+
+
+								
+								    
+								    
+								
 								<input type="text" disabled="disabled" id="agent-file-name" class="main-input" />
 							</div>
 						</div>
@@ -167,7 +179,7 @@ $_SESSION['sessionId'] = $row['session_id'];
 						
 						<div class="profile-info margin-top-60">
 							<div class="profile-info-title negative-margin"><?php echo $_SESSION['fullName']; ?></div>
-							<img src="images/comment-photo2.jpg" alt="" class="pull-left" />
+							<img src="images/stu_icon.png" alt="" class="pull-left" />
 							<div class="profile-info-text pull-left">
 								
 								<p class="subtitle-margin">Account</p>
