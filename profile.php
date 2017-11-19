@@ -76,25 +76,32 @@ $_SESSION['sessionId'] = $row['session_id'];
 							<div class="title-separator-primary"></div>
 						</div>
 					</div>	
-					<form name="agent-from" action="#" enctype="multipart/form-data">
+					<form name="agent-from" method="post" action="lib/edit-profile.php" enctype="multipart/form-data">
 					<div class="row margin-top-60">
 						<div class="col-xs-6 col-xs-offset-3 col-sm-offset-0 col-sm-3 col-md-4">	
 							<div class="agent-photos">
-								<img src="images/profileDefaultImg.jpg" id="stu-profile-photo" class="img-responsive" alt="" />
+								<img src="images/profdefault.jpg" id="profile-photo" class="img-responsive" alt="" />
 								<div class="change-photo">
-								<form action="upload.php" method="post" enctype="multipart/form-data">
+
+
+
+
+
+
+<!--
+								<form action="lib/edit-profile.php" method="post" enctype="multipart/form-data">
+									already a form opening or closing?
+									 Make 2 buttons? 1 for saving profile pic just under it
+										and 1 for saving new password. -->
+
+
+
 								
 									  <i class="fa fa-pencil fa-lg"></i>
-									<input type="file" name="stu-photo" id="stu-photo" onchange="document.getElementById('stu-profile-photo').src = window.URL.createObjectURL(this.files[0])"/>
+									<input type="file" name="profilePic" id="photo-file" onchange="document.getElementById('profile-photo').src = window.URL.createObjectURL(this.files[0])"/>
 
-									</form>
+									
 								</div>
-
-
-
-								
-								    
-								    
 								
 								<input type="text" disabled="disabled" id="agent-file-name" class="main-input" />
 							</div>
@@ -152,24 +159,34 @@ $_SESSION['sessionId'] = $row['session_id'];
 						<div class="col-xs-12 col-lg-6">
 							<div class="labelled-input-short">
 								<label for="first-name">Repeat Password</label>
-								<input id="repeat-password" name="repeat-password" type="password" class="input-full main-input" placeholder="" value=""/>
+								<input id="repeat-password" name="repeatPassword" type="password" class="input-full main-input" placeholder="" value=""/>
 								<div class="clearfix"></div>
 							</div>
 						</div>
 					</div>
 					<div class="row margin-top-15">
-						<div class="col-xs-12">
+						<div class="col-xs-3"></div>
+						<div class="col-xs-6">
 							<div class="center-button-cont center-button-cont-border">
-								<a href="#" class="button-primary button-shadow">
-									<span>Save New Password</span>
-									<div class="button-triangle"></div>
-									<div class="button-triangle2"></div>
-									<div class="button-icon"><i class="fa fa-lg fa-floppy-o"></i></div>
-								</a>
+								
+									<button type="submit" id ="saveProfileBtn" class="button-primary button-shadow button-full">Save Profile Changes</button>
+									
 							</div>
+							<div class="col-xs-3"></div>
 						</div>
 					</div>
+
+
+
+
+
+
 					</form>
+
+
+
+
+
 					<div class="row margin-top-60"></div>
 				</div>			
 				<div class="col-xs-12 col-md-3 col-md-pull-9">
@@ -179,7 +196,7 @@ $_SESSION['sessionId'] = $row['session_id'];
 						
 						<div class="profile-info margin-top-60">
 							<div class="profile-info-title negative-margin"><?php echo $_SESSION['fullName']; ?></div>
-							<img src="images/stu_icon.png" alt="" class="pull-left" />
+							<img src="images/profdefault.jpg" alt="" class="pull-left" />
 							<div class="profile-info-text pull-left">
 								
 								<p class="subtitle-margin">Account</p>

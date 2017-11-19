@@ -12,3 +12,24 @@ function setCollege($email){
 }
 
 
+function isValidImage($file){
+	$fileName = $file['name'];
+	$fileTmpName = $file['tmp_name'];
+	$fileSize = $file['size'];
+	$fileError = $file['error'];
+	$fileType = $file['type'];
+
+	$fileExt = explode('.', $fileName);
+	$fileRealExt = strtolower(end($fileExt));
+
+	$allowed = array('jpg', 'jpeg', 'png');
+
+	if (!in_array($fileRealExt, $allowed)) return false;
+
+	elseif ($fileError !== 0) return false;
+
+	//8MB
+	elseif ($fileSize >= 8000000) return false;
+
+	else return true;
+}
