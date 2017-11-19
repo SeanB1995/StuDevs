@@ -19,17 +19,17 @@ function isValidImage($file){
 	$fileError = $file['error'];
 	$fileType = $file['type'];
 
-	$fileExt = explode('.', $fileName);
-	$fileRealExt = strtolower(end($fileExt));
+	$fileExten = explode('.', $fileName);
+	$fileRealExten = strtolower(end($fileExten));
 
 	$allowed = array('jpg', 'jpeg', 'png');
 
-	if (!in_array($fileRealExt, $allowed)) return false;
+	if (!in_array($fileRealExten, $allowed)) return false;
 
 	elseif ($fileError !== 0) return false;
 
-	//8MB
-	elseif ($fileSize >= 8000000) return false;
+	//setting 10MB as max
+	elseif ($fileSize > 10000000) return false;
 
 	else return true;
 }

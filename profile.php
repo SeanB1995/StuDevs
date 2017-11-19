@@ -19,6 +19,30 @@ $row = $result->fetch_assoc();
 $_SESSION['sessionId'] = $row['session_id'];
 
 
+if(isset($_SESSION['college'])){
+	//student
+	$statement = $conn->prepare("SELECT * FROM student WHERE acc_ref=?");
+	$statement->bind_param("s", $accountRefPrep);//this must be "s" !
+	$accountRefPrep = $_SESSION['accountRef'];
+	$statement->execute();
+	$result = $statement->get_result();
+	$row = $result->fetch_assoc();
+	if($row['pic_set'] == 1) $_SESSION['hasPic'] = true;
+	else $_SESSION['hasPic'] = false;
+}
+
+else{
+	//company
+	$statement = $conn->prepare("SELECT * FROM company WHERE acc_ref=?");
+	$statement->bind_param("s", $accountRefPrep);//this must be "s" !
+	$accountRefPrep = $_SESSION['accountRef'];
+	$statement->execute();
+	$result = $statement->get_result();
+	$row = $result->fetch_assoc();
+	if($row['pic_set'] == 1) $_SESSION['hasPic'] = true;
+	else $_SESSION['hasPic'] = false;
+}
+
 
 ?>
 
@@ -80,23 +104,19 @@ $_SESSION['sessionId'] = $row['session_id'];
 					<div class="row margin-top-60">
 						<div class="col-xs-6 col-xs-offset-3 col-sm-offset-0 col-sm-3 col-md-4">	
 							<div class="agent-photos">
-								<img src="images/profdefault.jpg" id="profile-photo" class="img-responsive" alt="" />
+
+								<?php if($_SESSION['hasPic']){
+									echo "<img class='img-responsive' alt='Profile Picture' id='profile-photo' 
+									src='images/uploads/user".$_SESSION['accountRef'].".png'/>";
+									} 
+									else{ 
+										echo "<img src='images/profdefault.jpg' alt='Profile Picture' id='profile-photo' class='img-responsive' />";
+									}
+								?>
+
 								<div class="change-photo">
 
 
-
-
-
-
-<!--
-								<form action="lib/edit-profile.php" method="post" enctype="multipart/form-data">
-									already a form opening or closing?
-									 Make 2 buttons? 1 for saving profile pic just under it
-										and 1 for saving new password. -->
-
-
-
-								
 									  <i class="fa fa-pencil fa-lg"></i>
 									<input type="file" name="profilePic" id="photo-file" onchange="document.getElementById('profile-photo').src = window.URL.createObjectURL(this.files[0])"/>
 
@@ -177,14 +197,7 @@ $_SESSION['sessionId'] = $row['session_id'];
 					</div>
 
 
-
-
-
-
 					</form>
-
-
-
 
 
 					<div class="row margin-top-60"></div>
