@@ -7,6 +7,17 @@ if(!isset($_POST['full-name'])){
 	exit();
 }
 
+//delete old pic
+$filess = glob("../images/uploads/user".$_SESSION['accountRef'].".*");
+foreach ($filess as $file_to_del) {
+  unlink($file_to_del);
+}
+
+
+
+
+
+
 $profilePic = $_FILES['profilePic'];
 $table = $_SESSION['table'];
 
@@ -15,7 +26,7 @@ $tempName = $profilePic['tmp_name'];
 $size = $profilePic['size'];
 
 if($size<1){
-	header("Location: ../profile.php?edit_profile_error=no_image_selected");
+	header("Location: ../profile.php?edit_profile_error=no_image_selected"); 
 	exit();
 }
 
