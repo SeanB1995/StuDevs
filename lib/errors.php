@@ -18,7 +18,7 @@ if(strpos($url, 'student_sign_up_error=')!==false){
 if(strpos($url, 'company_sign_up_error=')!==false){
 	?>
 	<script>
-	showstumod();
+	showcompmod();
 	</script>
 	<?php
 }

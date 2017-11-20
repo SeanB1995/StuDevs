@@ -114,6 +114,8 @@ if($validType=='student'){
 	$_SESSION['dateJoined'] = $row['date_joined'];
 	$_SESSION['college'] = $row['college'];
 	$_SESSION['accountType'] = 'Student';
+	$_SESSION['student'] = true;
+	$_SESSION['company'] = false;
 }
 
 
@@ -135,6 +137,8 @@ if($validType=='company'){
 	$_SESSION['compReg'] = $row['company_reg'];
 	$_SESSION['dateJoined'] = $row['date_joined'];
 	$_SESSION['accountType'] = 'Company';
+	$_SESSION['company'] = true;
+	$_SESSION['student'] = false;
 }
 
 

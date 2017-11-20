@@ -181,6 +181,8 @@ $_SESSION['email'] = $row['email'];
 $_SESSION['accountRef'] = $row['acc_ref'];
 $_SESSION['dateJoined'] = $row['date_joined'];
 $_SESSION['accountType'] = 'Student';
+$_SESSION['company'] = false;
+$_SESSION['student'] = true;
 
 
 

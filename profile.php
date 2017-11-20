@@ -18,30 +18,20 @@ $row = $result->fetch_assoc();
 
 $_SESSION['sessionId'] = $row['session_id'];
 
+$_SESSION['table'] = strtolower($_SESSION['accountType']);
 
-if(isset($_SESSION['college'])){
-	//student
-	$statement = $conn->prepare("SELECT * FROM student WHERE acc_ref=?");
-	$statement->bind_param("s", $accountRefPrep);//this must be "s" !
-	$accountRefPrep = $_SESSION['accountRef'];
-	$statement->execute();
-	$result = $statement->get_result();
-	$row = $result->fetch_assoc();
-	if($row['pic_set'] == 1) $_SESSION['hasPic'] = true;
-	else $_SESSION['hasPic'] = false;
-}
+$table = $_SESSION['table'];
 
-else{
-	//company
-	$statement = $conn->prepare("SELECT * FROM company WHERE acc_ref=?");
-	$statement->bind_param("s", $accountRefPrep);//this must be "s" !
-	$accountRefPrep = $_SESSION['accountRef'];
-	$statement->execute();
-	$result = $statement->get_result();
-	$row = $result->fetch_assoc();
-	if($row['pic_set'] == 1) $_SESSION['hasPic'] = true;
-	else $_SESSION['hasPic'] = false;
-}
+//selecting profile picture extension type eg png, jpg, jpeg
+$statement = $conn->prepare("SELECT * FROM $table WHERE acc_ref=?");
+$statement->bind_param("s", $accountRefPrep);//this must be "s" !
+$accountRefPrep = $_SESSION['accountRef'];
+$statement->execute();
+$result = $statement->get_result();
+$row = $result->fetch_assoc();
+$_SESSION['picType'] = $row['pic_type'];
+
+
 
 
 ?>
@@ -100,18 +90,25 @@ else{
 							<div class="title-separator-primary"></div>
 						</div>
 					</div>	
-					<form name="agent-from" method="post" action="lib/edit-profile.php" enctype="multipart/form-data">
-					<div class="row margin-top-60">
+
+					<!-- Start of profile picture form -->
+					<form name="profile-picture-form" method="post" action="lib/profile-picture.php" enctype="multipart/form-data">
+
+						<div class="row margin-top-60">
 						<div class="col-xs-6 col-xs-offset-3 col-sm-offset-0 col-sm-3 col-md-4">	
 							<div class="agent-photos">
 
-								<?php if($_SESSION['hasPic']){
-									echo "<img class='img-responsive' alt='Profile Picture' id='profile-photo' 
-									src='images/uploads/user".$_SESSION['accountRef'].".png'/>";
-									} 
-									else{ 
-										echo "<img src='images/profdefault.jpg' alt='Profile Picture' id='profile-photo' class='img-responsive' />";
-									}
+								<?php
+
+							
+								if($_SESSION['picType']=='0'){
+									echo "<img src='images/profdefault.jpg' id='profile-photo' class='img-responsive' alt='Profile Picture' />";
+								} 
+								else{ 
+									echo "<img id='profile-photo' class='img-responsive' 
+									src='images/uploads/user".$_SESSION['accountRef'].".".$_SESSION['picType']."' alt='Profile Picture' />";
+								}
+
 								?>
 
 								<div class="change-photo">
@@ -158,8 +155,24 @@ else{
 							</div>
 						</div>
 					</div>
+
+
+					<div class="row margin-top-15">
+						
+						<div class="col-xs-4">
+							<div class="center-button-cont margin-top-15">
+								<button type="submit" class="button-primary button-shadow button-full">Save Profile Picture</button>
+							</div>
+							<div class="col-xs-8"></div>
+						</div>
+					</div>
+
+				</form>
+				<!-- End of profile picture form -->
+
 					
 					<div class="row margin-top-30">
+						<br><br>
 						<div class="col-xs-12">
 							<div class="info-box">
 								<p>Fill this fields only if you want to change your password</p>
@@ -168,6 +181,10 @@ else{
 							</div>
 						</div>
 					</div>
+
+					<!-- Start of new password form -->
+					<form name="new-password-form" method="post" action="lib/new-password.php">
+
 					<div class="row margin-top-15">
 						<div class="col-xs-12 col-lg-6">
 							<div class="labelled-input-short">
@@ -184,20 +201,20 @@ else{
 							</div>
 						</div>
 					</div>
+					
+
 					<div class="row margin-top-15">
-						<div class="col-xs-3"></div>
-						<div class="col-xs-6">
-							<div class="center-button-cont center-button-cont-border">
-								
-									<button type="submit" id ="saveProfileBtn" class="button-primary button-shadow button-full">Save Profile Changes</button>
-									
+						<div class="col-xs-4"></div>
+						<div class="col-xs-4">
+							<div class="center-button-cont margin-top-15">
+								<button type="submit" class="button-primary button-shadow button-full">Save New Password</button>
 							</div>
-							<div class="col-xs-3"></div>
+						<div class="col-xs-4"></div>
 						</div>
 					</div>
 
-
 					</form>
+					<!-- End of new password form -->
 
 
 					<div class="row margin-top-60"></div>
@@ -209,10 +226,21 @@ else{
 						
 						<div class="profile-info margin-top-60">
 							<div class="profile-info-title negative-margin"><?php echo $_SESSION['fullName']; ?></div>
-							<img src="images/profdefault.jpg" alt="" class="pull-left" />
+
+							<?php 
+							if($_SESSION['picType']=='0'){
+								echo "<img src='images/profdefault.jpg' id='profile-photo' class='img-responsive' alt='Profile Picture' />";
+							} 
+							else{ 
+								echo "<img id='profile-photo' class='img-responsive' 
+								src='images/uploads/user".$_SESSION['accountRef'].".".$_SESSION['picType']."' alt='Profile Picture' />";
+							}
+							?>
+
+
 							<div class="profile-info-text pull-left">
 								
-								<p class="subtitle-margin">Account</p>
+								<p class="subtitle-margin"><br><br>Account</p>
 								<p class="">Reference No.</p>
 								<p class=""><?php echo $_SESSION['accountRef']; ?></p>
 								<a href="lib/logout.php" class="logout-link margin-top-30"><i class="fa fa-lg fa-sign-out"></i>Logout</a>

@@ -153,6 +153,8 @@ $_SESSION['accountRef'] = $row['acc_ref'];
 $_SESSION['compReg'] = $row['company_reg'];
 $_SESSION['dateJoined'] = $row['date_joined'];
 $_SESSION['accountType'] = 'Company';
+$_SESSION['company'] = true;
+$_SESSION['student'] = false;
 
 
 

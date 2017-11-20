@@ -27,3 +27,10 @@
 .black-text-pro{
 	color: black;
 }
+
+
+.saveButtons{
+	background-color: transparent;
+	border: none;
+	font-weight: bolder;
+}
