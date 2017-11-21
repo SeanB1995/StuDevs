@@ -7,13 +7,6 @@ if(!isset($_POST['full-name'])){
 	exit();
 }
 
-//delete old pic
-$filess = glob("../images/uploads/user".$_SESSION['accountRef'].".*");
-foreach ($filess as $file_to_del) {
-  unlink($file_to_del);
-}
-
-
 
 
 
@@ -46,6 +39,12 @@ $dest = '../images/uploads/'.$newName;
 if(!isValidImage($profilePic)){
 	header("Location: ../profile.php?edit_profile_error=invalid_image");
 	exit();
+}
+
+//delete old pic
+$filess = glob("../images/uploads/user".$_SESSION['accountRef'].".*");
+foreach ($filess as $file_to_del) {
+  unlink($file_to_del);
 }
 
 
