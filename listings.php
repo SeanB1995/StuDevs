@@ -369,7 +369,7 @@ include_once 'lib/header.php';
 						<div class="row">
 							<div class="col-xs-12 col-lg-6">
 								<h5 class="subtitle-margin">apartments for sale, colorodo, usa</h5>
-								<h1>42 estates found<span class="special-color">.</span></h1>
+								<h1>42 projects found<span class="special-color">.</span></h1>
 							</div>
 							<div class="col-xs-12 col-lg-6">											
 								<div class="view-icons-container">

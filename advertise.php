@@ -39,7 +39,7 @@ if($_SESSION['loggedIn']!==true){
     </section>
 	
 	<section class="section-light section-top-shadow">
-		<form name="offer-from" action="#" enctype="multipart/form-data">
+		<form action="lib/saveadvert.php" method="post" name="advertise-project" enctype="multipart/form-data">
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-12">
@@ -47,78 +47,50 @@ if($_SESSION['loggedIn']!==true){
 						<div class="title-separator-primary"></div>
 						<div class="dark-col margin-top-60">
 							<div class="row">
-								
+							
 								<div class="col-xs-12 col-sm-6">
-									<select name="transaction2" class="bootstrap-select" title="Property type:">
-										<option>Apartment</option>
-										<option>House</option>
-										<option>Commercial</option>
-										<option>Land</option>
+									<select name="transaction2" class="bootstrap-select" title="Primary Language:">
+										<option>PHP</option>
+										<option>Java</option>
+										<option>C#</option>
+										<option>C</option>
+										<option>Python</option>
+										<option>Ruby on Rails</option>
 									</select>
 								</div>
 								<div class="col-xs-12 col-sm-6 margin-top-xs-15">
-									<select name="transaction2" class="bootstrap-select" title="Transaction:">
-										<option>For sale</option>
-										<option>For rent</option>
+									<select name="transaction2" class="bootstrap-select" title="Framework:">
+										<option>node.js</option>
+										<option>Spring</option>
 									</select>
+								</div>
+								<div class="col-xs-12 col-sm-6 margin-top-15">
+									<input name="title" type="text" class="input-full main-input" placeholder="Project Title" />
 								</div>
 								<div class="col-xs-12 col-sm-6 margin-top-15">
 									<input name="price" type="text" class="input-full main-input" placeholder="Price" />
 								</div>
-								<div class="col-xs-12 col-sm-6 margin-top-15 margin-top-xs-0">
-									<input name="area" type="text" class="input-full main-input" placeholder="Area" />
-								</div>
-								<div class="col-xs-12 col-sm-6">
-									<input name="bedrooms" type="text" class="input-full main-input" placeholder="Bedrooms" />
-								</div>
-								<div class="col-xs-12 col-sm-6">
-									<input name="bathrooms" type="text" class="input-full main-input" placeholder="Bathrooms" />
-								</div>
+								
+							
 							</div>
-							<textarea name="message" class="input-full main-input property-textarea" placeholder="Description"></textarea>
+							<textarea name="description" class="input-full main-input property-textarea" placeholder="Description"></textarea>
 							<div class="row">
+							<h4>Choose Project Requirements</h4>
 								<div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 margin-top-15">
 									<input type="checkbox" id="c1" name="cc" class="main-checkbox" />
-									<label for="c1"><span></span>Air Conditioning</label><br/>
+									<label for="c1"><span></span>Log in System</label><br/>
 									<input type="checkbox" id="c2" name="cc" class="main-checkbox" />
-									<label for="c2"><span></span>Internet</label><br/>
+									<label for="c2"><span></span>Image Gallery</label><br/>
 									<input type="checkbox" id="c3" name="cc" class="main-checkbox" />
-									<label for="c3"><span></span>Cable TV</label><br/>
+									<label for="c3"><span></span>Comment Section</label><br/>
 									<input type="checkbox" id="c4" name="cc" class="main-checkbox" />
-									<label for="c4"><span></span>Balcony</label><br/>
+									<label for="c4"><span></span>User Messaging System</label><br/>
 									<input type="checkbox" id="c5" name="cc" class="main-checkbox" />
-									<label for="c5"><span></span>Roof Terrace</label><br/>
-									<input type="checkbox" id="c6" name="cc" class="main-checkbox" />
-									<label for="c6"><span></span>Terrace</label>
+									<label for="c5"><span></span>User Video Chat</label><br/>
+									
 								</div>
-								<div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 margin-top-15">
-									<input type="checkbox" id="c7" name="cc" class="main-checkbox" />
-									<label for="c7"><span></span>Lift</label><br/>
-									<input type="checkbox" id="c8" name="cc" class="main-checkbox" />
-									<label for="c8"><span></span>Garage</label><br/>
-									<input type="checkbox" id="c9" name="cc" class="main-checkbox" />
-									<label for="c9"><span></span>Security</label><br/>
-									<input type="checkbox" id="c10" name="cc" class="main-checkbox" />
-									<label for="c10"><span></span>High Standard</label><br/>
-									<input type="checkbox" id="c11" name="cc" class="main-checkbox" />
-									<label for="c11"><span></span>City Centre</label><br/>
-									<input type="checkbox" id="c12" name="cc" class="main-checkbox" />
-									<label for="c12"><span></span>Furniture</label>
-								</div>
-								<div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 margin-top-15">
-									<input type="checkbox" id="c13" name="cc" class="main-checkbox" />
-									<label for="c13"><span></span>Another Option</label><br/>
-									<input type="checkbox" id="c14" name="cc" class="main-checkbox" />
-									<label for="c14"><span></span>Another Option</label><br/>
-									<input type="checkbox" id="c15" name="cc" class="main-checkbox" />
-									<label for="c15"><span></span>Another Option</label><br/>
-									<input type="checkbox" id="c16" name="cc" class="main-checkbox" />
-									<label for="c16"><span></span>Another Option</label><br/>
-									<input type="checkbox" id="c17" name="cc" class="main-checkbox" />
-									<label for="c17"><span></span>Another Option</label><br/>
-									<input type="checkbox" id="c18" name="cc" class="main-checkbox" />
-									<label for="c18"><span></span>Another Option</label>
-								</div>
+					
+							
 							</div>
 						</div>				
 					</div>
@@ -149,19 +121,20 @@ if($_SESSION['loggedIn']!==true){
 					</div>
 					<div class="col-xs-12">
 						<div class="center-button-cont margin-top-60">
-							<a href="#" class="button-primary button-shadow">
-								<span>submit property</span>
+						<button type="submit" name="submit_ad" class="button-primary button-shadow button-full">Submit Project</button>
+							<!-- <a href="#" class="button-primary button-shadow">
+								<span>submit project</span>
 								<div class="button-triangle"></div>
 								<div class="button-triangle2"></div>
 								<div class="button-icon"><i class="fa fa-lg fa-home"></i></div>
-							</a>
+							</a> -->
 						</div>
 					</div>
 				</div>
 			</div>
 		</form>
 	</section>
-	
+</div>	
 
 	
 <?php 

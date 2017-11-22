@@ -1,5 +1,30 @@
 <?php
 
+include_once 'header.php';
+
+
+if(isset($_POST['submit_ad'])){
+	//$companyId = $_SESSION['compId']
+$projTitle = $_POST["title"];
+$projDesc = $_POST["description"];
+$projDate = date("Y-m-d H:i:s");
+$projPrice = $_POST["price"];
+
+
+$statement = "INSERT INTO project (title, price, description, date_advertised)
+VALUES ('$_POST[title]', '$_POST[price]', '$_POST[description]', date('Y-m-d H:i:s'))";
+
+
+if ($conn->query($statement) === TRUE) {
+    header("Location: ../profile.php?project_ad_submitted_successfully");
+    exit();
+} else {
+    header("Location: ../profile.php?project_ad_not_submitted");
+    exit();
+}
+
+}
+
 /*
 
 define('DB_NAME', 'RG344090_studevs');
