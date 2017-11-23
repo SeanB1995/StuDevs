@@ -78,16 +78,21 @@ if($_SESSION['loggedIn']!==true){
 							<h4>Choose Project Requirements</h4>
 								<div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 margin-top-15">
 									<input type="checkbox" id="c1" name="cc" class="main-checkbox" />
-									<label for="c1"><span></span>Log in System</label><br/>
+									<label for="c1"><span></span>Do your users need to be able to log in?</label><br/>
 									<input type="checkbox" id="c2" name="cc" class="main-checkbox" />
-									<label for="c2"><span></span>Image Gallery</label><br/>
+									<label for="c2"><span></span>Do your users need a photo gallery?</label><br/><!--sub question here.. to choose gallary style-->
 									<input type="checkbox" id="c3" name="cc" class="main-checkbox" />
-									<label for="c3"><span></span>Comment Section</label><br/>
+									<label for="c3"><span></span>Do you want your users to be able to contact you via the site?</label><br/>
 									<input type="checkbox" id="c4" name="cc" class="main-checkbox" />
-									<label for="c4"><span></span>User Messaging System</label><br/>
+									<label for="c4"><span></span>Do your users need to be able to communicate with each other?</label><br/>
 									<input type="checkbox" id="c5" name="cc" class="main-checkbox" />
-									<label for="c5"><span></span>User Video Chat</label><br/>
-									
+									<label for="c5"><span></span>Do your user’s need to provide ID/verification?</label><br/>
+									<input type="checkbox" id="c6" name="cc" class="main-checkbox" />
+									<label for="c6"><span></span>Will your site have transactions?</label><br/>
+									<input type="checkbox" id="c7" name="cc" class="main-checkbox" />
+									<label for="c7"><span></span>Will users be making transactions between each other?</label><br/><!--'transactions' sub question-->
+									<input type="checkbox" id="c8" name="cc" class="main-checkbox" />
+									<label for="c8"><span></span>Will they be buying items from your site?</label><br/><!--'transactions' sub question-->
 								</div>
 					
 							
