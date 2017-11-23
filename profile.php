@@ -378,7 +378,7 @@ $_SESSION['picType'] = $row['pic_type'];
 						</div>
 
 						<div class="center-button-cont margin-top-30">
-							<a href="my-offers.html" class="button-primary button-shadow button-full">
+							<a href="dashboard.php" class="button-primary button-shadow button-full">
 								<span>Dashboard</span>
 								<div class="button-triangle"></div>
 								<div class="button-triangle2"></div>
