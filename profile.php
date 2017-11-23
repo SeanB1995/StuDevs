@@ -41,6 +41,9 @@ $_SESSION['picType'] = $row['pic_type'];
 <head>
 	<title>StuDevs | Listings</title>
 	<?php include_once 'lib/metalinks.php' ?>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
 </head>
 <body>
@@ -170,17 +173,135 @@ $_SESSION['picType'] = $row['pic_type'];
 				</form>
 				<!-- End of profile picture form -->
 
-					
-					<div class="row margin-top-30">
+				<div class="row margin-top-30">
 						<br><br>
 						<div class="col-xs-12">
 							<div class="info-box">
-								<p>Fill this fields only if you want to change your password</p>
+								<p>Your Skills and Experience</p>
 								<div class="small-triangle"></div>
 								<div class="small-icon"><i class="fa fa-info fa-lg"></i></div>
 							</div>
 						</div>
 					</div>
+
+					<form name="stu-details-form" method="post" action="lib/save-stu_details.php" enctype="multipart/form-data">
+							<div class="row">
+								<br><br>
+							
+								<h5>What Are Your Primary Languages?</h5>
+								<div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 margin-top-15">
+									<input type="checkbox" id="check1" name="ccc" class="main-checkbox" />
+									<label for="check1"><span></span>PHP</label><br/>
+									<input type="checkbox" id="check2" name="ccc" class="main-checkbox" />
+									<label for="check2"><span></span>Java</label><br/>
+									<input type="checkbox" id="check3" name="ccc" class="main-checkbox" />
+									<label for="check3"><span></span>C#</label><br/>
+									<input type="checkbox" id="check4" name="ccc" class="main-checkbox" />
+									<label for="check4"><span></span>C</label><br/>
+									<input type="checkbox" id="check5" name="ccc" class="main-checkbox" />
+									<label for="check5"><span></span>Python</label><br/>
+									<input type="checkbox" id="check6" name="ccc" class="main-checkbox" />
+									<label for="check6"><span></span>Ruby On Rails</label><br/>
+									<input type="checkbox" id="check7" name="ccc" class="main-checkbox" />
+									<label for="check7"><span></span>JavaScript</label>
+									
+									
+								</div>
+								<h5>Frameworks You Have Experience With?</h5>
+								<div class="col-xs-12 col-sm-4 col-md-6 col-lg-4 margin-top-15">
+									<input type="checkbox" id="check8" name="cc" class="main-checkbox" />
+									<label for="check8"><span></span>Node.js</label><br/>
+									<input type="checkbox" id="check9" name="ccc" class="main-checkbox" />
+									<label for="check9"><span></span>Spring</label><br/>
+									<input type="checkbox" id="check10" name="ccc" class="main-checkbox" />
+									<label for="check10"><span></span>TomCat</label><br/>
+									<input type="checkbox" id="check11" name="ccc" class="main-checkbox" />
+									<label for="check11"><span></span>ASP.NET</label><br/>
+									<input type="checkbox" id="check12" name="ccc" class="main-checkbox" />
+									<label for="check12"><span></span>Express.js</label><br/><br/>
+									
+								</div>
+							</div> 
+								<br/>
+								<h5>About You:</h5>
+								<textarea name="stu_description" class="input-full main-input property-textarea" placeholder=""></textarea>
+									<div class="center-button-cont margin-top-15">
+										<button type="submit" class="button-primary button-shadow button-full">Save Changes</button>
+									</div>
+								<br/>
+					</form>
+
+								<div class="row margin-top-30">
+									<br><br>
+									<div class="col-xs-12">
+										<div class="info-box">
+											<p>Past Projects</p>
+											<div class="small-triangle"></div>
+											<div class="small-icon"><i class="fa fa-info fa-lg"></i></div>
+										</div>
+									</div>
+								</div>
+								<div id="myCarousel" class="carousel slide" data-ride="carousel">
+				  
+									  <ol class="carousel-indicators">
+									    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+									    <li data-target="#myCarousel" data-slide-to="1"></li>
+									    <li data-target="#myCarousel" data-slide-to="2"></li>
+									  </ol>
+
+									  
+									  <div class="carousel-inner">
+									    <div class="item active">
+									      <img src="images/projExample.png" alt="">
+									      <div class="carousel-caption">
+
+									        <h3>Project 1<br/></h3>
+									        <p style="color:black;">Login System</p>
+									      </div>
+									    </div>
+
+									    <div class="item">
+									      <img src="images/projExample.png" alt="">
+									      <div class="carousel-caption">
+									        <h3>Project 2</h3>
+									        <p style="color:black;">Home Page</p>
+									      </div>
+									    </div>
+
+									    <div class="item">
+									      <img src="images/projExample.png" alt="">
+									      <div class="carousel-caption">
+									        <h3>Project 3</h3>
+									        <p style="color:black;">Messaging System</p>
+									      </div>
+									    </div>
+									  </div>
+
+									  
+									  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+									    <span class="glyphicon glyphicon-chevron-left"></span>
+									    <span class="sr-only">Previous</span>
+									  </a>
+									  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+									    <span class="glyphicon glyphicon-chevron-right"></span>
+									    <span class="sr-only">Next</span>
+									  </a>
+
+									  <br/>
+								</div>
+								
+						<div class="row margin-top-30">
+							<br><br>
+							<div class="col-xs-12">
+								<div class="info-box">
+									<p>Fill this fields only if you want to change your password</p>
+									<div class="small-triangle"></div>
+									<div class="small-icon"><i class="fa fa-info fa-lg"></i></div>
+								</div>
+							</div>
+						</div>
+				
+
 
 					<!-- Start of new password form -->
 					<form name="new-password-form" method="post" action="lib/new-password.php">
@@ -243,7 +364,7 @@ $_SESSION['picType'] = $row['pic_type'];
 								<p class="subtitle-margin"><br><br>Account</p>
 								<p class="">Reference No.</p>
 								<p class=""><?php echo $_SESSION['accountRef']; ?></p>
-								<a href="lib/logout.php" class="logout-link margin-top-30"><i class="fa fa-lg fa-sign-out"></i>Logout</a>
+								<a href="lib/logout.php" class="logout-link margin-top-30"><i class="fa fa-lg fa-sign-out"></i>Logout</a><br><br>
 							</div>
 							<div class="clearfix"></div>
 						</div>
@@ -255,14 +376,7 @@ $_SESSION['picType'] = $row['pic_type'];
 								<div class="button-icon"><i class="fa fa-th-list"></i></div>
 							</a>
 						</div>
-						<div class="center-button-cont margin-top-15">
-							<a href="my-profile.html" class="button-primary button-shadow button-full">
-								<span>My profile</span>
-								<div class="button-triangle"></div>
-								<div class="button-triangle2"></div>
-								<div class="button-icon"><i class="fa fa-user"></i></div>
-							</a>
-						</div>
+						
 						<?php if($_SESSION['accountType']=='Company'){ ?>
 						<div class="center-button-cont margin-top-15">
 							<a href="advertise.php" class="button-alternative button-shadow button-full">
@@ -275,64 +389,30 @@ $_SESSION['picType'] = $row['pic_type'];
 						<?php } ?>
 					
 					
-						<h3 class="sidebar-title margin-top-60">Your offers<span class="special-color">.</span></h3>
+						<h3 class="sidebar-title margin-top-60">Search Ads<span class="special-color">.</span></h3>
 						<div class="title-separator-primary"></div>
 						
 						<div class="sidebar-select-cont">
-							<select name="transaction1" class="bootstrap-select" title="Transaction:" multiple>
-								<option>For sale</option>
-								<option>For rent</option>
+							<select name="lang1" class="bootstrap-select" title="Language:" multiple>
+								<option>Java</option>
+								<option>PHP</option>
 							</select>
-							<select name="conuntry1" class="bootstrap-select" title="Country:" multiple data-actions-box="true">
-								<option>United States</option>
-								<option>Canada</option>
-								<option>Mexico</option>
+							<select name="framework1" class="bootstrap-select" title="Framework:" multiple data-actions-box="true">
+								<option>Node.js</option>
+								<option>Spring</option>
+								<option>ASP.NET</option>
 							</select>
 							<select name="city1" class="bootstrap-select" title="City:" multiple data-actions-box="true">
-								<option>New York</option>
-								<option>Los Angeles</option>
-								<option>Chicago</option>
-								<option>Houston</option>
-								<option>Philadelphia</option>
-								<option>Phoenix</option>
-								<option>Washington</option>
-								<option>Salt Lake Cty</option>
-								<option>Detroit</option>
-								<option>Boston</option>
+								<option>Dublin</option>
+								<option>Limerick</option>
+								<option>Cork</option>
+								<option>Kildare</option>
+								<option>Meath</option>
+								
 							</select>					
-							<select name="location1" class="bootstrap-select" title="Location:" multiple data-actions-box="true">
-								<option>Some location 1</option>
-								<option>Some location 2</option>
-								<option>Some location 3</option>
-								<option>Some location 4</option>
-							</select>
+							
 						</div>
-							<div class="adv-search-range-cont">	
-								<label for="slider-range-price-sidebar-value" class="adv-search-label">Price:</label>
-								<span>$</span>
-								<input type="text" id="slider-range-price-sidebar-value" readonly class="adv-search-amount">
-								<div class="clearfix"></div>
-								<div id="slider-range-price-sidebar" data-min="0" data-max="300000" class="slider-range"></div>
-							</div>
-							<div class="adv-search-range-cont">	
-								<label for="slider-range-area-sidebar-value" class="adv-search-label">Area:</label>
-								<span>m<sup>2</sup></span>
-								<input type="text" id="slider-range-area-sidebar-value" readonly class="adv-search-amount">
-								<div class="clearfix"></div>
-								<div id="slider-range-area-sidebar" data-min="0" data-max="180" class="slider-range"></div>
-							</div>
-							<div class="adv-search-range-cont">	
-								<label for="slider-range-bedrooms-sidebar-value" class="adv-search-label">Bedrooms:</label>
-								<input type="text" id="slider-range-bedrooms-sidebar-value" readonly class="adv-search-amount">
-								<div class="clearfix"></div>
-								<div id="slider-range-bedrooms-sidebar" data-min="1" data-max="10" class="slider-range"></div>
-							</div>
-							<div class="adv-search-range-cont">	
-								<label for="slider-range-bathrooms-sidebar-value" class="adv-search-label">Bathrooms:</label>
-								<input type="text" id="slider-range-bathrooms-sidebar-value" readonly class="adv-search-amount">
-								<div class="clearfix"></div>
-								<div id="slider-range-bathrooms-sidebar" data-min="1" data-max="4" class="slider-range"></div>
-							</div>
+							
 						<div class="sidebar-search-button-cont">
 							<a href="#" class="button-primary">
 								<span>search</span>
