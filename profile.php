@@ -376,6 +376,15 @@ $_SESSION['picType'] = $row['pic_type'];
 								<div class="button-icon"><i class="fa fa-th-list"></i></div>
 							</a>
 						</div>
+
+						<div class="center-button-cont margin-top-30">
+							<a href="my-offers.html" class="button-primary button-shadow button-full">
+								<span>Dashboard</span>
+								<div class="button-triangle"></div>
+								<div class="button-triangle2"></div>
+								<div class="button-icon"><i class="fa fa-th-list"></i></div>
+							</a>
+						</div>
 						
 						<?php if($_SESSION['accountType']=='Company'){ ?>
 						<div class="center-button-cont margin-top-15">
