@@ -6,6 +6,8 @@
 
 //pu stands for possible url
 
+include_once 'config.php';
+
 $pu1 = "http://studevs.com/";
 $pu2 = "http://www.studevs.com/";
 

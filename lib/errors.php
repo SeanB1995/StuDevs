@@ -5,7 +5,7 @@
 
 //strpos($url, 'sign_up_today')  :  This means : Does the URL contain 'sign_up_today'.
 
-include_once 'header.php';
+include_once 'config.php';
 
 if(strpos($url, 'student_sign_up_error=')!==false){
 	?>

@@ -1,7 +1,7 @@
 <?php
 //modscripts stands for modals and scripts
 
-include_once 'header.php';
+include_once 'config.php';
 ?>
 
 

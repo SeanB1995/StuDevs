@@ -2,12 +2,18 @@
 
 include_once 'lib/config.php';
 
+if($_SESSION['company']!==true){
+	header("Location: index.php?log_in_or_sign_up_as_company_to_view_student_profiles");
+	exit();
+}
+
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>StuDevs | Listings</title>
+	<title>StuDevs | Students</title>
 	<?php include_once 'lib/metalinks.php'; ?>
 	
 </head>

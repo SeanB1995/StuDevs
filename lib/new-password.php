@@ -1,6 +1,6 @@
 <?php
 
-include_once 'header.php';
+include_once 'config.php';
 
 if(!isset($_POST['password'])){
 	header("Location: ../index.php?go_to_profile_page_to_edit_profile");

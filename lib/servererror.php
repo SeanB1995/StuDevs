@@ -1,6 +1,6 @@
 <?php
-//gonna have ifs after huge-header class to see whether 404, 500 etc. and different paragraphs to follow.
-
+//make 404 check work to know when to include this file, to show that havent been found.
+include_once 'config.php';
 //REVERT TO ORIGNAL THEME FILE HERE
 //-----------------------------------------------------
 ?>

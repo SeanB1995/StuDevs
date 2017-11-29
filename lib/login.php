@@ -2,7 +2,7 @@
 
 //dont forget to include last login
 
-include_once 'header.php';
+include_once 'config.php';
 
 
 $email = strtolower($_POST['loginEmail']);

@@ -34,3 +34,14 @@
 	border: none;
 	font-weight: bolder;
 }
+
+
+.project-heady{
+	margin: 0 auto;
+	text-align: center;
+}
+
+
+.invisible-line{
+	color: transparent;
+}

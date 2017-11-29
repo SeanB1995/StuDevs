@@ -1,70 +1,61 @@
 <?php
+include_once 'lib/config.php';
 
-include_once 'lib/header.php';
+/*$query = "SELECT title, sum(project_id), sum(rec_price), sum(price) FROM project group by title";
+$res = $conn->query($query);*/
+
+
+$statement = $conn->prepare("SELECT title, sum(project_id), sum(rec_price), sum(price) FROM project where project_id!=? group by title");
+$statement->bind_param("s", $projIdPrep);//this must be "s" !
+$projIdPrep = '0';
+$statement->execute();
+$res = $statement->get_result();
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<title>StuDevs | Dashboard</title>
-	<?php include_once 'lib/metalinks.php' ?>
-	
-</head>
-<body>
-<div class="loader-bg"></div>
-<div id="wrapper">
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
 
-<!-- Page header -->	
-	<header>
-		<?php include_once 'lib/navbar.php' ?>
-    </header>
-	
-  		
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            
+             ['Title', 'ID', 'Rec.Price', 'Price'], 
+             
+           <?php 
+          
+          while($row=$res->fetch_assoc()){
+              
+        echo"['".$row['title']."','".$row['sum(project_id)']."','".$row['sum(rec_price)']."','".$row['sum(price)']."'],";
+          }
+          ?>
     
-		
-			<div class="contact1-cont">
-				<div class="container">
-					<div class="row">
-						<div class="col-sm-12">
-							<div class="row contact1">
-								<div class="col-sm-12">
-									<h5 class="subtitle-margin">Your Dashboard</h5>
-									<h1>Dashboard<span class="special-color">.</span></h1>
-									<div class="title-separator-primary"></div>
-								</div>
-								<div class="col-xs-12 col-md-6 margin-top-45">
-									<p class="negative-margin">HELLO HOW ARE YOU IM GOOD THANKS YEAH YOU KNOW YOURSELF your data  your data your data  your data your data  your data your data  your data your data  your data </p>
-									  
-									
-									
-								</div>
-								<div class="col-xs-12 col-md-6 margin-top-45">
-								
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			
-    
+        ]);
 
+      var options = {
+        width: 600,
+        height: 400,
+        legend: { position: 'top', maxLines: 3 },
+        bar: { groupWidth: '75%' },
+        title: 'Gantt Chart: Completion Time for Major Objectives',
+        bars: 'horizontal',
+        isStacked: true
+       
+        
+      
+      };
+     
 
-	
-	
-	<?php 
-    include_once 'lib/footer.php'; 
-    ?>
+        var chart = new google.charts.Bar(document.getElementById('barchart_material'));
 
-<!-- google maps initialization -->		
-	<script type="text/javascript">
-            google.maps.event.addDomListener(window, 'load', init);
-			function init() {						
-				mapInit(53.3486376,-6.2430277,"contact-map1","images/pinpin.png", true, true);
-			}
-	</script>
-
-
-
-	</body>
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
+  </head>
+  <body>
+    <div id="barchart_material" style="width: 900px; height: 500px;"></div>
+  </body>
 </html>

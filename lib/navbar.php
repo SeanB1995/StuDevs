@@ -1,26 +1,29 @@
 <?php
-include_once 'header.php';
+
+include_once 'config.php';
+
 ?>
 
+<script type="text/javascript">
+	
 
+</script>
 
 <div class="top-bar-wrapper">
 			<div class="container top-bar">
 				<div class="row">
 					<div class="col-xs-5 col-sm-8">
+
+						<div class="top-localization pull-left hidden-sm hidden-md hidden-xs">
+							
+							<span class="top-bar-text">HQ: Dublin, Ireland</span>
+						</div>
 						<div class="top-mail pull-left hidden-xs">
-							<span class="top-icon-circle">
-								<i class="fa fa-envelope fa-sm"></i>
-							</span>
-							<span class="top-bar-text">info@studevs.com</span>
+						
+							<span class="top-bar-text">Email: info@studevs.com</span>
 						</div>
 						
-						<div class="top-localization pull-left hidden-sm hidden-md hidden-xs">
-							<span class="top-icon-circle pull-left">
-								<i class="fa fa-map-marker"></i>
-							</span>
-							<span class="top-bar-text">Dublin 1, Ireland</span>
-						</div>
+						
 					</div>
 					<?php if($_SESSION['loggedIn']!==true){ ?>
 					<div class="col-xs-7 col-sm-4">
@@ -53,19 +56,23 @@ include_once 'header.php';
 						<li class="dropdown">
 							<a href="http://www.studevs.com" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
 						</li>
+
+						<li class="dropdown">
+							<a href="projects.php" role="button" aria-haspopup="true" aria-expanded="false">Projects</a>
+						</li>
+
+						
 						
 
 						<?php if($_SESSION['accountType']=='Company'){ ?>
 						<li class="dropdown">
-							<a href="listings.php" role="button" aria-haspopup="true" aria-expanded="false">Students</a>
+							<a href="students.php" role="button" aria-haspopup="true" aria-expanded="false">Students</a>
 						</li>
 
 
-						<?php } else{ ?>
-						<li class="dropdown">
-							<a href="listings.php" role="button" aria-haspopup="true" aria-expanded="false">Projects</a>
-						</li>
-						<?php } 
+						<?php }
+						
+						
 						
 
 						
@@ -94,6 +101,10 @@ include_once 'header.php';
 						<?php 
 						} 
 						?>
+
+						<li class="dropdown">
+							<a href="stats.php" role="button" aria-haspopup="true" aria-expanded="false">Stats</a>
+						</li>
 
 
 						<li class="dropdown">

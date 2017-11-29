@@ -1,6 +1,8 @@
 <?php
 
-include_once 'lib/header.php';
+
+include_once 'lib/config.php';
+
 if($_SESSION['loggedIn']!==true){
 	header("Location: index.php?log_in_or_sign_up_to_view_profile");
 	exit();

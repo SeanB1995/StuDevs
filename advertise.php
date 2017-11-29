@@ -1,9 +1,9 @@
 <?php
 
-include_once 'lib/header.php';
+include_once 'lib/config.php';
 
-if($_SESSION['loggedIn']!==true){
-	header("Location: index.php?login_or_signup_to_advertise_projects");
+if($_SESSION['company']!==true){
+	header("Location: index.php?log_in_or_sign_up_as_company_to_advertise");
 	exit();
 }
 
@@ -12,7 +12,7 @@ if($_SESSION['loggedIn']!==true){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>StuDevs | Listings</title>
+	<title>StuDevs | Advertise Project</title>
 	<?php include_once 'lib/metalinks.php'; ?>
 	
 </head>
@@ -143,13 +143,38 @@ if($_SESSION['loggedIn']!==true){
 
 						</div>				
 					</div>
+					<div class="row">
+
+						<div class="col-xs-3"></div>
 					
-					<div class="col-xs-12 margin-top-60">
-						<h3 class="title-negative-margin">Upload an image (1 max) of how your site should look.<span class="special-color"> (Optional)</span></h3>
-						<div class="title-separator-primary"></div>
-					</div>
-					<div class="col-xs-12 margin-top-60">
-						<input id="file-upload" name="projectPic" type="file">
+					<div class="col-xs-6 margin-top-60">
+					<h2 class="project-heady">Upload an image of how you want the site/app to look. <span class="special-color">(Optional)</span></h2>	
+							<div class="margin-top-15 agent-photos"> 
+
+								<?php
+
+							
+								
+									echo "<img src='images/project-default.PNG' id='project-photo' class='img-responsive' alt='Project Picture' />";
+								
+									
+								
+
+								?>
+
+								<div class="change-photo">
+
+
+									  <i class="fa fa-pencil fa-lg"></i>
+									<input type="file" name="projectPic" id="photo-file" onchange="document.getElementById('project-photo').src = window.URL.createObjectURL(this.files[0])"/>
+
+									
+								</div>
+								
+								<input type="text" disabled="disabled" id="agent-file-name" class="main-input" />
+							</div>
+						</div>
+						<div class="col-xs-3"></div>
 					</div>
 
 					<div class="row">

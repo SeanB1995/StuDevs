@@ -1,6 +1,9 @@
 <?php
 
-//These functions are accessible by all files that include header.php.
+//These functions are accessible by all files that include config.php.
+
+
+include_once 'config.php';
 
 function setCollege($email){
 	if(strpos($email, '@student.ncirl.ie')!==false) return 'National College of Ireland';
@@ -10,6 +13,11 @@ function setCollege($email){
 	elseif(strpos($email, '@ucdconnect.ie')!==false) return 'University College Dublin';
 	else return 'None';
 }
+
+$studesc = "Studevs allows student developers to create software for companies for a reasonable price.  This web application is mutually beneficial to students and companies alike, allowing students to gain experience and finances and allowing companies to have their software project finally made.";
+
+
+
 
 
 function isValidImage($image){
@@ -33,3 +41,4 @@ function isValidImage($image){
 
 	else return true;
 }
+

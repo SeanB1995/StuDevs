@@ -1,5 +1,5 @@
 <?php
-include_once 'header.php';
+include_once 'config.php';
 ?>
 
 <meta charset="UTF-8">

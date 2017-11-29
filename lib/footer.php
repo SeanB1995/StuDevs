@@ -1,5 +1,5 @@
 <?php
-include_once 'header.php';
+include_once 'config.php';
 ?>
 
 <footer class="small-cont">
@@ -12,7 +12,7 @@ include_once 'header.php';
 				&copy;  
 				<a href="http://studevs.com">Studevs.com</a> <?php
 						echo date('Y');
-						?> | Studevs.com is for demonstration purposes only.
+						?> | Studevs.com is currently for demonstration purposes only.
 			</div>
 		</div>
 	</div>
