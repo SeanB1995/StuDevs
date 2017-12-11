@@ -4,10 +4,7 @@ include_once 'config.php';
 
 ?>
 
-<script type="text/javascript">
-	
 
-</script>
 
 <div class="top-bar-wrapper">
 			<div class="container top-bar">
@@ -61,65 +58,90 @@ include_once 'config.php';
 							<a href="projects.php" role="button" aria-haspopup="true" aria-expanded="false">Projects</a>
 						</li>
 
-						
-						
-
-						<?php if($_SESSION['accountType']=='Company'){ ?>
 						<li class="dropdown">
 							<a href="students.php" role="button" aria-haspopup="true" aria-expanded="false">Students</a>
 						</li>
 
-
-						<?php }
 						
 						
 						
 
 						
-						
+						<?php 
 						 if($_SESSION['loggedIn']!==true){ ?>
 							
 							<li class="dropdown"><a href="#login-modal" data-toggle="modal">Log In</a></li>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sign Up</a>
 								<ul class="dropdown-menu">
-									<li><a href="#" onclick="showcompmod()">Company</a></li>
-									<li><a href="#" onclick="showstumod()">Student</a></li>
+									<li><a href="#" onclick="showbusmod()">business</a></li>
+									<li><a href="#" onclick="showstumod()">student</a></li>
 								</ul>
 							</li>
 
-						<?php } else{ ?>
+						<?php } ?> 
 
+
+						
+
+
+
+						<?php
+									
+						if(isset($_SESSION['studentId'])){
+							if(strlen($_SESSION['busRef'])>6){ //if > 6, it means they have a business reference, so they're assigned to a project.
+								?>
+
+								
+								<li class="dropdown">
+									<a href="project-progress.php" role="button" aria-haspopup="true" aria-expanded="false">Project Progress</a>
+								</li>
+
+							<?php }
+						}
+
+						if(isset($_SESSION['busId'])){
+							if (strlen($_SESSION['stuRef'])>6) { //if > 6, it means they have a student reference, so they have a student working.
+								?>
+
+								<li class="dropdown">
+									<a href="project-progress.php" role="button" aria-haspopup="true" aria-expanded="false">Project Progress</a>
+								</li>
+
+							<?php }
+						}
+				
+						?>
+
+
+					
+
+						<?php if($_SESSION['loggedIn']!==true){
+							
+							echo "<li><a href=\"#\" class=\"special-color\" onclick=\"showlogmod()\">Advertise Project</a></li>";
+						}
+						else{
+							if(isset($_SESSION['busId'])){
+								if($_SESSION['myProjCount'] < 1){
+									echo "<li><a href=\"advertise.php\" class=\"special-color\">Advertise Project</a></li>";
+								}
+							}
+						}
+						?>
+
+
+						<?php if(isset($_SESSION['loggedIn'])===true){ ?>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account</a>
 								<ul class="dropdown-menu">
-									<li><a href="profile.php">My Profile</a></li>
-									<li><a href="offers.php">My Offers</a></li>
+									<li><a href="profile.php">My Profile</a></li>	
 									<li><a href="lib/logout.php">Logout</a></li>
 								</ul>
 							</li>
 						<?php 
 						} 
 						?>
-
-						<li class="dropdown">
-							<a href="stats.php" role="button" aria-haspopup="true" aria-expanded="false">Stats</a>
-						</li>
-
-
-						<li class="dropdown">
-							<a href="contact.php" role="button" aria-haspopup="true" aria-expanded="false">Contact Us</a>
-						</li>
-						<?php if($_SESSION['loggedIn']!==true){
-							
-							echo "<li><a href=\"#\" class=\"special-color\" onclick=\"showlogmod()\">Advertise Project</a></li>";
-						}
-						else{
-							if(isset($_SESSION['compId'])){
-							echo "<li><a href=\"advertise.php\" class=\"special-color\">Advertise Project</a></li>";
-							}
-						}
-						?>
+						
 						
 					</ul>
 				</div>

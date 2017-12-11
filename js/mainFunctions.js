@@ -1,8 +1,8 @@
 //main js functions for all pages
 
 
-function showcompmod(){
-	$('#company-register-modal').modal('show');
+function showbusmod(){
+	$('#business-register-modal').modal('show');
 	$('#student-register-modal').modal('hide');
 	$('#login-modal').modal('hide');
 	$('#forgot-modal').modal('hide');
@@ -10,7 +10,7 @@ function showcompmod(){
 
 function showstumod(){
 	$('#student-register-modal').modal('show');
-	$('#company-register-modal').modal('hide');
+	$('#business-register-modal').modal('hide');
 	$('#login-modal').modal('hide');
 	$('#forgot-modal').modal('hide');
 }
@@ -21,7 +21,7 @@ function showstumod(){
 function showlogmod(){
 	$('#login-modal').modal('show');
 	$('#student-register-modal').modal('hide');
-	$('#company-register-modal').modal('hide');
+	$('#business-register-modal').modal('hide');
 	$('#forgot-modal').modal('hide');
 }
 
@@ -30,7 +30,7 @@ function showfgmod(){
 	$('#forgot-modal').modal('show');
 	$('#student-register-modal').modal('hide');
 	$('#login-modal').modal('hide');
-	$('#company-register-modal').modal('hide');
+	$('#business-register-modal').modal('hide');
 }
 
 

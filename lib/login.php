@@ -37,7 +37,7 @@ $studentEmailCheck = $result->num_rows;
 
 
 //prepared statement
-$statement = $conn->prepare("SELECT * FROM company WHERE email=?");
+$statement = $conn->prepare("SELECT * FROM business WHERE email=?");
 $statement->bind_param("s", $emailPrepared);//this must be "s" !
 $emailPrepared = $email;
 //end of prepared statement
@@ -47,9 +47,9 @@ $statement->execute();
 $result = $statement->get_result();
 $row = $result->fetch_assoc();
 
-$companyEmailCheck = $result->num_rows;
+$businessEmailCheck = $result->num_rows;
 
-if(($studentEmailCheck<1) && ($companyEmailCheck<1)){
+if(($studentEmailCheck<1) && ($businessEmailCheck<1)){
 	unset($_SESSION['loginEmail']);
 	unset($_SESSION['loginPassword']);
 	header("Location: ../index.php?log_in_error=invalid_email");
@@ -61,7 +61,7 @@ if(($studentEmailCheck<1) && ($companyEmailCheck<1)){
 $validType = 'none';
 
 
-//determing whether student or company and checking password matches database password
+//determing whether student or business and checking password matches database password
 
 $statement = $conn->prepare("SELECT * FROM student WHERE email=?");
 $statement->bind_param("s", $emailPrepared);//this must be "s" !
@@ -74,7 +74,7 @@ $row = $result->fetch_assoc();
 
 if(password_verify($password, $row['password'])) $validType = 'student';
 
-$statement = $conn->prepare("SELECT * FROM company WHERE email=?");
+$statement = $conn->prepare("SELECT * FROM business WHERE email=?");
 $statement->bind_param("s", $emailPrepared);//this must be "s" !
 $emailPrepared = $email;
 //end of prepared statement
@@ -83,7 +83,7 @@ $result = $statement->get_result();
 $row = $result->fetch_assoc();
 
 
-if(password_verify($password, $row['password'])) $validType = 'company';
+if(password_verify($password, $row['password'])) $validType = 'business';
 
 
 
@@ -110,18 +110,21 @@ if($validType=='student'){
 	$_SESSION['lastName'] = $row['last'];
 	$_SESSION['fullName'] = $row['first'] . " " . $row['last'];
 	$_SESSION['email'] = $row['email'];
+	$_SESSION['about'] = $row['about'];
+	$_SESSION['experience'] = $row['experience'];
 	$_SESSION['accountRef'] = $row['acc_ref'];
 	$_SESSION['dateJoined'] = $row['date_joined'];
+	$_SESSION['busRef'] = $row['bus_proj'];
 	$_SESSION['college'] = $row['college'];
 	$_SESSION['accountType'] = 'Student';
 	$_SESSION['student'] = true;
-	$_SESSION['company'] = false;
+	$_SESSION['business'] = false;
 }
 
 
 
-if($validType=='company'){
-	$statement = $conn->prepare("SELECT * FROM company WHERE email=?");
+if($validType=='business'){
+	$statement = $conn->prepare("SELECT * FROM business WHERE email=?");
 	$statement->bind_param("s", $emailPrepared);//this must be "s" !
 	$emailPrepared = $email;
 	//end of prepared statement
@@ -129,40 +132,42 @@ if($validType=='company'){
 	$result = $statement->get_result();
 	$row = $result->fetch_assoc();
 
-	$_SESSION['compId'] = $row['company_id'];
-	$_SESSION['compName'] = $row['company_name'];
-	$_SESSION['fullName'] = $row['company_name'];
+	$_SESSION['busId'] = $row['business_id'];
+	$_SESSION['busName'] = $row['business_name'];
+	$_SESSION['fullName'] = $row['business_name'];
 	$_SESSION['email'] = $row['email'];
 	$_SESSION['accountRef'] = $row['acc_ref'];
-	$_SESSION['compReg'] = $row['company_reg'];
 	$_SESSION['dateJoined'] = $row['date_joined'];
-	$_SESSION['accountType'] = 'Company';
-	$_SESSION['company'] = true;
+	$_SESSION['stuRef'] = $row['stu_proj'];
+	$_SESSION['accountType'] = 'Business';
+	$_SESSION['business'] = true;
 	$_SESSION['student'] = false;
 }
 
 
-//use an SQL update statement for last login datetime
 
 
-$_SESSION['loggedIn'] = true;
-
-
-$statement = $conn->prepare("INSERT INTO session (acc_ref, login_date) VALUES (?, ?)");
+$statement = $conn->prepare("INSERT INTO session (acc_ref, login_date, acc_type) VALUES (?, ?, ?)");
 
 
 
-$statement->bind_param("ss", $accountRefP, $loginDateP);
+$statement->bind_param("sss", $accountRefP, $dateJoinedP, $accountTypeP);
 
-$accountRefP = $_SESSION['accountRef'];
-$loginDateP= $loginDate;
+$accountRefP = $accountRef;
+$dateJoinedP= $dateJoined;
+$accountTypeP = $_SESSION['accountType'];
 
 $statement->execute();
 
 $result = $conn->query($statement);
 
 
+$_SESSION['loginDate'] = $dateJoined;
 
-$_SESSION['loginDate'] = $loginDate;
 
-header("Location: ../profile.php?log_in_successful");
+
+$_SESSION['loggedIn'] = true;
+
+header("Location: ../profile.php?welcome_back");
+
+

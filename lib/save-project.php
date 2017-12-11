@@ -2,12 +2,31 @@
 
 include_once 'config.php';
 
-
+if(!isset($_SESSION['busId'])){
+	header("Location: ../index.php?log_in_as_business");
+	exit();
+}
 if(!isset($_POST['description'])){
 	header("Location: ../profile.php?go_to_advertise_page");
 	exit();
 }
 
+
+$busRef = $_SESSION['accountRef'];
+
+
+
+$statement = $conn->prepare("SELECT * FROM project WHERE business_ref=?");
+$statement->bind_param("s", $pq1);//this must be "s" !
+$pq1 = $busRef;
+$statement->execute();
+$result = $statement->get_result();
+$bProj = mysqli_num_rows($result);
+
+if($bProj>0){
+	header("Location: ../index.php?you_have_already_uploaded_a_project");
+	exit();
+}
 
 
 $title = $_POST['title'];
@@ -77,49 +96,48 @@ $strReq.="Display Information"; //every site has to display information
 
 //setting requirements' values
 
-if(in_array('Login System', $requirements)) $recPrice+=100;
+			//4
+if(in_array('Login System', $requirements)) $recPrice+=100; 
 
-if(in_array('Photo Gallery', $requirements)) $recPrice+=60;
 
-if(in_array('Contact Form', $requirements)) $recPrice+=30;
+			//3
+if(in_array('Photo Gallery', $requirements)) $recPrice+=60; 
 
-if(in_array('Messaging System', $requirements)) $recPrice+=115;
 
+			//2
+if(in_array('Contact Form', $requirements)) $recPrice+=30; 
+
+
+			//9
+if(in_array('Messaging System', $requirements)) $recPrice+=115;	
+
+
+			//8
 if(in_array('ID/Verification', $requirements)) $recPrice+=80;
 
-if(in_array('Logo Design for Company', $requirements)) $recPrice+=40;
 
+			//1
+if(in_array('Logo Design for Business', $requirements)) $recPrice+=40;
+
+
+			//11
 if(in_array('User to User e-Commerce', $requirements)) $recPrice+=465;
 
+
+			//10
 if(in_array('Site to User e-Commerce', $requirements)) $recPrice+=320;
 
+
+			//5
 if(in_array('Advertisements', $requirements)) $recPrice+=210;
 
-if(in_array('Map for Company Location', $requirements)) $recPrice+=25;
 
+			//6
+if(in_array('Map for Business Location', $requirements)) $recPrice+=25;
+
+
+			//7
 if(in_array('Map for Key Features', $requirements)) $recPrice+=240;
-
-
-
-
-
-/* THIS WORKED BUT NUM_ROWS WAY IS BETTER. CAN USE THIS FOR LISTINGS PAGE
-
-$statement = $conn->prepare("SELECT * FROM project WHERE project_id!=?");
-$statement->bind_param("s", $projIdPrep);//this must be "s" !
-$projIdPrep = '0';
-
-//end of prepared statement
-$statement->execute();
-$result = $statement->get_result();
-//$row = $result->fetch_assoc();
-
-while ($row = $result->fetch_assoc())  
-{
-    echo $row['project_id'];
-}
-*/
-
 
 
 
@@ -158,15 +176,15 @@ else{
 
 
 
-$statement = $conn->prepare("INSERT INTO project (company_ref, company_reg, company_name, title, description, requirements, rec_price, price, date_advertised, pic_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+$statement = $conn->prepare("INSERT INTO project (business_ref, business_name, bus_email, title, description, requirements, rec_price, price, date_advertised, pic_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
 
 
-$statement->bind_param("ssssssssss", $refPrep, $regPrep, $namePrep, $titlePrep, $descPrep, $reqPrep, $recPricePrep, $pricePrep, $datePrep, $picPrep);
+$statement->bind_param("ssssssssss", $refPrep, $namePrep, $busEmailPrep, $titlePrep, $descPrep, $reqPrep, $recPricePrep, $pricePrep, $datePrep, $picPrep);
 
 $refPrep = $_SESSION['accountRef'];
-$regPrep = $_SESSION['compReg'];
-$namePrep = $_SESSION['compName'];
+$namePrep = $_SESSION['busName'];
+$busEmailPrep = $_SESSION['email'];
 $titlePrep = $title;
 $descPrep = $description;
 $reqPrep = $strReq;
@@ -179,5 +197,7 @@ $statement->execute();
 
 $result = $conn->query($statement);
 
-header("Location: ../profile.php?project_ad_submitted_successfully");
+header("Location: ../projects.php?project_ad_submitted_successfully");
+
+
 

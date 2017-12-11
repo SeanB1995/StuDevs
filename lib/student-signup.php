@@ -90,6 +90,10 @@ if(strlen($email)>249){
 
 include_once 'email-validation.php';
 
+$verifCode = generateCode();
+
+
+
 
 $_SESSION['college'] = setCollege($email);
 
@@ -143,11 +147,11 @@ $password = password_hash($password, PASSWORD_DEFAULT);
 
 
 
-$statement = $conn->prepare("INSERT INTO student (password, first, last, email, acc_ref, date_joined, college) VALUES (?, ?, ?, ?, ?, ?, ?)");
+$statement = $conn->prepare("INSERT INTO student (password, first, last, email, acc_ref, date_joined, college, verif_code) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
 
 
-$statement->bind_param("sssssss", $passwordPrepared, $firstNamePrepared, $lastNamePrepared, $emailPrepared, $accountRefPrepared, $dateJoinedPrepared, $collegePrepared);
+$statement->bind_param("ssssssss", $passwordPrepared, $firstNamePrepared, $lastNamePrepared, $emailPrepared, $accountRefPrepared, $dateJoinedPrepared, $collegePrepared, $verifCodePrepared);
 
 $passwordPrepared = $password;
 $firstNamePrepared = $firstName;
@@ -156,6 +160,8 @@ $emailPrepared = $email;
 $accountRefPrepared = $accountRef;
 $dateJoinedPrepared = $dateJoined;
 $collegePrepared = $_SESSION['college'];
+$verifCodePrepared = $verifCode;
+
 
 $statement->execute();
 
@@ -180,26 +186,50 @@ $_SESSION['fullName'] = $row['first'] . " " . $row['last'];
 $_SESSION['email'] = $row['email'];
 $_SESSION['accountRef'] = $row['acc_ref'];
 $_SESSION['dateJoined'] = $row['date_joined'];
+$_SESSION['busRef'] = $row['bus_proj'];
+$_SESSION['about'] = $row['about'];
+$_SESSION['experience'] = $row['experience'];
 $_SESSION['accountType'] = 'Student';
-$_SESSION['company'] = false;
+$_SESSION['business'] = false;
 $_SESSION['student'] = true;
 
 
-
-$statement = $conn->prepare("INSERT INTO session (acc_ref, login_date) VALUES (?, ?)");
-
+$statement = $conn->prepare("INSERT INTO session (acc_ref, login_date, acc_type) VALUES (?, ?, ?)");
 
 
-$statement->bind_param("ss", $accountRefP, $dateJoinedP);
+
+$statement->bind_param("sss", $accountRefP, $dateJoinedP, $accountTypeP);
 
 $accountRefP = $accountRef;
 $dateJoinedP= $dateJoined;
+$accountTypeP = $_SESSION['accountType'];
 
 $statement->execute();
 
 $result = $conn->query($statement);
 
+
 $_SESSION['loginDate'] = $dateJoined;
 
 
-header("Location: ../profile.php?sign_up_successful");
+
+$_SESSION['loggedIn'] = true;
+
+include_once 'send-email-verify.php';
+
+$emailPass = trim($email);
+$namePass = trim($_SESSION['fullName']);
+$codePass = $verifCode;
+
+
+$isSent = sendEmailVer($namePass, $emailPass, $codePass);
+
+if($isSent){
+	header("Location: ../profile.php?please_verify_email");
+	exit();
+} 
+else{
+	header("Location: ../profile.php?error=email_verification_did_not_send");
+	exit();
+}
+

@@ -2,10 +2,20 @@
 
 include_once 'lib/config.php';
 
-if($_SESSION['company']!==true){
-	header("Location: index.php?log_in_or_sign_up_as_company_to_advertise");
+if($_SESSION['business']!==true){
+	header("Location: index.php?log_in_or_sign_up_as_business_to_advertise");
 	exit();
 }
+
+if(isset($_SESSION['busId'])){
+	if($_SESSION['myProjCount'] > 0){
+		header("Location: index.php?you_already_have_a_project");
+		exit();
+	}
+}
+
+
+
 
 ?>
 
@@ -91,7 +101,7 @@ if($_SESSION['company']!==true){
 									<label for="c5"><span></span>Users need to provide ID/verification</label><br/>
 
 									<input onchange="calcPrice(this, 40)" type="checkbox" id="c6" name="requirements[]" 
-									class="main-checkbox" value="Logo Design for Company"/>
+									class="main-checkbox" value="Logo Design for Business"/>
 									<label for="c6"><span></span>I want a logo designed and created</label><br/>
 
 								</div>
@@ -112,8 +122,8 @@ if($_SESSION['company']!==true){
 									<label for="c9"><span></span>Users will be advertising but making their own purchase arrangements.</label><br/>
 
 									<input onchange="calcPrice(this, 25)" type="checkbox" id="c10" 
-									name="requirements[]" class="main-checkbox" value="Map for Company Location"/>
-									<label for="c10"><span></span>Map to show my company's location</label><br/>
+									name="requirements[]" class="main-checkbox" value="Map for Business Location"/>
+									<label for="c10"><span></span>Map to show my business's location</label><br/>
 
 									<input onchange="calcPrice(this, 240)" type="checkbox" id="c11" 
 									name="requirements[]" class="main-checkbox" value="Map for Key Features"/>

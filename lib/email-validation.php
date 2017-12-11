@@ -11,7 +11,7 @@ function validEmail($email){
 
 if(!validEmail($email)){ //if email is invalid
 	unset($_SESSION['email']);
-	if(isset($_POST['compName'])) header("Location: ../index.php?company_sign_up_error=invalid_email");
+	if(isset($_POST['busName'])) header("Location: ../index.php?business_sign_up_error=invalid_email");
 	else header("Location: ../index.php?student_sign_up_error=invalid_email");
 	exit();
 }
@@ -19,7 +19,7 @@ if(!validEmail($email)){ //if email is invalid
 
 if(strlen($email)>249){
 	unset($_SESSION['email']);
-	if(isset($_POST['compName'])) header("Location: ../index.php?company_sign_up_error=email_too_long");
+	if(isset($_POST['busName'])) header("Location: ../index.php?business_sign_up_error=email_too_long");
 	else header("Location: ../index.php?student_sign_up_error=email_too_long");
 	exit();
 }
@@ -42,7 +42,7 @@ $emailCheck = $result->num_rows;
 
 if($emailCheck > 0){
 	unset($_SESSION['email']);
-	if(isset($_POST['compName'])) header("Location: ../index.php?company_sign_up_error=email_already_in_use");
+	if(isset($_POST['busName'])) header("Location: ../index.php?business_sign_up_error=email_already_in_use");
 	else header("Location: ../index.php?student_sign_up_error=email_already_in_use");
 	exit();
 }
@@ -50,7 +50,7 @@ if($emailCheck > 0){
 
 
 //prepared statement
-$statement = $conn->prepare("SELECT email FROM company WHERE email=?");
+$statement = $conn->prepare("SELECT email FROM business WHERE email=?");
 $statement->bind_param("s", $emailPrepared);//this must be "s" !
 $emailPrepared = $email;
 //end of prepared statement
@@ -63,8 +63,10 @@ $emailCheck = $result->num_rows;
 
 if($emailCheck > 0){
 	unset($_SESSION['email']);
-	if(isset($_POST['compName'])) header("Location: ../index.php?company_sign_up_error=email_already_in_use");
+	if(isset($_POST['busName'])) header("Location: ../index.php?business_sign_up_error=email_already_in_use");
 	else header("Location: ../index.php?student_sign_up_error=email_already_in_use");
 	exit();
 }
+
+
 

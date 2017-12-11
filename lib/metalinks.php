@@ -7,7 +7,7 @@ include_once 'config.php';
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
 	
-	<meta name="description" content="Studevs allows students to develop companies' websites for an affordable price.  Create your student or company account for free today. Studevs.com ensures all companies are officially registed in Ireland, so as a student you are guaranteed to be working with real businesses." />
+	<meta name="description" content="Studevs allows students to develop businesses' websites for an affordable price.  Create your student or business account for free today. Studevs.com ensures students are given a fair price for their work if they follow the Studevs Price Guideline." />
 	<link rel="shortcut icon" href="../images/logoclosetransp.png" type="image/x-icon">
 	<link rel="icon" href="../images/logoclosetransp.png" type="image/x-icon">
 	

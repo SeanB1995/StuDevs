@@ -4,29 +4,31 @@ include_once 'lib/config.php';
 
 $query = "";
 
+$querystring = "";
+
 
 if(strpos($url, 'price_lowest_first')){
-	$statement = $conn->prepare("SELECT * FROM project WHERE project_id!=? AND student_ref IS NULL ORDER BY price ASC");
+	$statement = $conn->prepare("SELECT * FROM project WHERE project_id!=? AND accepted='0' ORDER BY price ASC");
 	$statement->bind_param("s", $projIdPrep);//this must be "s" !
 	$projIdPrep = '0';
 }
 
 elseif(strpos($url, 'price_highest_first')){
-	$statement = $conn->prepare("SELECT * FROM project WHERE project_id!=? AND student_ref IS NULL ORDER BY price DESC");
+	$statement = $conn->prepare("SELECT * FROM project WHERE project_id!=? AND accepted='0' ORDER BY price DESC");
 	$statement->bind_param("s", $projIdPrep);//this must be "s" !
 	$projIdPrep = '0';
 }
 
 
 elseif(strpos($url, 'date_oldest_first')){
-	$statement = $conn->prepare("SELECT * FROM project WHERE project_id!=? AND student_ref IS NULL ORDER BY date_advertised ASC");
+	$statement = $conn->prepare("SELECT * FROM project WHERE project_id!=? AND accepted='0' ORDER BY date_advertised ASC");
 	$statement->bind_param("s", $projIdPrep);//this must be "s" !
 	$projIdPrep = '0';
 }
 
 else{
 	//this is the default query
-	$statement = $conn->prepare("SELECT * FROM project WHERE project_id!=? AND student_ref IS NULL ORDER BY date_advertised DESC ");
+	$statement = $conn->prepare("SELECT * FROM project WHERE project_id!=? AND accepted='0' ORDER BY date_advertised DESC ");
 	$statement->bind_param("s", $projIdPrep);//this must be "s" !
 	$projIdPrep = '0';
 }
@@ -63,8 +65,17 @@ $result = $statement->get_result();
 				<div class="col-xs-12">
 						<div class="row">
 							<div class="col-xs-12 col-lg-6">
-								<h5 class="subtitle-margin">Company Software Projects</h5>
-								<h1><?php echo mysqli_num_rows($result);?> open projects found<span class="special-color">.</span></h1>
+								<h5 class="subtitle-margin">Open Software Projects</h5>
+								<h1><?php echo mysqli_num_rows($result);?> available projects<span class="special-color">.</span></h1>
+
+								<?php if(isset($_SESSION['studentId'])) { ?>
+								<p><br><br>
+									<b>Note:</b><br>StuDevs only allows you to work on 1 project at a time.<br>
+									If you request a new project and the business accepts your request, we will cancel
+									your agreement with the current business and you will receive <b>no payment</b>.<br><br>
+								</p>
+								<?php } ?>
+
 							</div>
 							<div class="col-xs-12 col-lg-6">											
 								
@@ -76,7 +87,7 @@ $result = $statement->get_result();
 										<option value="3">Date: newest first</option>
 										<option value="4">Date: oldest first</option>
 									</select>
-									<button style="margin-left: 80%;" class="btn btn-primary" type="submit">Go</button>
+									<button style="margin-left: 80%;" class="btn btn-primary" type="submit">Sort</button>
 									</form>
 								</div>	
 								
@@ -95,6 +106,7 @@ $result = $statement->get_result();
 								<?php 
 								while ($row = $result->fetch_assoc())  
 								{
+									$projRequestId = $row['project_id'];
 								?>
 
 								<!--start of project listing. -->
@@ -121,22 +133,37 @@ $result = $statement->get_result();
 											<div id="list-map1" class="list-offer-map"></div>
 										</div>
 									</div>
-									<a class="list-offer-right-large" href="estate-details-right-sidebar.html">
+									<?php $querystring = "/lib/request-project.php?" . (string)$row['project_id']; 
+
+									if(isset($_SESSION['studentId'])){ ?>
+									<a class="list-offer-right-large" onclick="if(confirm('Request to develop this project?')) return true; else return false;" href="<?php echo $querystring; ?>">
+										<?php }
+										elseif(isset($_SESSION['busId'])){ ?>
+											<a class="list-offer-right-large" onclick="alert('Only students can request projects'); return false;" href="<?php echo $querystring; ?>">
+										<?php }
+										 else{ ?>
+											<a class="list-offer-right-large" href="#" onclick="showlogmod()">
+										<?php } ?>
+
 										<div class="list-offer-text">
-											<i class="fa fa-copyright list-offer-localization hidden-xs"></i>
-											<p><b>Company: </b><?php echo $row['company_name']; ?></p>
+											<i class="fa fa-handshake-o list-offer-localization hidden-xs"></i>
+											<p><b>Business: </b><?php echo $row['business_name']; ?></p>
 											<?php if(strpos($row['title'], "app")||strpos($row['title'], "application")) echo "<i class='fa fa-mobile-phone list-offer-localization hidden-xs'></i>";
 											else echo "<i class='fa fa-laptop list-offer-localization hidden-xs'></i>"; ?>
 											
 											<div class="list-offer-h4"><h4 class="list-offer-title"><?php echo $row['title']; ?></h4></div>
 											<div class="clearfix"></div>
-											<?php echo $row['description']."<br><br><b>Requirements:</b> ".$row['requirements']; ?>
+											<?php echo $row['description']."<br><br><b>Requirements:</b> ".$row['requirements']."<br><br><b>Date advertised: </b>".date('j F Y',strtotime($row['date_advertised'])); ?>
+											<?php if(isset($_SESSION['studentId'])){ ?>
+											<p style="font-size: 130%"><br><b>Click to request project</b></p>
+											<?php } ?>
 											<p class="invisible-line"><?php echo $studesc; ?></p>
 											<div class="clearfix"></div>
 										</div>
 										<div class="price-list-cont">
+											
 											<div class="list-price">
-												€ <?php echo $row['price']; ?>
+												Will Pay: €<?php echo $row['price']; ?>
 											</div>	
 										</div>
 									</a>
@@ -169,6 +196,7 @@ $result = $statement->get_result();
     <?php 
     include_once 'lib/footer.php'; 
     ?>
+
 
 	</body>
 </html>

@@ -3,7 +3,8 @@
 //These functions are accessible by all files that include config.php.
 
 
-include_once 'config.php';
+
+
 
 function setCollege($email){
 	if(strpos($email, '@student.ncirl.ie')!==false) return 'National College of Ireland';
@@ -14,10 +15,10 @@ function setCollege($email){
 	else return 'None';
 }
 
-$studesc = "Studevs allows student developers to create software for companies for a reasonable price.  This web application is mutually beneficial to students and companies alike, allowing students to gain experience and finances and allowing companies to have their software project finally made.";
+$studesc = "Projects can be untaken by any verified student willing to accept the price provided. The StuDevs Guideline is a price calculator indicating what we believe to be a fair price.  When a business accepts the request for a student to develop their project, the project can get underway upon approval from the business.";
 
 
-
+$begin = date('Y-m-d H:i:s');
 
 
 function isValidImage($image){
@@ -42,3 +43,18 @@ function isValidImage($image){
 	else return true;
 }
 
+
+
+
+
+
+
+function generateCode() {	
+    $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    $charactersLength = strlen($characters);
+    $randomStrLet = '';
+    for ($i = 0; $i < 40; $i++) {
+        $randomStrLet .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomStrLet;
+} 

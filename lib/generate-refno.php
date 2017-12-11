@@ -28,7 +28,8 @@ $accountRef = "";
 $refIsValid = false;
 
 
-while(!$refIsValid){
+while(!$refIsValid){    //loop until it's a new reference number which isn't in the database.
+                        //usually will only have to do it once but it's just in case.
 
 	$refIsValid = true;
 
@@ -41,7 +42,7 @@ while(!$refIsValid){
 	if($accountRefCheck>0) $refIsValid = false;
 	
 
-	$query = "SELECT acc_ref FROM company WHERE acc_ref='$accountRef'";
+	$query = "SELECT acc_ref FROM business WHERE acc_ref='$accountRef'";
 	$result = $conn->query($query);
 	$accountRefCheck = mysqli_num_rows($result);
 
@@ -50,3 +51,5 @@ while(!$refIsValid){
 }
 
 $_SESSION['accountRef'] = $accountRef;
+
+

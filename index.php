@@ -2,28 +2,30 @@
 
 include_once 'lib/config.php';
 
-
-$statement = $conn->prepare("SELECT * FROM project WHERE project_id !=?");
+//assigned projects
+$statement = $conn->prepare("SELECT * FROM project WHERE project_id !=? AND accepted='1'");
 $statement->bind_param("s", $projIdPrep);//this must be "s" !
 $projIdPrep = '0';
 $statement->execute();
 $result = $statement->get_result();
-$projectCount = mysqli_num_rows($result);
+$assignedProjectCount = mysqli_num_rows($result);
 
-
-/*
-
-ADD ANOTHER FOR ASSIGNED PROJECTS AND POP THE THEME PART BACK IN FOR THE 4TH NUMBER
-
-*/
-
-
-$statement = $conn->prepare("SELECT * FROM company WHERE company_id !=?");
-$statement->bind_param("s", $compIdPrep);//this must be "s" !
-$compIdPrep = '0';
+//available projects
+$statement = $conn->prepare("SELECT * FROM project WHERE project_id !=? AND accepted='0'");
+$statement->bind_param("s", $projIdPrep);//this must be "s" !
+$projIdPrep = '0';
 $statement->execute();
 $result = $statement->get_result();
-$companyCount = mysqli_num_rows($result);
+$availableProjectCount = mysqli_num_rows($result);
+
+
+
+$statement = $conn->prepare("SELECT * FROM business WHERE business_id !=?");
+$statement->bind_param("s", $busIdPrep);//this must be "s" !
+$busIdPrep = '0';
+$statement->execute();
+$result = $statement->get_result();
+$businessCount = mysqli_num_rows($result);
 
 
 $statement = $conn->prepare("SELECT * FROM student WHERE student_id !=?");
@@ -33,22 +35,22 @@ $statement->execute();
 $result = $statement->get_result();
 $studentCount = mysqli_num_rows($result);
 
-$statement = $conn->prepare("SELECT * FROM project WHERE project_id !=? AND student_ref IS NULL ORDER BY RAND() LIMIT 3");
+$statement = $conn->prepare("SELECT * FROM project WHERE project_id !=? AND accepted='0' ORDER BY RAND() LIMIT 3");
 $statement->bind_param("s", $projIdPrep);//this must be "s" !
 $projIdPrep = '0';
 $statement->execute();
 $result = $statement->get_result();
 
-$comp = array();
+$bus = array();
 $title = array();
 $desc = array();
 $req = array();
 $recPrice = array();
 $price = array();
 
-//, $row['title'], $row['description'], $row['requirements'], $row['rec_price'], $row['price']
+
 while($row = $result->fetch_assoc()){
-	array_push($comp, $row['company_name']);
+	array_push($bus, $row['business_name']);
 	array_push($title, $row['title']);
 	array_push($desc, $row['description']);
 	array_push($req, $row['requirements']);
@@ -85,9 +87,6 @@ while($row = $result->fetch_assoc()){
 
 
 					<!--start of project listing. -->
-
-
-
 				<div class="swiper-slide">
 					<div class="slide-bg swiper-lazy" data-background="images/coding1.jpg"></div>
 					<!-- Preloader image -->
@@ -104,7 +103,7 @@ while($row = $result->fetch_assoc()){
 										<div class="clearfix"></div>
 										
 										<p>
-											<b>Company: </b><?php echo $comp[0]; ?><br>
+											<b>Business: </b><?php echo $bus[0]; ?><br>
 											<b>Requirements: </b><?php echo $req[0]; ?><br>
 											<b>Description: </b><?php echo $desc[0]; ?><br>
 										</p>
@@ -140,7 +139,7 @@ while($row = $result->fetch_assoc()){
 										<div class="clearfix"></div>
 										
 										<p>
-											<b>Company: </b><?php echo $comp[1]; ?><br>
+											<b>Business: </b><?php echo $bus[1]; ?><br>
 											<b>Requirements: </b><?php echo $req[1]; ?><br>
 											<b>Description: </b><?php echo $desc[1]; ?><br>
 										</p>
@@ -176,16 +175,13 @@ while($row = $result->fetch_assoc()){
 										<div class="clearfix"></div>
 										
 										<p>
-											<b>Company: </b><?php echo $comp[2]; ?><br>
+											<b>Business: </b><?php echo $bus[2]; ?><br>
 											<b>Requirements: </b><?php echo $req[2]; ?><br>
 											<b>Description: </b><?php echo $desc[2]; ?><br>
 										</p>
 
 									</div>
-									<div class="slide-desc-params">	
-											
-										<div style="margin-left: 85%;" class="slide-desc-parking">Price: </div>	
-									</div>
+							
 									<div class="slide-desc-price">
 										€<?php echo $price[2]; ?>
 									</div>
@@ -212,32 +208,40 @@ while($row = $result->fetch_assoc()){
     <section class="section-light top-padding-45 bottom-padding-45">
 		<div class="container">
 			<div class="row count-container">
-				<div class="col-xs-6 col-lg-4">
+				<div class="col-xs-6 col-lg-3">
 					<div class="number" id="number1">
 						<div class="number-img">	
 							<i class="fa fa-group"></i>
 						</div>
-						<span class="number-label text-color2">STUDENTS</span>
-						<?php $esd = 97; ?>
+						<span class="number-label text-color2">Students</span>
 						<span class="number-big text-color3 count" data-from="0" data-to="<?php echo $studentCount; ?>" data-speed="2000"></span>
 					</div>
 				</div>
-				<div class="col-xs-6 col-lg-4 number_border">
+				<div class="col-xs-6 col-lg-3 number_border">
 					<div class="number" id="number2">
 						<div class="number-img">	
-							<i class="fa fa-copyright"></i>	
+							<i class="fa fa-credit-card"></i>	
 						</div>			
-						<span class="number-label text-color2">COMPANIES</span>
-						<span class="number-big text-color3 count" data-from="0" data-to="<?php echo $companyCount; ?>" data-speed="2000"></span>
+						<span class="number-label text-color2">Businesses</span>
+						<span class="number-big text-color3 count" data-from="0" data-to="<?php echo $businessCount; ?>" data-speed="2000"></span>
 					</div>
 				</div>
-				<div class="col-xs-6 col-lg-4 number_border3">
+				<div class="col-xs-6 col-lg-3 number_border3">
 					<div class="number" id="number3">
 						<div class="number-img">	
 							<i class="fa fa-laptop"></i>
 						</div>
-						<span class="number-label text-color2">PROJECTS</span>
-						<span class="number-big text-color3 count" data-from="0" data-to="<?php echo $projectCount; ?>" data-speed="2000"></span>
+						<span class="number-label text-color2">Available Projects</span>
+						<span class="number-big text-color3 count" data-from="0" data-to="<?php echo $availableProjectCount; ?>" data-speed="2000"></span>
+					</div>
+				</div>
+				<div class="col-xs-6 col-lg-3 number_border4">
+					<div class="number" id="number4">
+						<div class="number-img">	
+							<i class="fa fa-calendar-check-o"></i>
+						</div>
+						<span class="number-label text-color2">Assigned Projects</span>
+						<span class="number-big text-color3 count" data-from="0" data-to="<?php echo $assignedProjectCount; ?>" data-speed="2000"></span>
 					</div>
 				</div>
 			</div>
@@ -247,39 +251,50 @@ while($row = $result->fetch_assoc()){
     <section class="section-light bottom-padding-45 section-both-shadow">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-6 col-lg-4">
+				<div class="col-sm-6 col-lg-3">
 					<div class="feature wow fadeInLeft" id="feature1">
 						<div class="feature-icon center-block"><i class="fa fa-group"></i></div>
 						<div class="feature-text">
 							<h5 class="subtitle-margin"></h5>
 							<h3>Students<span class="special-color">.</span></h3>
 							<div class="title-separator center-block feature-separator"></div>
-							<p>Yostudevso rens dsad fsadfsd afsaa rd sdsd sd buy fdfsd d gsdffbads fkj sadjkf sdajf sadkj fd sdfsdaf- sdsdaf.</p>
+							<p>Students on studevs.com are currently enrolled in an Irish college or University.  They are verified students and often accept business' offers when the business follows the StuDevs guideline for price recommendation.</p>
 						</div>
 					</div>
 				</div>			
-				<div class="col-sm-6 col-lg-4">
+				<div class="col-sm-6 col-lg-3">
 					<div class="feature wow fadeInUp" id="feature2">
-						<div class="feature-icon center-block"><i class="fa fa-copyright"></i></div>
+						<div class="feature-icon center-block"><i class="fa fa-credit-card"></i></div>
 						<div class="feature-text">
 							<h5 class="subtitle-margin"></h5>
-							<h3>Companies<span class="special-color">.</span></h3>
+							<h3>Businesses<span class="special-color">.</span></h3>
 							<div class="title-separator center-block feature-separator"></div>
-							<p>Resi dedsf dntial student development is vias df f sd fksdjkfjds jks jj oi oas  s dafmnn snsm fnm msa fmin our listings.</p>
+							<p>If you are a small business, StuDev can help.  The price of development is often significantly more affordable on our site than elsewhere.</p>
 						</div>
 					</div>
 				</div>			
-				<div class="col-sm-6 col-lg-4">
+				<div class="col-sm-6 col-lg-3">
 					<div class="feature wow fadeInUp" id="feature3">
 						<div class="feature-icon center-block"><i class="fa fa-laptop"></i></div>
 						<div class="feature-text">
 							<h5 class="subtitle-margin"></h5>
-							<h3>Projects<span class="special-color">.</span></h3>
+							<h3>Available Projects<span class="special-color">.</span></h3>
 							<div class="title-separator center-block feature-separator"></div>
-							<p>Witdfdaf jk fskj fsjk sdkjkd fkjsdstudevsstudevs studevs studevsvsnfkl kstudevs studevs studevssd df fd studevst</p>
+							<p>Business' software development projects can be anything from mobile apps to websites.  Available projects are those with no student currently working on them.</p>
 						</div>
 					</div>
-				</div>			
+				</div>	
+				<div class="col-sm-6 col-lg-3">
+					<div class="feature wow fadeInUp" id="feature4">
+						<div class="feature-icon center-block"><i class="fa fa-calendar-check-o"></i></div>
+						<div class="feature-text">
+							<h5 class="subtitle-margin"></h5>
+							<h3>Assigned Projects<span class="special-color">.</span></h3>
+							<div class="title-separator center-block feature-separator"></div>
+							<p>When a project gets underway, an estimated timeline is given to be followed.  Payment is given upon completion of the project.</p>
+						</div>
+					</div>
+				</div>		
 				
 			</div>
 		</div>

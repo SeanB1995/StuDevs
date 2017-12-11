@@ -62,8 +62,8 @@ include_once 'config.php';
 
 
 					<p class="modal-bottom">
-						<a href="#" class="register-link" onclick="showcompmod()">Sign up as a Company</a><br><br>
-						<a href="#" class="register-link" onclick="showstumod()">Sign up as a Student</a>
+						<a href="#" class="register-link" onclick="showbusmod()">Sign up as a business</a><br><br>
+						<a href="#" class="register-link" onclick="showstumod()">Sign up as a student</a>
 					</p>
 				</div>
 			</div><!-- /.modal-content -->
@@ -129,7 +129,7 @@ include_once 'config.php';
 						
 						else if(strpos($url, 'student_sign_up_error=student_email_required')!==false){
 							echo "Invalid Email";
-							$errorDetails = 'Students must sign up with an email address from an Irish college/university.';
+							$errorDetails = 'students must sign up with an email address from an Irish college/university.';
 						}
 						
 
@@ -177,7 +177,7 @@ include_once 'config.php';
 					
 
 					
-					<button type="submit" id ="signupBtn" class="button-primary button-shadow button-full">Sign up as a Student</button>
+					<button type="submit" id ="signupBtn" class="button-primary button-shadow button-full">Sign up as a student</button>
 						
 						
 					</form>
@@ -207,7 +207,7 @@ include_once 'config.php';
 
 
 
-<div class="modal fade apartment-modal" id="company-register-modal">
+<div class="modal fade apartment-modal" id="business-register-modal">
 
 		<div class="modal-dialog">
 
@@ -219,12 +219,12 @@ include_once 'config.php';
 	
 	
 						<h1><?php 
-						if(strpos($url, 'company_sign_up_error=empty_fields')!==false){
+						if(strpos($url, 'business_sign_up_error=empty_fields')!==false){
 							echo "Empty Fields";
 							$errorDetails = 'Please fill in all fields';
 						}
 
-						else if(strpos($url, 'company_sign_up_error=unmatching_passwords')!==false){
+						else if(strpos($url, 'business_sign_up_error=unmatching_passwords')!==false){
 							echo "Unmatching Passwords";
 							$errorDetails = 'Please ensure your passwords match.';
 						}
@@ -232,40 +232,36 @@ include_once 'config.php';
 						
 
 
-						else if(strpos($url, 'company_sign_up_error=invalid_company_name')!==false){
+						else if(strpos($url, 'business_sign_up_error=invalid_business_name')!==false){
 							echo "Invalid Name";
-							$errorDetails = 'Company name must be 2-50 characters';
+							$errorDetails = 'business name must be 2-50 characters';
 						}
 
 						
 						
 
-						else if(strpos($url, 'company_sign_up_error=invalid_email')!==false){
+						else if(strpos($url, 'business_sign_up_error=invalid_email')!==false){
 							echo "Invalid Email";
 							$errorDetails = 'Please enter your real email address.';
 						}
 
-						else if(strpos($url, 'company_sign_up_error=email_already_in_use')!==false){
+						else if(strpos($url, 'business_sign_up_error=email_already_in_use')!==false){
 							echo "Invalid Email";
 							$errorDetails = 'The email address you entered is already in use. Please enter another email address.';
 						}
+			
 
-						else if(strpos($url, 'company_sign_up_error=invalid_company_registration_number')!==false){
-							echo "Invalid Reg No.";
-							$errorDetails = 'Company must be registered in Ireland.';
-						}				
-
-						else if(strpos($url, 'company_sign_up_error=password_too_short')!==false){
+						else if(strpos($url, 'business_sign_up_error=password_too_short')!==false){
 							echo "Password too short";
 							$errorDetails = 'Your password must be at least 6 characters long. Please try another.';
 						}
 
-						else if(strpos($url, 'company_sign_up_error=password_too_long')!==false){
+						else if(strpos($url, 'business_sign_up_error=password_too_long')!==false){
 							echo "Password too long";
 							$errorDetails = 'Your password must be less than 9,000 characters long. Please try another.';
 						}
 
-						else if(strpos($url, 'company_sign_up_error=email_too_long')!==false){
+						else if(strpos($url, 'business_sign_up_error=email_too_long')!==false){
 							echo "Email too long";
 							$errorDetails = 'Please use an email address less than 250 characters long.';
 						}
@@ -285,13 +281,12 @@ include_once 'config.php';
 						<p class = "error-to-screen"><?php echo $errorDetails; ?></p>
 						<!--detailed error goes here : EG: password must contain number-->
 					</div>
-					<form method="post" action ="lib/company-signup.php">
-					<input id="signcompname" name="compName" type="text" required="" class="input-full main-input" placeholder="Company Name" 
-					value="<?php echo $_SESSION['compName']; ?>"/>
+					<form method="post" action ="lib/business-signup.php">
+					<input id="signbusname" name="busName" type="text" required="" class="input-full main-input" placeholder="Business Name" 
+					value="<?php echo $_SESSION['busName']; ?>"/>
 					<input id="signemail" name="email" type="email" required="" class="input-full main-input" placeholder="Email" 
 					value="<?php echo $_SESSION['email']; ?>"/>
-					<input id="signcompreg" name="compReg" type="text" required="" class="input-full main-input" placeholder="Company Registration Number" 
-					value="<?php echo $_SESSION['compReg']; ?>"/>
+					
 					<input id="signpword" name="password" type="password" required="" class="input-full main-input" placeholder="Password" 
 					value="<?php echo $_SESSION['password']; ?>"/>
 					<input id="signrepeatpword" name="repeatPassword" type="password" required="" class="input-full main-input" placeholder="Re-Enter Password"
@@ -299,7 +294,7 @@ include_once 'config.php';
 					
 
 					
-					<button type="submit" id ="signupBtn" class="button-primary button-shadow button-full">Sign up as a Company</button>
+					<button type="submit" id ="signupBtn" class="button-primary button-shadow button-full">Sign up as a business</button>
 						
 						
 					</form>
@@ -307,7 +302,7 @@ include_once 'config.php';
 					<div class="clearfix"></div>
 
 
-					<p class="modal-bottom">Already registered? <a href="#" onclick="showlogmod()" class="login-link">LOGIN</a></p>
+					<p class="modal-bottom">Already have an account? <a href="#" onclick="showlogmod()" class="login-link">LOGIN</a></p>
 				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
